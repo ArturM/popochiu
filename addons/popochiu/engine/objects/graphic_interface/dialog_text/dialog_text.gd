@@ -43,6 +43,22 @@ func _ready() -> void:
 	C.character_spoke.connect(_show_dialogue)
 
 
+func _input(event: InputEvent) -> void:
+	if not event is InputEventMouseButton or modulate.a == 0.0:
+		return
+	
+	var e: InputEventMouseButton = event
+	
+	get_viewport().set_input_as_handled()
+	
+	if e.is_pressed() and e.button_index == MOUSE_BUTTON_LEFT:
+		if visible_ratio == 1.0:
+			disappear()
+			G.continue_clicked.emit()
+		else:
+			stop()
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
 func play_text(props: Dictionary) -> void:
 	var msg: String = E.get_text(props.text)
@@ -151,6 +167,8 @@ func disappear() -> void:
 		_continue_icon_tween.kill()
 	
 	size = get_meta(DFLT_SIZE)
+	
+	set_process_input(false)
 
 
 func change_speed() -> void:
@@ -166,6 +184,8 @@ func _show_dialogue(chr: PopochiuCharacter, msg := '') -> void:
 			E.scale if E.settings.scale_gui else Vector2.ONE
 		),
 	})
+	
+	set_process_input(true)
 
 
 func _wait_input() -> void:

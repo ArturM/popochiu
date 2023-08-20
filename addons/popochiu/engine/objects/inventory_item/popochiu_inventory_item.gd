@@ -160,7 +160,8 @@ func get_description() -> String:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
 func _toggle_description(display: bool) -> void:
 	Cursor.set_cursor(cursor if display else CURSOR.Type.IDLE)
-	G.show_info(self.description if display else '')
+	G.show_hover_text(self.description if display else '')
+	
 	if display:
 		description_toggled.emit(description if description else script_name)
 	else:

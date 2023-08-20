@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdgs3xsbq3gdd"]
 
 [ext_resource type="FontFile" uid="uid://dixh1egf7k2fb" path="res://addons/popochiu/fonts/monkeyisland_1991.ttf" id="1_6ussd"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/display_box/display_box.gd" id="2"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/system_text/system_text.gd" id="2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4eue6"]
 content_margin_left = 8.0
@@ -17,7 +17,7 @@ border_color = Color(1, 1, 1, 1)
 corner_detail = 4
 anti_aliasing = false
 
-[node name="DisplayBox" type="RichTextLabel"]
+[node name="SystemText" type="RichTextLabel"]
 offset_right = 24.0
 offset_bottom = 24.0
 grow_horizontal = 2

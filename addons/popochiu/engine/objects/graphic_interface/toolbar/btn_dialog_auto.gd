@@ -19,7 +19,7 @@ func on_pressed() -> void:
 		1 if E.settings.auto_continue_text else 0
 	]
 
-	G.show_info(self.description)
+	G.show_hover_text(self.description)
 
 
 func get_description() -> String:

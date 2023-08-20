@@ -13,6 +13,7 @@ func _on_click() -> void:
 		C.queue_face_clicked(),
 		A.vo_goddiu_01.queue_play(),
 		'Player: My old toy car!',
+		I.ToyCar.queue_add()
 	])
 
 

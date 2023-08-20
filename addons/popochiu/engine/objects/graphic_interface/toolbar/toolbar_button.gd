@@ -24,12 +24,12 @@ func on_pressed() -> void:
 
 func on_mouse_entered() -> void:
 	Cursor.set_cursor(10)
-	G.show_info(self.description)
+	G.show_hover_text(self.description)
 
 
 func on_mouse_exited() -> void:
 	Cursor.set_cursor()
-	G.show_info()
+	G.show_hover_text()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░

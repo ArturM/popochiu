@@ -1,6 +1,6 @@
 extends Node
-# (E) Popochiu's core
-# It is the system main class, and is in charge of a making the game to work
+## (E) Popochiu's core
+## It is the system main class, and is in charge of a making the game to work.
 # ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
 signal text_speed_changed
@@ -38,6 +38,8 @@ var am: PopochiuAudioManager = null
 # be something that allows for more dynamism, such as putting one queue to execute
 # during the execution of another queue
 var playing_queue := false
+var gi: Control = null
+var tl: Node2D = null
 
 # TODO: This could be in the camera's own script
 var _is_camera_shaking := false
@@ -68,9 +70,6 @@ func _ready() -> void:
 	_saveload = load(SAVELOAD_PATH).new()
 	_config = PopochiuResources.get_data_cfg()
 	
-	var gi: CanvasLayer = null
-	var tl: CanvasLayer = null
-	
 	if settings.graphic_interface:
 		gi = settings.graphic_interface.instantiate()
 		gi.name = 'GraphicInterface'
@@ -86,8 +85,8 @@ func _ready() -> void:
 	# Scale GI and TL
 	scale = Vector2(self.width, self.height) / Vector2(320.0, 180.0)
 	
-	add_child(gi)
-	add_child(tl)
+	$GraphicInterfaceLayer.add_child(gi)
+	$TransitionsLayer.add_child(tl)
 	add_child(am)
 	
 	if PopochiuResources.has_data_value('setup', 'pc'):
@@ -159,7 +158,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released('popochiu-skip'):
 		cutscene_skipped = true
 		$TransitionLayer.play_transition(
-			TransitionLayer.PASS_DOWN_IN,
+			PopochiuTransitionLayer.PASS_DOWN_IN,
 			settings.skip_cutscene_time
 		)
 		
@@ -497,24 +496,24 @@ func get_dialog(script_name: String) -> PopochiuDialog:
 	return null
 
 
-# Adds an action to the history of actions.
-# Look PopochiuClickable._unhandled_input or GraphicInterface._show_dialog_text
-# for examples
+## Adds an action to the history of actions.
+## Look PopochiuClickable._unhandled_input or GraphicInterface._show_dialog_text
+## for examples.
 func add_history(data: Dictionary) -> void:
 	history.push_front(data)
 
 
-# Makes a method in node to be able to be used in a `queue()` call.
-# Method parameters can be passed with params, and yield_signal is the signal
-# that will notify the function has been completed (so `queue()` can continue
-# with the next command in the queue)
+## Makes a method in node to be able to be used in a `queue()` call.
+## Method parameters can be passed with params, and yield_signal is the signal
+## that will notify the function has been completed (so `queue()` can continue
+## with the next command in the queue)
 func queueable(
 	node: Object, method: String, params := [], signal_name := ''
 ) -> Callable:
 	return func (): await _queueable(node, method, params, signal_name)
 
 
-# Checks if the room with script_name exists in the array of rooms of Popochiu
+## Checks if the room with script_name exists in the array of rooms of Popochiu
 func room_exists(script_name: String) -> bool:
 #	for r in rooms:
 	for rp in PopochiuResources.get_section('rooms'):
@@ -528,8 +527,8 @@ func queue_play_transition(type: int, duration: float) -> Callable:
 	return func (): await play_transition(type, duration)
 
 
-# Plays the transition type animation in TransitionLayer.tscn that last duration
-# in seconds. Possible type values can be found in TransitionLayer
+## Plays the transition type animation in TransitionLayer.tscn that last duration
+## in seconds. Possible type values can be found in TransitionLayer
 func play_transition(type: int, duration: float) -> void:
 	$TransitionLayer.play_transition(type, duration)
 	
@@ -598,8 +597,9 @@ func remove_hovered(node: PopochiuClickable) -> bool:
 	
 	if not _hovered_queue.is_empty():
 		var pc: PopochiuClickable = _hovered_queue[-1]
-		G.show_info(pc.description)
+		G.show_hover_text(pc.description)
 		Cursor.set_cursor(pc.cursor)
+		
 		return false
 	
 	return true
@@ -631,7 +631,7 @@ func set_hovered(value: PopochiuClickable) -> void:
 	hovered = value
 	
 	if not hovered:
-		G.show_info()
+		G.show_hover_text()
 
 
 func get_hovered() -> PopochiuClickable:

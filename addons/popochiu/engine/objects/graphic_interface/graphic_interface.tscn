@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bq7kpsehncsaf" path="res://addons/popochiu/engine/objects/graphic_interface/history/history.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://0cqerawlxb3o" path="res://addons/popochiu/engine/objects/graphic_interface/toolbar/toolbar.tscn" id="7_0ydpp"]
 [ext_resource type="PackedScene" uid="uid://codc5gwfbqwth" path="res://addons/popochiu/engine/objects/graphic_interface/save_load/save_load.tscn" id="8"]
-[ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/info_bar/info_bar.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/hover_text/hover_text.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://cxrrluhs3ugqx" path="res://addons/popochiu/engine/objects/graphic_interface/sound_settings/sound_settings.tscn" id="10_dkhrk"]
-[ext_resource type="PackedScene" uid="uid://bdgs3xsbq3gdd" path="res://addons/popochiu/engine/objects/graphic_interface/display_box/display_box.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://bdgs3xsbq3gdd" path="res://addons/popochiu/engine/objects/graphic_interface/system_text/system_text.tscn" id="11"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dlu6y"]
 
@@ -32,8 +32,14 @@ offset_right = 320.0
 offset_bottom = 180.0
 mouse_filter = 2
 
-[node name="InfoBar" parent="MainContainer" instance=ExtResource("9")]
+[node name="HoverText" parent="MainContainer" instance=ExtResource("9")]
 layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -19.0
+offset_bottom = -4.0
+grow_vertical = 0
 
 [node name="DialogText" parent="MainContainer" instance=ExtResource("3")]
 layout_mode = 1
@@ -49,7 +55,7 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DisplayBox" parent="MainContainer" instance=ExtResource("11")]
+[node name="SystemText" parent="MainContainer" instance=ExtResource("11")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

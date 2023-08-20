@@ -15,7 +15,7 @@ func on_pressed() -> void:
 	E.change_text_speed()
 	texture_normal = btn_states[E.current_text_speed_idx]
 
-	G.show_info(self.description)
+	G.show_hover_text(self.description)
 
 
 func get_description() -> String:

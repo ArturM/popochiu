@@ -175,13 +175,13 @@ func _toggle_description(display: bool) -> void:
 		Cursor.set_cursor(cursor)
 		
 		if not I.active:
-			G.show_info(description)
+			G.show_hover_text(description)
 		else:
-			G.show_info('Use %s with %s' % [I.active.description, description])
+			G.show_hover_text('Use %s with %s' % [I.active.description, description])
 	else:
 		if E.remove_hovered(self):
 			Cursor.set_cursor()
-			G.show_info()
+			G.show_hover_text()
 
 
 func _toggle_input() -> void:

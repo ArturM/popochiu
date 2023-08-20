@@ -1,6 +1,6 @@
 extends RichTextLabel
-# Show a text in the form of GUI. Can be used to show game (or narrator)
-# messages.
+## Show a text in the form of GUI. Can be used to show game (or narrator)
+## messages.
 # ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # warning-ignore-all:unused_signal
 # warning-ignore-all:return_value_discarded
@@ -12,7 +12,7 @@ const DFLT_SIZE := 'dflt_size'
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
-	G.show_box_requested.connect(_show_box)
+	G.system_text_shown.connect(_show_text)
 	set_meta(DFLT_SIZE, size)
 	
 	close()
@@ -35,7 +35,7 @@ func close() -> void:
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
-func _show_box(msg := '') -> void:
+func _show_text(msg := '') -> void:
 	size = get_meta(DFLT_SIZE)
 	
 	# ==== Calculate the width of the node =====================================

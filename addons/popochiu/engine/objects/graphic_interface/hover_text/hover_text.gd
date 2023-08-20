@@ -1,4 +1,4 @@
-extends Label
+extends RichTextLabel
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
@@ -6,9 +6,9 @@ func _ready() -> void:
 	text = ''
 	
 	# Conectarse 
-	G.show_info_requested.connect(_show_info)
+	G.hover_text_shown.connect(_show_text)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
-func _show_info(info := '') -> void:
-	text = info
+func _show_text(info := '') -> void:
+	text = '[center]%s[/center]' % info

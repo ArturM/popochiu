@@ -3,8 +3,8 @@ extends Node
 # ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # warning-ignore-all:unused_signal
 
-signal show_info_requested(info)
-signal show_box_requested(message)
+signal hover_text_shown(info)
+signal system_text_shown(message)
 signal continue_clicked
 signal freed
 signal blocked
@@ -36,7 +36,7 @@ func display(msg: String) -> void:
 		await get_tree().process_frame
 		return
 	
-	show_box_requested.emit(E.get_text(msg))
+	system_text_shown.emit(E.get_text(msg))
 	
 	await self.continue_clicked
 	
@@ -44,14 +44,14 @@ func display(msg: String) -> void:
 		done()
 
 
-# Shows a text at the bottom of the screen. It is used to show players the
-# name of nodes where the cursor is positioned (e.g. a Prop, a character). Could
-# be used to show what will happen when players use left and right click.
-func show_info(msg := '') -> void:
-	show_info_requested.emit(msg)
+## Shows a text at the bottom of the screen. It is used to show players the
+## name of nodes where the cursor is positioned (e.g. a Prop, a character). Could
+## be used to show what will happen when players use left and right click.
+func show_hover_text(msg := '') -> void:
+	hover_text_shown.emit(msg)
 
 
-# Makes the Graphic Interface to block.
+## Makes the Graphic Interface to block.
 func block() -> void:
 	is_blocked = true
 	
@@ -60,8 +60,8 @@ func block() -> void:
 	blocked.emit()
 
 
-# Notifies that graphic interface elements can be unlocked (e.g. when a cutscene
-# has ended).
+## Notifies that graphic interface elements can be unlocked (e.g. when a cutscene
+## has ended).
 func done(wait := false) -> void:
 	is_blocked = false
 	
@@ -74,8 +74,7 @@ func done(wait := false) -> void:
 	Cursor.set_cursor()
 	freed.emit()
 
-
-# Notifies that the graphic interface should hide.
+## Notifies that the graphic interface should hide.
 func hide_interface() -> void:
 	interface_hidden.emit()
 
@@ -93,7 +92,7 @@ func queue_show_interface() -> Callable:
 	return func(): show_interface()
 
 
-# Notifies that the history of events should appear.
+## Notifies that the history of events should appear.
 func show_history() -> void:
 	history_opened.emit()
 

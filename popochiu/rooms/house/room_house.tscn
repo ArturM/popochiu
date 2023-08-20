@@ -40,6 +40,7 @@ texture = ExtResource("4_lih8o")
 [node name="ToyCar" parent="Props" instance=ExtResource("4_0fq0w")]
 position = Vector2(104, 127)
 texture = ExtResource("7_ys5mq")
+link_to_item = "ToyCar"
 walk_to_point = Vector2(26, -2)
 
 [node name="InteractionPolygon" type="CollisionPolygon2D" parent="Props/ToyCar"]

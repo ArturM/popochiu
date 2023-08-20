@@ -7,7 +7,7 @@ var _can_hide_inventory := true
 
 @onready var _tween: Tween = null
 @onready var _hide_y := position.y - (size.y - 4)
-@onready var _box: BoxContainer = find_child('Box')
+@onready var _box: Container = find_child('Box')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
@@ -134,7 +134,7 @@ func _remove_item(item: PopochiuInventoryItem, animate := true) -> void:
 		_can_hide_inventory = true
 		
 		Cursor.set_cursor()
-		G.show_info()
+		G.show_hover_text()
 		
 		if animate:
 			_close()
