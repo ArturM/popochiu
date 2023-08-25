@@ -11,11 +11,11 @@ signal redied
 
 const SAVELOAD_PATH := 'res://addons/popochiu/engine/others/popochiu_save_load.gd'
 
-# Used to prevent going to another room when there is one being loaded
+## Used to prevent going to another room when there is one being loaded
 var in_room := false : set = _set_in_room
 var current_room: PopochiuRoom : set = set_current_room
-# Stores the las PopochiuClickable node clicked to ease access to it from
-# any other class
+## Stores the las PopochiuClickable node clicked to ease access to it from
+## any other class
 var clicked: PopochiuClickable = null
 var hovered: PopochiuClickable = null : get = get_hovered, set = set_hovered
 var cutscene_skipped := false
@@ -40,6 +40,7 @@ var am: PopochiuAudioManager = null
 var playing_queue := false
 var gi: Control = null
 var tl: Node2D = null
+var current_command := ""
 
 # TODO: This could be in the camera's own script
 var _is_camera_shaking := false

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://codc5gwfbqwth"]
 
 [ext_resource type="Theme" uid="uid://dpequqav4rjaf" path="res://addons/popochiu/engine/objects/graphic_interface/resources/popochiu_theme.tres" id="1_mccto"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/save_load/save_load.gd" id="2"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/components/save_load/save_load.gd" id="2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_st5xf"]
 bg_color = Color(0, 0, 0, 0.498039)

@@ -17,7 +17,25 @@ func _on_room_set() -> void:
 
 # When the node is clicked
 func _on_click() -> void:
-	D.ChatWithPopsy.start()
+	match E.current_command.to_snake_case():
+		"open", "close", "use":
+			C.Goddiu.say("I can't do that to my epatiu")
+		"pick_up":
+			await C.Goddiu.say("Can I pick you up?")
+			await C.Popsy.say("I'd prefer you not to do it")
+		"pull", "push":
+			C.Goddiu.say("We are not playing that anymore")
+		"talk_to":
+			D.ChatWithPopsy.start()
+		"look_at":
+			await C.Goddiu.say("Is my epatiu Popsy")
+			await C.Popsy.say("[wave]Hiiiiii![/wave]")
+		"give":
+			await C.Goddiu.say("I don't have anything to give him")
+			await C.Popsy.say("What about a kiss?")
+			await C.player.say("Awwwwwww")
+		_:
+			D.ChatWithPopsy.start()
 
 
 # When the node is right clicked

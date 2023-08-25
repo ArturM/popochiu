@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ey7v3mcmfefw"
-path="res://.godot/imported/inventory_bg.png-5ae5da8ba77bab2543280a69c6083091.ctex"
+path="res://.godot/imported/inventory_bg.png-f6fcc8a9c5a9ebe44ff78ed3d0a49167.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/popochiu/engine/objects/graphic_interface/inventory/inventory_bg.png"
-dest_files=["res://.godot/imported/inventory_bg.png-5ae5da8ba77bab2543280a69c6083091.ctex"]
+source_file="res://addons/popochiu/engine/objects/graphic_interface/components/inventory/inventory_bg.png"
+dest_files=["res://.godot/imported/inventory_bg.png-f6fcc8a9c5a9ebe44ff78ed3d0a49167.ctex"]
 
 [params]
 

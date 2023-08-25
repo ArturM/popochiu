@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bq7kpsehncsaf"]
 
 [ext_resource type="Theme" uid="uid://dpequqav4rjaf" path="res://addons/popochiu/engine/objects/graphic_interface/resources/popochiu_theme.tres" id="1"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/history/history.gd" id="2"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/components/history/history.gd" id="2"]
 
 [sub_resource type="StyleBoxFlat" id="7"]
 bg_color = Color(1, 1, 1, 1)

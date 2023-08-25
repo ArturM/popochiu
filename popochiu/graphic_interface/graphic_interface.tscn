@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwbsom2evs7my"]
+[gd_scene load_steps=4 format=3 uid="uid://dwbsom2evs7my"]
 
-[ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/hover_text/hover_text.tscn" id="1_ilfab"]
-[ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/dialog_text/dialog_text.tscn" id="2_4u6fp"]
+[ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="1_ho2l1"]
+[ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="2_ewvvv"]
+[ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="3_1pgv5"]
 
 [node name="GraphicInterface" type="Control"]
 layout_mode = 3
@@ -12,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HoverText" parent="." instance=ExtResource("1_ilfab")]
+[node name="HoverText" parent="." instance=ExtResource("1_ho2l1")]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -21,5 +22,8 @@ offset_top = -19.0
 offset_bottom = -4.0
 grow_vertical = 0
 
-[node name="DialogText" parent="." instance=ExtResource("2_4u6fp")]
+[node name="DialogText" parent="." instance=ExtResource("2_ewvvv")]
 layout_mode = 0
+
+[node name="DialogMenu" parent="." instance=ExtResource("3_1pgv5")]
+layout_mode = 1

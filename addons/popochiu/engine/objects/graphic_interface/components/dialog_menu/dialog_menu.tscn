@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dhsfl8ot4j5fj"]
 
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/dialog_menu/dialog_menu.gd" id="1_3dp72"]
-[ext_resource type="PackedScene" uid="uid://dcta4urojglil" path="res://addons/popochiu/engine/objects/graphic_interface/dialog_menu/dialog_menu_option.tscn" id="2_xxbof"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.gd" id="1_3dp72"]
+[ext_resource type="PackedScene" uid="uid://dcta4urojglil" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu_option.tscn" id="2_xxbof"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s524m"]
 

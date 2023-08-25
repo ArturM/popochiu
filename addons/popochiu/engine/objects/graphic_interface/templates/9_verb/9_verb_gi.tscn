@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=13 format=3 uid="uid://bd0fika4hyhvw"]
 
 [ext_resource type="Theme" uid="uid://dpequqav4rjaf" path="res://addons/popochiu/engine/objects/graphic_interface/resources/popochiu_theme.tres" id="1_gac50"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_button.gd" id="2_jqlk8"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_inventory_panel.gd" id="2_pkipq"]
-[ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/hover_text/hover_text.tscn" id="4_ljv1q"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_hover_text.gd" id="4_6vbh8"]
+[ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="4_ljv1q"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/SaveBtn.gd" id="5_723rq"]
-[ext_resource type="PackedScene" uid="uid://codc5gwfbqwth" path="res://addons/popochiu/engine/objects/graphic_interface/save_load/save_load.tscn" id="5_v25yq"]
-[ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/dialog_menu/dialog_menu.tscn" id="7_n3yn3"]
+[ext_resource type="PackedScene" uid="uid://codc5gwfbqwth" path="res://addons/popochiu/engine/objects/graphic_interface/components/save_load/save_load.tscn" id="5_v25yq"]
+[ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="7_n3yn3"]
+[ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="9_kfhqw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5117m"]
 bg_color = Color(0.180392, 0.172549, 0.607843, 1)
@@ -25,7 +29,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_gac50")
+script = ExtResource("2_v01ea")
 
 [node name="BottomContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -53,54 +59,63 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "Open"
+script = ExtResource("2_jqlk8")
 
 [node name="Pickup" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "Pick Up"
+script = ExtResource("2_jqlk8")
 
 [node name="Push" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "Push"
+script = ExtResource("2_jqlk8")
 
 [node name="Close" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "Close"
+script = ExtResource("2_jqlk8")
 
 [node name="LookAt" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "Look At"
+script = ExtResource("2_jqlk8")
 
 [node name="Pull" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "Pull"
+script = ExtResource("2_jqlk8")
 
 [node name="Give" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "Give"
+script = ExtResource("2_jqlk8")
 
 [node name="TalkTo" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "TalkTo"
+script = ExtResource("2_jqlk8")
 
 [node name="Use" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "Use"
+script = ExtResource("2_jqlk8")
 
 [node name="InventoryPanel" type="HBoxContainer" parent="BottomContainer/HBoxContainer"]
 layout_mode = 2
@@ -188,6 +203,7 @@ offset_bottom = -48.0
 grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+script = ExtResource("4_6vbh8")
 
 [node name="SaveBtn" type="Button" parent="."]
 layout_mode = 1
@@ -207,5 +223,8 @@ layout_mode = 1
 
 [node name="DialogMenu" parent="." instance=ExtResource("7_n3yn3")]
 layout_mode = 1
+
+[node name="DialogText" parent="." instance=ExtResource("9_kfhqw")]
+layout_mode = 0
 
 [connection signal="pressed" from="SaveBtn" to="SaveBtn" method="on_pressed"]
