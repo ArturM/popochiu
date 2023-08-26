@@ -17,40 +17,26 @@ func _on_room_set() -> void:
 
 # When the node is clicked
 func _on_click() -> void:
-	match E.current_command.to_snake_case():
-		"open", "close", "use":
-			C.Goddiu.say("I can't do that to my epatiu")
-		"pick_up":
-			await C.Goddiu.say("Can I pick you up?")
-			await C.Popsy.say("I'd prefer you not to do it")
-		"pull", "push":
-			C.Goddiu.say("We are not playing that anymore")
-		"talk_to":
-			D.ChatWithPopsy.start()
-		"look_at":
-			await C.Goddiu.say("Is my epatiu Popsy")
-			await C.Popsy.say("[wave]Hiiiiii![/wave]")
-		"give":
-			await C.Goddiu.say("I don't have anything to give him")
-			await C.Popsy.say("What about a kiss?")
-			await C.player.say("Awwwwwww")
-		_:
-			D.ChatWithPopsy.start()
+	# ---- 9 verb ----------------------------------------------------------
+#	match E.current_command:
+#		G.Commands.OPEN, G.Commands.CLOSE, G.Commands.USE:
+#			C.Goddiu.say("I can't do that to my epatiu")
+#		G.Commands.PUSH, G.Commands.PULL:
+#			C.Goddiu.say("We are not playing that anymore")
+#		G.Commands.LOOK_AT:
+#			await C.Goddiu.say("Is my epatiu Popsy")
+#			await C.Popsy.say("[wave]Hiiiiii![/wave]")
+#		G.Commands.GIVE:
+#			await C.Goddiu.say("I don't have anything to give him")
+#			await C.Popsy.say("What about a kiss?")
+#			await C.player.say("Awwwwwww")
+	# ---------------------------------------------------------- 9 verb ----
+	pass
 
 
 # When the node is right clicked
 func _on_right_click() -> void:
-	var op: PopochiuDialogOption = await D.show_inline_dialog([
-		'Hi', 'Hola', 'Ciao'
-	])
-
-	match int(op.id): # You can compare the String if you prefer
-		0:
-			C.Goddiu.say("How is it going?")
-		1:
-			C.Goddiu.say("¿Cómo te va?")
-		2:
-			C.Goddiu.say("Come sta andando?")
+	pass
 
 
 # When the node is clicked and there is an inventory item selected
@@ -80,3 +66,39 @@ func _play_talk() -> void:
 # Use it to play the grab animation for the character
 func _play_grab() -> void:
 	pass
+
+
+# ---- 9 verb ------------------------------------------------------------------
+#func _on_pick_up() -> void:
+#	await C.Goddiu.say("Can I pick you up?")
+#	await C.Popsy.say("I'd prefer you not to do it")
+#
+#
+#func _on_talk_to() -> void:
+#	D.ChatWithPopsy.start()
+#
+#
+#func _on_right_pick_up() -> void:
+#	prints("Right - Pick up")
+#
+#
+#func _on_middle_pick_up() -> void:
+#	prints("Middle - Pick up")
+# ------------------------------------------------------------------ 9 verb ----
+
+# ---- SIERRA ------------------------------------------------------------------
+func _on_look() -> void:
+	C.Goddiu.say("It's my epatiu: Popsy")
+
+
+func _on_right_look() -> void:
+	prints("NO QUIERO QUE ESTO PASE NUNCA JAMÁS!!!")
+
+
+func _on_interact() -> void:
+	C.Goddiu.say("I don't want to do anything with him right now...")
+
+
+func _on_talk() -> void:
+	D.ChatWithPopsy.start()
+# ------------------------------------------------------------------ SIERRA ----

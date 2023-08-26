@@ -34,8 +34,11 @@ func set_cursor(type := Type.IDLE, ignore_block := false) -> void:
 	if not ignore_block and is_blocked: return
 	
 	var anim_name: String = Type.keys()[Type.IDLE]
-	if Type.values().has(type):
-		anim_name = Type.keys()[type]
+	if not Type.keys().has(type):
+		prints("[Popochiu] No animation %s in Cursor." % anim_name)
+		return
+	
+	anim_name = Type.keys()[type]
 	$AnimatedSprite2D.play(anim_name.to_lower())
 
 
@@ -73,3 +76,12 @@ func scale_cursor(factor: Vector2) -> void:
 
 func get_position() -> Vector2:
 	return $Sprite2D.position
+
+
+func replace_frames(new_node: AnimatedSprite2D) -> void:
+	$AnimatedSprite2D.sprite_frames = new_node.sprite_frames
+	$AnimatedSprite2D.offset = new_node.offset
+
+
+func play_animation(anim_name: String) -> void:
+	$AnimatedSprite2D.play(anim_name)

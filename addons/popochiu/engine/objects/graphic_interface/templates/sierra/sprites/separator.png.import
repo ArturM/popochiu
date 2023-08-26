@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxpcw7xvcjcfy"
-path="res://.godot/imported/btn_quit.png-82fd59e52d047ce482868c6a9a978845.ctex"
+uid="uid://cqfu38l1h5v8j"
+path="res://.godot/imported/separator.png-9afa75fe76ceb8c758ddecdca7a44a4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/popochiu/engine/objects/graphic_interface/toolbar/sprites/btn_quit.png"
-dest_files=["res://.godot/imported/btn_quit.png-82fd59e52d047ce482868c6a9a978845.ctex"]
+source_file="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/separator.png"
+dest_files=["res://.godot/imported/separator.png-9afa75fe76ceb8c758ddecdca7a44a4e.ctex"]
 
 [params]
 

@@ -54,6 +54,7 @@ const C_SNGL := 'res://popochiu/autoloads/c.gd'
 const I_SNGL := 'res://popochiu/autoloads/i.gd'
 const D_SNGL := 'res://popochiu/autoloads/d.gd'
 const A_SNGL := 'res://popochiu/autoloads/a.gd'
+const G_SNGL := 'res://popochiu/autoloads/g.gd'
 # ════ FIRST INSTALL ═══════════════════════════════════════════════════════════
 const GI := 0
 const TL := 1

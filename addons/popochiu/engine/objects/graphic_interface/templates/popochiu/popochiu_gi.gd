@@ -10,6 +10,8 @@ func _ready() -> void:
 
 func _on_mouse_hover_clickable(clickable: PopochiuClickable, is_hover: bool) -> void:
 	if is_hover:
+		Cursor.set_cursor(clickable.cursor)
+		
 		if not I.active:
 			G.show_hover_text(clickable.description)
 		else:
@@ -17,4 +19,5 @@ func _on_mouse_hover_clickable(clickable: PopochiuClickable, is_hover: bool) -> 
 				'Use %s with %s' % [I.active.description, clickable.description]
 			)
 	else:
+		Cursor.set_cursor()
 		G.show_hover_text()

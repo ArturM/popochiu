@@ -7,8 +7,6 @@ class_name PopochiuGraphicInterface
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready():
-	prints('PopochiuGraphicInterface')
-	
 	# Connect to singleton signals
 	G.blocked.connect(_disable_panels)
 	G.freed.connect(_enable_panels)

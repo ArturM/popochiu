@@ -50,8 +50,8 @@ func _init():
 	add_autoload_singleton('C', PopochiuResources.C_SNGL)
 	add_autoload_singleton('I', PopochiuResources.I_SNGL)
 	add_autoload_singleton('D', PopochiuResources.D_SNGL)
-	add_autoload_singleton('G', PopochiuResources.IGRAPHIC_INTERFACE_SNGL)
 	add_autoload_singleton('A', PopochiuResources.A_SNGL)
+	add_autoload_singleton('G', PopochiuResources.G_SNGL)
 
 
 func _enter_tree() -> void:

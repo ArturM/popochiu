@@ -1,5 +1,5 @@
 extends Node
-# (G) Data and functions to work with the graphic interface.
+## (G) Data and functions to work with the graphic interface.
 # ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # warning-ignore-all:unused_signal
 
@@ -15,6 +15,8 @@ signal save_requested(date) # The date in YYYY/MM/DD HH:MM:SS format
 signal load_requested
 signal continue_requested
 signal sound_settings_requested
+signal mouse_entered_clickable(clickable)
+signal mouse_exited_clickable(clickable)
 
 var is_blocked := false
 

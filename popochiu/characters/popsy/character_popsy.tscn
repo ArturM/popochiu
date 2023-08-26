@@ -9,7 +9,7 @@ text_color = Color(0.768627, 0.423529, 0.443137, 1)
 popochiu_placeholder = null
 script_name = "Popsy"
 description = "Popsy"
-cursor = 1
+cursor = 8
 
 [node name="InteractionPolygon" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-9, -23, 7, -24, 16, -18, 16, -2, -4, 3, -19, -1)

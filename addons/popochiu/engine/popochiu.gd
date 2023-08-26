@@ -40,7 +40,7 @@ var am: PopochiuAudioManager = null
 var playing_queue := false
 var gi: Control = null
 var tl: Node2D = null
-var current_command := ""
+var current_command := -1
 
 # TODO: This could be in the camera's own script
 var _is_camera_shaking := false

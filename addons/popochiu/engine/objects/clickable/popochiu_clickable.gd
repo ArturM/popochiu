@@ -17,6 +17,7 @@ const CURSOR := preload('res://addons/popochiu/engine/cursor/cursor.gd')
 var room: Node2D = null : set = set_room # It is a PopochiuRoom
 var times_clicked := 0
 var times_right_clicked := 0
+var times_middle_clicked := 0
 
 @onready var _description_code := description
 
@@ -47,31 +48,41 @@ func _ready():
 
 
 func _unhandled_input(event: InputEvent):
-	var mouse_event: = event as InputEventMouseButton 
+	var mouse_event := event as InputEventMouseButton
 	if mouse_event and mouse_event.pressed:
 		if not E.hovered or E.hovered != self: return
 		
 		E.clicked = self
-		if event.is_action_pressed('popochiu-interact'):
-			get_viewport().set_input_as_handled()
-			
-			if I.active:
-				_on_item_used(I.active)
-			else:
-				E.add_history({
-					action = 'Interacted with: %s' % description
-				})
-				_on_click()
+		
+		match mouse_event.button_index:
+			MOUSE_BUTTON_LEFT:
+				get_viewport().set_input_as_handled()
 				
-				times_clicked += 1
-		elif event.is_action_pressed('popochiu-look'):
-			if not I.active:
-				E.add_history({
-					action = 'Looked at: %s' % description
-				})
-				_on_right_click()
-				
-				times_right_clicked += 1
+				if I.active:
+					_on_item_used(I.active)
+				else:
+					E.add_history({
+						action = 'Clicked with: %s' % description
+					})
+					on_action(mouse_event.button_index)
+					
+					times_clicked += 1
+			MOUSE_BUTTON_RIGHT:
+				if not I.active:
+					E.add_history({
+						action = 'Right-clicked at: %s' % description
+					})
+					on_action(mouse_event.button_index)
+					
+					times_right_clicked += 1
+			MOUSE_BUTTON_MIDDLE:
+				if not I.active:
+					E.add_history({
+						action = 'Middle-clicked at: %s' % description
+					})
+					on_action(mouse_event.button_index)
+					
+					times_middle_clicked += 1
 
 
 func _process(delta):
@@ -87,22 +98,27 @@ func _process(delta):
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
-# When the room this node belongs to has been added to the tree
+## When the room this node belongs to has been added to the tree
 func _on_room_set() -> void:
 	pass
 
 
-# When the node is clicked
+## When the node is clicked
 func _on_click() -> void:
 	pass
 
 
-# When the node is right clicked
+## When the node is right clicked
 func _on_right_click() -> void:
 	pass
 
 
-# When the node is clicked and there is an inventory item selected
+## When the node is middle clicked
+func _on_middle_click() -> void:
+	pass
+
+
+## When the node is clicked and there is an inventory item selected
 func _on_item_used(item: PopochiuInventoryItem) -> void:
 	pass
 
@@ -160,6 +176,26 @@ func on_item_used(item: PopochiuInventoryItem) -> void:
 	await G.display("Can't USE %s here" % item.description)
 
 
+func on_action(button_idx: int) -> void:
+	var command := G.get_command(E.current_command).to_snake_case()
+	var target_method := "_on_%s"
+	var suffix := "click"
+	
+	match button_idx:
+		MOUSE_BUTTON_RIGHT:
+			suffix = "right_" + suffix
+		MOUSE_BUTTON_MIDDLE:
+			suffix = "middle_" + suffix
+	
+	if not command.is_empty():
+		var command_method := suffix.replace("click", command)
+		
+		if has_method(target_method % command_method):
+			suffix = command_method
+	
+	call(target_method % suffix)
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
 func _toggle_description(display: bool) -> void:
 	set_process_unhandled_input(display)
@@ -172,16 +208,11 @@ func _toggle_description(display: bool) -> void:
 			return
 		
 		E.add_hovered(self)
-		Cursor.set_cursor(cursor)
 		
-		if not I.active:
-			G.show_hover_text(description)
-		else:
-			G.show_hover_text('Use %s with %s' % [I.active.description, description])
+		G.mouse_entered_clickable.emit(self)
 	else:
 		if E.remove_hovered(self):
-			Cursor.set_cursor()
-			G.show_hover_text()
+			G.mouse_exited_clickable.emit(self)
 
 
 func _toggle_input() -> void:
