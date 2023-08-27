@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=19 format=3 uid="uid://bd0fika4hyhvw"]
 
 [ext_resource type="Theme" uid="uid://dpequqav4rjaf" path="res://addons/popochiu/engine/objects/graphic_interface/resources/popochiu_theme.tres" id="1_gac50"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="7_n3yn3"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/save_btn.gd" id="7_o7th5"]
 [ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="9_kfhqw"]
+[ext_resource type="Texture2D" uid="uid://d0fwvj88bhggm" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_cursor.png" id="11_y5a23"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5117m"]
 bg_color = Color(0.180392, 0.172549, 0.607843, 1)
@@ -21,6 +22,47 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.439216, 0.427451, 0.921569, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ckh2"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jysoy"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2brv"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwabf"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtf0b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ckh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jysoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2brv")
+}],
+"loop": true,
+"name": &"active",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwabf")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}]
 
 [node name="9VerbGI" type="Control"]
 layout_mode = 3
@@ -235,5 +277,10 @@ layout_mode = 1
 
 [node name="DialogText" parent="." instance=ExtResource("9_kfhqw")]
 layout_mode = 0
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_xtf0b")
+animation = &"active"
 
 [connection signal="pressed" from="SaveBtn" to="SaveBtn" method="on_pressed"]

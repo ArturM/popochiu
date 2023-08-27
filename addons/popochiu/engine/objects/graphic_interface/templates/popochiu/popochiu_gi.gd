@@ -1,23 +1,23 @@
 extends PopochiuGraphicInterface
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
 	super()
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
+func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
+	Cursor.set_cursor(clickable.cursor)
 	
-	G.mouse_entered_clickable.connect(_on_mouse_hover_clickable.bind(true))
-	G.mouse_exited_clickable.connect(_on_mouse_hover_clickable.bind(false))
-
-
-func _on_mouse_hover_clickable(clickable: PopochiuClickable, is_hover: bool) -> void:
-	if is_hover:
-		Cursor.set_cursor(clickable.cursor)
-		
-		if not I.active:
-			G.show_hover_text(clickable.description)
-		else:
-			G.show_hover_text(
-				'Use %s with %s' % [I.active.description, clickable.description]
-			)
+	if not I.active:
+		G.show_hover_text(clickable.description)
 	else:
-		Cursor.set_cursor()
-		G.show_hover_text()
+		G.show_hover_text(
+			'Use %s with %s' % [I.active.description, clickable.description]
+		)
+
+
+func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
+	Cursor.set_cursor()
+	G.show_hover_text()

@@ -1,6 +1,6 @@
 extends Button
 
-@export var command := G.Commands.WALK_TO
+@export var command: G.Commands = 0
 
 
 func _ready() -> void:

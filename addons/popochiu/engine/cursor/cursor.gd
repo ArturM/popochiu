@@ -83,5 +83,5 @@ func replace_frames(new_node: AnimatedSprite2D) -> void:
 	$AnimatedSprite2D.offset = new_node.offset
 
 
-func play_animation(anim_name: String) -> void:
+func show_cursor(anim_name: String) -> void:
 	$AnimatedSprite2D.play(anim_name)

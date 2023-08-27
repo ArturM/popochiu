@@ -3,6 +3,7 @@ extends PopochiuGraphicInterface
 @onready var sierra_commands: HBoxContainer = %SierraCommands
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
 	super()
 	

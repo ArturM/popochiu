@@ -122,6 +122,7 @@ func _enter_tree() -> void:
 	
 	main_dock.setup_dialog.es = _editor_interface.get_editor_settings()
 	main_dock.setup_dialog.move_requested.connect(_move_to_project)
+	main_dock.setup_dialog.gui_selected.connect(_copy_gui_template)
 	
 	if PopochiuResources.get_section('setup').is_empty():
 		main_dock.setup_dialog.appear(true)
@@ -443,3 +444,30 @@ func _move_to_project(id: int) -> void:
 	PopochiuResources.save_settings(settings)
 	
 	main_dock.setup_dialog.update_state()
+
+
+func _copy_gui_template(template_name: String) -> void:
+	var gui_path := ""
+	
+	match template_name:
+		"popochiu":
+			gui_path = "res://addons/popochiu/engine/objects/graphic_interface/templates/popochiu/popochiu_gi.tscn"
+		"9_verb":
+			gui_path = "res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.tscn"
+		"sierra":
+			gui_path = "res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_gi.tscn"
+		"Empty":
+			gui_path = "res://addons/popochiu/engine/objects/graphic_interface/graphic_interface.tscn"
+	
+	DirAccess.copy_absolute(
+		gui_path,
+		PopochiuResources.GRAPHIC_INTERFACE_POPOCHIU
+	)
+	
+	# Refresh FileSystem
+	_editor_file_system.scan()
+	await _editor_file_system.filesystem_changed
+	
+	var settings := PopochiuResources.get_settings()
+	settings.graphic_interface = load(PopochiuResources.GRAPHIC_INTERFACE_POPOCHIU)
+	PopochiuResources.save_settings(settings)

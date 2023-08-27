@@ -2,6 +2,7 @@
 extends AcceptDialog
 
 signal move_requested(id)
+signal gui_selected(gui_name)
 
 const ImporterDefaults :=\
 preload('res://addons/popochiu/engine/others/importer_defaults.gd')
@@ -12,6 +13,7 @@ const SCALE_MESSAGE :=\
 ' [code]"Scale Gui"[/code] checkbox.'
 
 var es: EditorSettings = null
+var _selected_template: CheckBox
 
 @onready var _welcome = %Welcome
 @onready var _welcome_separator = %WelcomeSeparator
@@ -25,6 +27,7 @@ var es: EditorSettings = null
 @onready var _btn_move_gi = %BtnMoveGI
 @onready var _btn_move_tl = %BtnMoveTL
 @onready var _btn_update_files = %BtnUpdateFiles
+@onready var gi_templates: HBoxContainer = %GITemplates
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
@@ -37,6 +40,9 @@ func _ready() -> void:
 	_btn_move_gi.pressed.connect(_move_gi)
 	_btn_move_tl.pressed.connect(_move_tl)
 	_btn_update_files.pressed.connect(_update_imports)
+	
+	for btn in gi_templates.get_children():
+		(btn as CheckBox).pressed.connect(_gi_template_pressed.bind(btn))
 	
 	# Set default state
 	_advanced.hide()
@@ -133,6 +139,8 @@ func _update_project_settings() -> void:
 		ProjectSettings.set_setting(PopochiuResources.STRETCH_MODE, 'disabled')
 		ProjectSettings.set_setting(PopochiuResources.STRETCH_ASPECT, 'ignore')
 	
+	gui_selected.emit(_selected_template.name.to_snake_case())
+	
 	assert(\
 		ProjectSettings.save() == OK,\
 		'[Popochiu] Could not save Project settings'\
@@ -162,6 +170,14 @@ func _move_gi() -> void:
 func _move_tl() -> void:
 	_btn_move_tl.disabled = true
 	move_requested.emit(PopochiuResources.TL)
+
+
+func _gi_template_pressed(clicked: CheckBox) -> void:
+	for btn in gi_templates.get_children():
+		(btn as CheckBox).set_pressed_no_signal(false)
+	
+	clicked.set_pressed_no_signal(true)
+	_selected_template = clicked
 
 
 func _update_imports() -> void:

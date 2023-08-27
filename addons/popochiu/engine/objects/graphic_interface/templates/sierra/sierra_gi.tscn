@@ -1,8 +1,8 @@
 [gd_scene load_steps=34 format=3 uid="uid://6ucg5xkcreh5"]
 
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_gi.gd" id="1_40nsv"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/sierra_commands.gd" id="2_2oa8n"]
 [ext_resource type="Texture2D" uid="uid://cnxdologw7ax8" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/btn_walk.png" id="2_7cktd"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/SierraCommands.gd" id="2_aua02"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/sierra_command_button.gd" id="3_3pvuf"]
 [ext_resource type="Texture2D" uid="uid://57nl6xfjetoe" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/btn_look.png" id="3_ben2t"]
 [ext_resource type="Texture2D" uid="uid://mbfkdny6pub7" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/btn_interact.png" id="4_j5w70"]
@@ -14,57 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="11_b4ttw"]
 [ext_resource type="Texture2D" uid="uid://dwn416xagjwtd" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/sierra_cursor.png" id="13_udys2"]
 [ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="14_3gq4k"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xo8dr"]
-atlas = ExtResource("13_udys2")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yxgj0"]
-atlas = ExtResource("13_udys2")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvutg"]
-atlas = ExtResource("13_udys2")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e0opo"]
-atlas = ExtResource("13_udys2")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_eo6w8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xo8dr")
-}],
-"loop": true,
-"name": &"interact",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yxgj0")
-}],
-"loop": true,
-"name": &"look",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cvutg")
-}],
-"loop": true,
-"name": &"talk",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e0opo")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wfxk"]
 
@@ -121,6 +70,57 @@ texture = ExtResource("6_rqlwx")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo8dr"]
+atlas = ExtResource("13_udys2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxgj0"]
+atlas = ExtResource("13_udys2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvutg"]
+atlas = ExtResource("13_udys2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0opo"]
+atlas = ExtResource("13_udys2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eo6w8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xo8dr")
+}],
+"loop": true,
+"name": &"interact",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxgj0")
+}],
+"loop": true,
+"name": &"look",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvutg")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0opo")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
 [node name="SierraGI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -130,12 +130,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_40nsv")
-
-[node name="Cursor" type="AnimatedSprite2D" parent="."]
-visible = false
-sprite_frames = SubResource("SpriteFrames_eo6w8")
-animation = &"talk"
-offset = Vector2(16, 16)
 
 [node name="Menu" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -154,7 +148,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
-script = ExtResource("2_aua02")
+script = ExtResource("2_2oa8n")
 
 [node name="Walk" type="TextureButton" parent="Menu/HBoxContainer/SierraCommands"]
 texture_filter = 1
@@ -221,3 +215,9 @@ layout_mode = 0
 
 [node name="DialogMenu" parent="." instance=ExtResource("14_3gq4k")]
 layout_mode = 1
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_eo6w8")
+animation = &"talk"
+offset = Vector2(16, 16)
