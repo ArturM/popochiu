@@ -18,20 +18,25 @@ func _on_room_set() -> void:
 # When the node is clicked
 func _on_click() -> void:
 	# ---- 9 verb ----------------------------------------------------------
-#	match E.current_command:
-#		G.Commands.OPEN, G.Commands.CLOSE, G.Commands.USE:
-#			C.Goddiu.say("I can't do that to my epatiu")
-#		G.Commands.PUSH, G.Commands.PULL:
-#			C.Goddiu.say("We are not playing that anymore")
-#		G.Commands.LOOK_AT:
-#			await C.Goddiu.say("Is my epatiu Popsy")
-#			await C.Popsy.say("[wave]Hiiiiii![/wave]")
-#		G.Commands.GIVE:
-#			await C.Goddiu.say("I don't have anything to give him")
-#			await C.Popsy.say("What about a kiss?")
-#			await C.player.say("Awwwwwww")
+	if G.template == "Popochiu":
+		D.ChatWithPopsy.start()
+	else:
+		match E.current_command:
+			NineVerbCommands.Commands.OPEN,\
+			NineVerbCommands.Commands.CLOSE,\
+			NineVerbCommands.Commands.USE:
+				C.Goddiu.say("I can't do that to my epatiu")
+			NineVerbCommands.Commands.PUSH,\
+			NineVerbCommands.Commands.PULL:
+				C.Goddiu.say("We are not playing that anymore")
+			NineVerbCommands.Commands.LOOK_AT:
+				await C.Goddiu.say("Is my epatiu Popsy")
+				await C.Popsy.say("[wave]Hiiiiii![/wave]")
+			NineVerbCommands.Commands.GIVE:
+				await C.Goddiu.say("I don't have anything to give him")
+				await C.Popsy.say("What about a kiss?")
+				await C.player.say("Awwwwwww")
 	# ---------------------------------------------------------- 9 verb ----
-	pass
 
 
 # When the node is right clicked
@@ -69,21 +74,21 @@ func _play_grab() -> void:
 
 
 # ---- 9 verb ------------------------------------------------------------------
-#func _on_pick_up() -> void:
-#	await C.Goddiu.say("Can I pick you up?")
-#	await C.Popsy.say("I'd prefer you not to do it")
-#
-#
-#func _on_talk_to() -> void:
-#	D.ChatWithPopsy.start()
-#
-#
-#func _on_right_pick_up() -> void:
-#	prints("Right - Pick up")
-#
-#
-#func _on_middle_pick_up() -> void:
-#	prints("Middle - Pick up")
+func _on_pick_up() -> void:
+	await C.Goddiu.say("Can I pick you up?")
+	await C.Popsy.say("I'd prefer you not to do it")
+
+
+func _on_talk_to() -> void:
+	D.ChatWithPopsy.start()
+
+
+func _on_right_pick_up() -> void:
+	prints("Right - Pick up")
+
+
+func _on_middle_pick_up() -> void:
+	prints("Middle - Pick up")
 # ------------------------------------------------------------------ 9 verb ----
 
 # ---- SIERRA ------------------------------------------------------------------

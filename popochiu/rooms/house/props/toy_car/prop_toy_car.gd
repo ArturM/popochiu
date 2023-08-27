@@ -8,14 +8,25 @@ extends PopochiuProp
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 # When the node is clicked
 func _on_click() -> void:
-#	E.queue([
-#		C.queue_walk_to_clicked(),
-#		C.queue_face_clicked(),
-#		A.vo_goddiu_01.queue_play(),
-#		'Player: My old toy car!',
-#		I.ToyCar.queue_add()
-#	])
-	pass
+	match G.template:
+		"Popochiu":
+			E.queue([
+				C.queue_walk_to_clicked(),
+				C.queue_face_clicked(),
+				A.vo_goddiu_01.queue_play(),
+				'Player: My old toy car!',
+				I.ToyCar.queue_add()
+			])
+		"Sierra":
+			match E.current_command:
+				SierraCommands.Commands.INTERACT:
+					E.queue([
+						'Player: I should take it with me',
+						'Player: Might be useful',
+						C.queue_walk_to_clicked(),
+						C.queue_face_clicked(),
+						I.ToyCar.queue_add()
+					])
 
 
 # When the node is right clicked
@@ -51,3 +62,12 @@ func on_linked_item_removed() -> void:
 # the inventory (i.e. when the player throws the object out of the inventory).
 func on_linked_item_discarded() -> void:
 	pass
+
+
+func _on_pick_up() -> void:
+	E.queue([
+		'Player: My old toy car!',
+		C.queue_walk_to_clicked(),
+		C.queue_face_clicked(),
+		I.ToyCar.queue_add()
+	])

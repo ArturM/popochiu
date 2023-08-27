@@ -5,7 +5,6 @@
 [node name="Setup" type="AcceptDialog"]
 position = Vector2i(0, 36)
 size = Vector2i(496, 496)
-visible = true
 max_size = Vector2i(496, 496)
 script = ExtResource("1_vjboj")
 
@@ -13,7 +12,7 @@ script = ExtResource("1_vjboj")
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 488.0
-offset_bottom = 3999.0
+offset_bottom = 447.0
 size_flags_horizontal = 4
 size_flags_vertical = 5
 
@@ -181,7 +180,6 @@ layout_mode = 2
 [node name="Popochiu" type="CheckBox" parent="VBoxContainer/GITemplateContainer/GITemplates"]
 layout_mode = 2
 size_flags_horizontal = 3
-button_pressed = true
 text = "Popochiu"
 
 [node name="9verb" type="CheckBox" parent="VBoxContainer/GITemplateContainer/GITemplates"]
@@ -197,6 +195,7 @@ text = "Sierra"
 [node name="Empty" type="CheckBox" parent="VBoxContainer/GITemplateContainer/GITemplates"]
 layout_mode = 2
 size_flags_horizontal = 3
+button_pressed = true
 text = "Empty"
 
 [node name="Advanced" type="HBoxContainer" parent="VBoxContainer"]

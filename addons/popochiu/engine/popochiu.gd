@@ -77,6 +77,11 @@ func _ready() -> void:
 	else:
 		gi = load(PopochiuResources.GRAPHIC_INTERFACE_ADDON).instantiate()
 	
+	var commands: String = PopochiuResources.get_data_value("ui", "commands", "")
+	if not commands.is_empty():
+		G.commands_dic = (load(commands).new()).commands_dic
+		prints("G.commands_dic", G.commands_dic)
+	
 	if settings.transition_layer:
 		tl = settings.transition_layer.instantiate()
 		tl.name = 'TransitionLayer'

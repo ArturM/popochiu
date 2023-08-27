@@ -12,7 +12,7 @@ func _ready() -> void:
 	$Cursor.hide()
 	$Menu.hide()
 	
-	E.current_command = G.Commands.WALK
+	E.current_command = SierraCommands.Commands.WALK
 	sierra_commands.select_command()
 
 
@@ -25,12 +25,13 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.is_pressed():
 		match (event as InputEventMouseButton).button_index:
 			MOUSE_BUTTON_LEFT:
-				if not E.hovered and E.current_command != G.Commands.WALK:
+				if not $Menu.visible and not E.hovered\
+				 and E.current_command != SierraCommands.Commands.WALK:
 					get_viewport().set_input_as_handled()
 			MOUSE_BUTTON_RIGHT:
 				get_viewport().set_input_as_handled()
 				
 				E.current_command = posmod(
-					E.current_command + 1, G.Commands.size()
+					E.current_command + 1, SierraCommands.Commands.size()
 				)
 				sierra_commands.select_command()

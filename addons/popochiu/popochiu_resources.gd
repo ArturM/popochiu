@@ -59,7 +59,7 @@ const G_SNGL := 'res://popochiu/autoloads/g.gd'
 const GI := 0
 const TL := 1
 const GRAPHIC_INTERFACE_ADDON :=\
-'res://addons/popochiu/engine/objects/graphic_interface/graphic_interface.tscn'
+'res://addons/popochiu/engine/objects/graphic_interface/gi.tscn'
 const GRAPHIC_INTERFACE_POPOCHIU :=\
 BASE_DIR + '/graphic_interface/graphic_interface.tscn'
 const TRANSITION_LAYER_ADDON :=\

@@ -42,7 +42,13 @@ func _ready() -> void:
 	_btn_update_files.pressed.connect(_update_imports)
 	
 	for btn in gi_templates.get_children():
-		(btn as CheckBox).pressed.connect(_gi_template_pressed.bind(btn))
+		(btn as CheckBox).pressed.connect(_gi_template_selected.bind(btn))
+		
+		if PopochiuResources.get_data_value("ui", "template", "") == btn.text:
+			_gi_template_selected(btn)
+	
+	if not _selected_template:
+		_selected_template = gi_templates.get_child(0)
 	
 	# Set default state
 	_advanced.hide()
@@ -65,9 +71,10 @@ func appear(show_welcome := false) -> void:
 	_scale_message.add_theme_font_override(
 		'mono_font', get_theme_font('doc_source', 'EditorFonts')
 	)
-	_scale_message.modulate = Color(\
-	'#000' if es.get_setting('interface/theme/preset').find('Light3D') > -1\
-	else '#fff')
+	_scale_message.modulate = Color(
+		'#000' if es.get_setting('interface/theme/preset').find('Light3D') > -1\
+		else '#fff'
+	)
 	_scale_message.modulate.a = 0.8
 
 	if not show_welcome:
@@ -104,13 +111,13 @@ func update_state() -> void:
 	_advanced.hide()
 	_btn_move_gi.hide()
 
-	if not PopochiuResources.get_data_value('setup', 'gi_moved', false):
-		_advanced.show()
-		_btn_move_gi.show()
-
-	if not PopochiuResources.get_data_value('setup', 'tl_moved', false):
-		_advanced.show()
-		_btn_move_tl.show()
+#	if not PopochiuResources.get_data_value('setup', 'gi_moved', false):
+#		_advanced.show()
+#		_btn_move_gi.show()
+#
+#	if not PopochiuResources.get_data_value('setup', 'tl_moved', false):
+#		_advanced.show()
+#		_btn_move_tl.show()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
@@ -139,7 +146,7 @@ func _update_project_settings() -> void:
 		ProjectSettings.set_setting(PopochiuResources.STRETCH_MODE, 'disabled')
 		ProjectSettings.set_setting(PopochiuResources.STRETCH_ASPECT, 'ignore')
 	
-	gui_selected.emit(_selected_template.name.to_snake_case())
+	gui_selected.emit(_selected_template.text)
 	
 	assert(\
 		ProjectSettings.save() == OK,\
@@ -172,7 +179,7 @@ func _move_tl() -> void:
 	move_requested.emit(PopochiuResources.TL)
 
 
-func _gi_template_pressed(clicked: CheckBox) -> void:
+func _gi_template_selected(clicked: CheckBox) -> void:
 	for btn in gi_templates.get_children():
 		(btn as CheckBox).set_pressed_no_signal(false)
 	

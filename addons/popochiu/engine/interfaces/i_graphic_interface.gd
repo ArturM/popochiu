@@ -19,6 +19,12 @@ signal mouse_entered_clickable(clickable)
 signal mouse_exited_clickable(clickable)
 
 var is_blocked := false
+var template := ""
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
+func _ready():
+	template = PopochiuResources.get_data_value("ui", "template", "")
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░

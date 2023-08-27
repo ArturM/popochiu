@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="PopochiuSettings" load_steps=3 format=3 uid="uid://cmu0kih6wcv5q"]
 
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/popochiu_settings.gd" id="1_6d6xl"]
-[ext_resource type="PackedScene" uid="uid://6ucg5xkcreh5" path="res://popochiu/graphic_interface/graphic_interface.tscn" id="1_d5sy4"]
+[ext_resource type="PackedScene" uid="uid://6ucg5xkcreh5" path="res://popochiu/graphic_interface/graphic_interface.tscn" id="1_m632j"]
 
 [resource]
 script = ExtResource("1_6d6xl")
-graphic_interface = ExtResource("1_d5sy4")
+graphic_interface = ExtResource("1_m632j")
 skip_cutscene_time = 0.2
 text_speeds = [0.1, 0.01, 0.0]
 default_text_speed = 0

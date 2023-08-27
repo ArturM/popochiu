@@ -33,8 +33,9 @@ func _process(delta):
 func set_cursor(type := Type.IDLE, ignore_block := false) -> void:
 	if not ignore_block and is_blocked: return
 	
-	var anim_name: String = Type.keys()[Type.IDLE]
-	if not Type.keys().has(type):
+	var anim_name: String = (Type.keys()[Type.IDLE] as String).to_lower()
+	
+	if not Type.values().has(type):
 		prints("[Popochiu] No animation %s in Cursor." % anim_name)
 		return
 	

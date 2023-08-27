@@ -124,7 +124,7 @@ func _enter_tree() -> void:
 	main_dock.setup_dialog.move_requested.connect(_move_to_project)
 	main_dock.setup_dialog.gui_selected.connect(_copy_gui_template)
 	
-	if PopochiuResources.get_section('setup').is_empty():
+	if PopochiuResources.get_data_value("setup", "done", false) == false:
 		main_dock.setup_dialog.appear(true)
 		(main_dock.setup_dialog as AcceptDialog).confirmed.connect(
 			_set_setup_done
@@ -447,17 +447,17 @@ func _move_to_project(id: int) -> void:
 
 
 func _copy_gui_template(template_name: String) -> void:
-	var gui_path := ""
+	var gui_path := "res://addons/popochiu/engine/objects/graphic_interface/"
 	
-	match template_name:
+	match template_name.to_snake_case():
 		"popochiu":
-			gui_path = "res://addons/popochiu/engine/objects/graphic_interface/templates/popochiu/popochiu_gi.tscn"
+			gui_path += "templates/popochiu/popochiu_gi.tscn"
 		"9_verb":
-			gui_path = "res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.tscn"
+			gui_path += "templates/9_verb/9_verb_gi.tscn"
 		"sierra":
-			gui_path = "res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_gi.tscn"
-		"Empty":
-			gui_path = "res://addons/popochiu/engine/objects/graphic_interface/graphic_interface.tscn"
+			gui_path += "templates/sierra/sierra_gi.tscn"
+		"empty":
+			gui_path += "gi.tscn"
 	
 	DirAccess.copy_absolute(
 		gui_path,
@@ -468,6 +468,15 @@ func _copy_gui_template(template_name: String) -> void:
 	_editor_file_system.scan()
 	await _editor_file_system.filesystem_changed
 	
+	# Save the GI template in Settings
 	var settings := PopochiuResources.get_settings()
 	settings.graphic_interface = load(PopochiuResources.GRAPHIC_INTERFACE_POPOCHIU)
 	PopochiuResources.save_settings(settings)
+	
+	var commands_path := gui_path.replace("gi.tscn", "commands.gd")
+	
+	if not FileAccess.file_exists(commands_path):
+		commands_path = ""
+	
+	PopochiuResources.set_data_value('ui', 'template', template_name)
+	PopochiuResources.set_data_value('ui', 'commands', commands_path)

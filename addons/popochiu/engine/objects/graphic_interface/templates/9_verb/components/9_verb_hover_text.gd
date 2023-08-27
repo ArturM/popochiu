@@ -4,7 +4,7 @@ extends PopochiuHoverText
 func _ready() -> void:
 	super()
 	
-	E.current_command = G.Commands.WALK_TO
+	E.current_command = NineVerbCommands.Commands.WALK_TO
 	_show_text()
 
 
