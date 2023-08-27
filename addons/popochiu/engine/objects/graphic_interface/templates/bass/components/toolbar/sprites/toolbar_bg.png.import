@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4lgasdx1ow1d"
-path="res://.godot/imported/toolbar_bg.png-42a0a9a6c7d7a65f92924288e1eebefb.ctex"
+path="res://.godot/imported/toolbar_bg.png-0f361811fb095f1beb308b3a6b3f6705.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/popochiu/engine/objects/graphic_interface/templates/popochiu/components/toolbar/sprites/toolbar_bg.png"
-dest_files=["res://.godot/imported/toolbar_bg.png-42a0a9a6c7d7a65f92924288e1eebefb.ctex"]
+source_file="res://addons/popochiu/engine/objects/graphic_interface/templates/bass/components/toolbar/sprites/toolbar_bg.png"
+dest_files=["res://.godot/imported/toolbar_bg.png-0f361811fb095f1beb308b3a6b3f6705.ctex"]
 
 [params]
 

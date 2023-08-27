@@ -18,7 +18,7 @@ func _on_room_set() -> void:
 # When the node is clicked
 func _on_click() -> void:
 	# ---- 9 verb ----------------------------------------------------------
-	if G.template == "Popochiu":
+	if G.template == "BASS":
 		D.ChatWithPopsy.start()
 	else:
 		match E.current_command:

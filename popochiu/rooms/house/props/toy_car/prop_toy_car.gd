@@ -9,7 +9,7 @@ extends PopochiuProp
 # When the node is clicked
 func _on_click() -> void:
 	match G.template:
-		"Popochiu":
+		"BASS":
 			E.queue([
 				C.queue_walk_to_clicked(),
 				C.queue_face_clicked(),

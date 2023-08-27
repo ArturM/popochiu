@@ -450,8 +450,8 @@ func _copy_gui_template(template_name: String) -> void:
 	var gui_path := "res://addons/popochiu/engine/objects/graphic_interface/"
 	
 	match template_name.to_snake_case():
-		"popochiu":
-			gui_path += "templates/popochiu/popochiu_gi.tscn"
+		"bass":
+			gui_path += "templates/bass/bass_gi.tscn"
 		"9_verb":
 			gui_path += "templates/9_verb/9_verb_gi.tscn"
 		"sierra":

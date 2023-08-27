@@ -1,12 +1,12 @@
 [gd_scene load_steps=15 format=3 uid="uid://cwvuu8g0ih3i8"]
 
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/popochiu/popochiu_gi.gd" id="1_268ni"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/bass/bass_gi.gd" id="1_268ni"]
 [ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="2_6qu0l"]
 [ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="3_earfn"]
 [ext_resource type="PackedScene" uid="uid://bdgs3xsbq3gdd" path="res://addons/popochiu/engine/objects/graphic_interface/components/system_text/system_text.tscn" id="4_o82xq"]
 [ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="5_ayg0j"]
 [ext_resource type="PackedScene" uid="uid://ciar5j7qm85bc" path="res://addons/popochiu/engine/objects/graphic_interface/components/inventory/inventory.tscn" id="6_ovwnh"]
-[ext_resource type="PackedScene" uid="uid://0cqerawlxb3o" path="res://addons/popochiu/engine/objects/graphic_interface/templates/popochiu/components/toolbar/toolbar.tscn" id="7_mtpwc"]
+[ext_resource type="PackedScene" uid="uid://0cqerawlxb3o" path="res://addons/popochiu/engine/objects/graphic_interface/templates/bass/components/toolbar/toolbar.tscn" id="7_mtpwc"]
 [ext_resource type="PackedScene" uid="uid://bq7kpsehncsaf" path="res://addons/popochiu/engine/objects/graphic_interface/components/history/history.tscn" id="8_w7c05"]
 [ext_resource type="PackedScene" uid="uid://codc5gwfbqwth" path="res://addons/popochiu/engine/objects/graphic_interface/components/save_load/save_load.tscn" id="9_cvu7a"]
 
@@ -20,7 +20,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_scpl3"]
 
-[node name="PopochiuGI" type="Control"]
+[node name="BassGI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
