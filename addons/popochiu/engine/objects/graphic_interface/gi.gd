@@ -8,8 +8,8 @@ class_name PopochiuGraphicInterface
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready():
 	# Connect to singleton signals
-	G.blocked.connect(_disable_panels)
-	G.freed.connect(_enable_panels)
+	G.blocked.connect(_on_gi_blocked)
+	G.freed.connect(_on_gi_freed)
 	G.interface_hidden.connect(_hide_panels)
 	G.interface_shown.connect(_show_panels)
 	G.mouse_entered_clickable.connect(_on_mouse_entered_clickable)
@@ -29,11 +29,11 @@ func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
-func _disable_panels(props := { blocking = true }) -> void:
+func _on_gi_blocked(props := { blocking = true }) -> void:
 	pass
 
 
-func _enable_panels() -> void:
+func _on_gi_freed() -> void:
 	pass
 
 

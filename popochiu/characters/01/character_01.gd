@@ -17,16 +17,12 @@ func _on_room_set() -> void:
 
 # When the node is clicked
 func _on_click() -> void:
-	# Replace the call to super() to implement your code. This only makes
-	# the default behavior to happen.
-	super.on_click()
+	C.walk_to_clicked()
 
 
 # When the node is right clicked
 func _on_right_click() -> void:
-	# Replace the call to super() to implement your code. This only makes
-	# the default behavior to happen.
-	super.on_right_click()
+	C.walk_to_clicked()
 
 
 # When the node is clicked and there is an inventory item selected

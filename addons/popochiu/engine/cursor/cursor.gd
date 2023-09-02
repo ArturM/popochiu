@@ -33,13 +33,16 @@ func _process(delta):
 func set_cursor(type := Type.IDLE, ignore_block := false) -> void:
 	if not ignore_block and is_blocked: return
 	
-	var anim_name: String = (Type.keys()[Type.IDLE] as String).to_lower()
-	
 	if not Type.values().has(type):
-		prints("[Popochiu] No animation %s in Cursor." % anim_name)
+		prints("[Popochiu] Cursor has no type: %s" % type)
 		return
 	
-	anim_name = Type.keys()[type]
+	var anim_name = Type.keys()[type]
+	
+	if not $AnimatedSprite2D.sprite_frames.has_animation(anim_name.to_lower()):
+		prints("[Popochiu] Cursor has no animation: %s" % anim_name)
+		return
+	
 	$AnimatedSprite2D.play(anim_name.to_lower())
 
 

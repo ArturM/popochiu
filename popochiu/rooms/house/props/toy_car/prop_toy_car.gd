@@ -31,15 +31,7 @@ func _on_click() -> void:
 
 # When the node is right clicked
 func _on_right_click() -> void:
-	# Replace the call to super() to implement your code. This only makes
-	# the default behavior to happen.
-	# For example you can make the character walk to the Prop and then say
-	# something:
-#	E.queue([
-#		C.face_clicked(),
-#		'Player: A deck of cards'
-#	])
-	super.on_right_click()
+	C.walk_to_clicked()
 
 
 # When the node is clicked and there is an inventory item selected

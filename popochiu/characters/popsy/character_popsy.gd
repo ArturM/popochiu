@@ -36,12 +36,14 @@ func _on_click() -> void:
 				await C.Goddiu.say("I don't have anything to give him")
 				await C.Popsy.say("What about a kiss?")
 				await C.player.say("Awwwwwww")
+			_:
+				C.walk_to_clicked()
 	# ---------------------------------------------------------- 9 verb ----
 
 
 # When the node is right clicked
 func _on_right_click() -> void:
-	pass
+	C.walk_to_clicked()
 
 
 # When the node is clicked and there is an inventory item selected

@@ -12,4 +12,5 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("1_k4y5q")
 bbcode_enabled = true
 text = "[center]text for hovered objects[/center]"
+scroll_active = false
 script = ExtResource("2_r2ckj")

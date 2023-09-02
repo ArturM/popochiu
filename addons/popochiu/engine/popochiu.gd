@@ -40,7 +40,7 @@ var am: PopochiuAudioManager = null
 var playing_queue := false
 var gi: Control = null
 var tl: Node2D = null
-var current_command := -1
+var current_command := -1 : set = set_current_command
 
 # TODO: This could be in the camera's own script
 var _is_camera_shaking := false
@@ -647,6 +647,10 @@ func get_hovered() -> PopochiuClickable:
 func set_current_room(value: PopochiuRoom) -> void:
 	current_room = value
 	R.current = value
+
+
+func set_current_command(value: int) -> void:
+	current_command = value
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░

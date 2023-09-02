@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=22 format=3 uid="uid://bd0fika4hyhvw"]
 
 [ext_resource type="Theme" uid="uid://dpequqav4rjaf" path="res://addons/popochiu/engine/objects/graphic_interface/resources/popochiu_theme.tres" id="1_gac50"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
+[ext_resource type="ButtonGroup" uid="uid://y1thfsxxjowe" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_button_group.tres" id="3_77ocs"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_command_button.gd" id="3_su7pr"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_inventory_panel.gd" id="4_2hxon"]
 [ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="4_ljv1q"]
@@ -35,9 +36,17 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("11_y5a23")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lngh"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwabf"]
 atlas = ExtResource("11_y5a23")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpmp7"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xtf0b"]
 animations = [{
@@ -57,10 +66,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7lngh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wwabf")
 }],
 "loop": true,
 "name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpmp7")
+}],
+"loop": true,
+"name": &"wait",
 "speed": 5.0
 }]
 
@@ -74,6 +99,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_gac50")
 script = ExtResource("2_v01ea")
+hover_text_follows_cursor = true
 
 [node name="BottomContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -89,81 +115,100 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5117m")
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer"]
 layout_mode = 2
 
-[node name="Verbs" type="GridContainer" parent="BottomContainer/HBoxContainer"]
+[node name="CommandsContainer" type="GridContainer" parent="BottomContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 3
 
-[node name="Open" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
+[node name="Open" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
 text = "Open"
 script = ExtResource("3_su7pr")
 command = 1
 
-[node name="PickUp" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
+[node name="PickUp" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
 text = "Pick Up"
 script = ExtResource("3_su7pr")
 command = 2
 
-[node name="Push" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
+[node name="Push" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
 text = "Push"
 script = ExtResource("3_su7pr")
 command = 3
 
-[node name="Close" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
+[node name="Close" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
 text = "Close"
 script = ExtResource("3_su7pr")
 command = 4
 
-[node name="LookAt" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
+[node name="LookAt" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
 text = "Look At"
 script = ExtResource("3_su7pr")
 command = 5
 
-[node name="Pull" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
+[node name="Pull" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
 text = "Pull"
 script = ExtResource("3_su7pr")
 command = 6
 
-[node name="Give" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
+[node name="Give" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
 text = "Give"
 script = ExtResource("3_su7pr")
 command = 7
 
-[node name="TalkTo" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
+[node name="TalkTo" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
 text = "Talk To"
 script = ExtResource("3_su7pr")
 command = 8
 
-[node name="Use" type="Button" parent="BottomContainer/HBoxContainer/Verbs"]
+[node name="Use" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
 text = "Use"
 script = ExtResource("3_su7pr")
 command = 9
@@ -281,6 +326,6 @@ layout_mode = 0
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xtf0b")
-animation = &"active"
+animation = &"wait"
 
 [connection signal="pressed" from="SaveBtn" to="SaveBtn" method="on_pressed"]

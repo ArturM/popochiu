@@ -53,11 +53,10 @@ func _unhandled_input(event: InputEvent):
 		if not E.hovered or E.hovered != self: return
 		
 		E.clicked = self
+		get_viewport().set_input_as_handled()
 		
 		match mouse_event.button_index:
 			MOUSE_BUTTON_LEFT:
-				get_viewport().set_input_as_handled()
-				
 				if I.active:
 					_on_item_used(I.active)
 				else:
