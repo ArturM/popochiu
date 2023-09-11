@@ -9,26 +9,23 @@ var _date := ''
 var _prev_text := ''
 var _slot := 0
 
-@onready var _dialog: PanelContainer = $SaveLoadDialog
-@onready var _label: Label = %Title
-@onready var _slots: VBoxContainer = %Slots
-@onready var _ok: Button = %Ok
-@onready var _cancel: Button = %Close
+@onready var save_load_panel: PanelContainer = $SaveLoadPanel
+@onready var title: Label = %Title
+@onready var slots: VBoxContainer = %Slots
+@onready var ok: Button = %Ok
+@onready var close: Button = %Close
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
-	_ok.disabled = true
+	ok.disabled = true
 	
-#	_dialog.confirmed.connect(_close)
-#	_dialog.close_requested.connect(_close)
-#	_dialog.get_cancel_button().pressed.connect(_close)
-	_ok.pressed.connect(_confirmed)
-	_cancel.pressed.connect(_close)
+	ok.pressed.connect(_confirmed)
+	close.pressed.connect(_close)
 	
 	var saves: Dictionary = E.get_saves_descriptions()
 	
-	for btn in _slots.get_children():
+	for btn in slots.get_children():
 		(btn as Button).set_meta('has_save', false)
 		
 		if saves.has(btn.get_index() + 1):
@@ -43,34 +40,31 @@ func _ready() -> void:
 	G.load_requested.connect(_show_load)
 	
 	hide()
-#	_dialog.hide()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
 func _show_save(date: String) -> void:
-#	_dialog.title = 'Save'
-	_label.text = 'Choose a slot to save the game'
+	title.text = 'Choose a slot to save the game'
 	_date = date
 	
-	for btn in _slots.get_children():
+	for btn in slots.get_children():
 		btn.disabled = false
 	
 	_show()
 
 
 func _show_load() -> void:
-#	_dialog.title = 'Load'
-	_label.text = 'Choose the slot to load'
+	title.text = 'Choose the slot to load'
 	_date = ''
 	
-	for btn in _slots.get_children():
+	for btn in slots.get_children():
 		btn.disabled = !(btn as Button).get_meta('has_save')
 	
 	_show()
 
 
 func _show() -> void:
-	_ok.disabled = true
+	ok.disabled = true
 	_slot = 0
 	
 	if _current_slot:
@@ -82,10 +76,8 @@ func _show() -> void:
 	
 	if E.settings.scale_gui:
 		scale = Vector2.ONE * E.scale
-#		_dialog.size = Vector2.ONE * E.scale
 	
-#	_dialog.popup_centered(Vector2(240.0, 120.0))
-	_cancel.grab_focus()
+	close.grab_focus()
 	
 	G.blocked.emit({ blocking = false })
 	Cursor.set_cursor(Cursor.Type.USE)
@@ -124,7 +116,7 @@ func _select_slot(btn: Button) -> void:
 		_current_slot = btn
 		_prev_text = _current_slot.text
 	
-	_ok.disabled = false
+	ok.disabled = false
 
 
 func _confirmed() -> void:

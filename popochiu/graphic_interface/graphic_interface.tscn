@@ -1,71 +1,26 @@
-[gd_scene load_steps=20 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=15 format=3 uid="uid://cwvuu8g0ih3i8"]
 
-[ext_resource type="Theme" uid="uid://dpequqav4rjaf" path="res://addons/popochiu/engine/objects/graphic_interface/resources/popochiu_theme.tres" id="1_gac50"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
-[ext_resource type="ButtonGroup" uid="uid://y1thfsxxjowe" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_button_group.tres" id="3_77ocs"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_command_button.gd" id="3_su7pr"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_inventory_panel.gd" id="4_2hxon"]
-[ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="4_ljv1q"]
-[ext_resource type="PackedScene" uid="uid://codc5gwfbqwth" path="res://addons/popochiu/engine/objects/graphic_interface/components/save_load/save_load.tscn" id="5_v25yq"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_hover_text.gd" id="6_olqnt"]
-[ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="7_n3yn3"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/save_btn.gd" id="7_o7th5"]
-[ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="9_kfhqw"]
-[ext_resource type="Texture2D" uid="uid://d0fwvj88bhggm" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_cursor.png" id="11_y5a23"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/bass/bass_gi.gd" id="1_268ni"]
+[ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="2_6qu0l"]
+[ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="3_earfn"]
+[ext_resource type="PackedScene" uid="uid://bdgs3xsbq3gdd" path="res://addons/popochiu/engine/objects/graphic_interface/components/system_text/system_text.tscn" id="4_o82xq"]
+[ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="5_ayg0j"]
+[ext_resource type="PackedScene" uid="uid://ciar5j7qm85bc" path="res://addons/popochiu/engine/objects/graphic_interface/components/inventory/inventory.tscn" id="6_ovwnh"]
+[ext_resource type="PackedScene" uid="uid://0cqerawlxb3o" path="res://addons/popochiu/engine/objects/graphic_interface/templates/bass/components/toolbar/toolbar.tscn" id="7_mtpwc"]
+[ext_resource type="PackedScene" uid="uid://bq7kpsehncsaf" path="res://addons/popochiu/engine/objects/graphic_interface/components/history/history.tscn" id="8_w7c05"]
+[ext_resource type="PackedScene" uid="uid://codc5gwfbqwth" path="res://addons/popochiu/engine/objects/graphic_interface/components/save_load/save_load.tscn" id="9_cvu7a"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5117m"]
-bg_color = Color(0.180392, 0.172549, 0.607843, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dlu6y"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_houqs"]
-draw_center = false
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.439216, 0.427451, 0.921569, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1w7s2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ckh2"]
-atlas = ExtResource("11_y5a23")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f0ojp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jysoy"]
-atlas = ExtResource("11_y5a23")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcw4k"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m2brv"]
-atlas = ExtResource("11_y5a23")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_scpl3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wwabf"]
-atlas = ExtResource("11_y5a23")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xtf0b"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ckh2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jysoy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m2brv")
-}],
-"loop": true,
-"name": &"active",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wwabf")
-}],
-"loop": true,
-"name": &"normal",
-"speed": 5.0
-}]
-
-[node name="9VerbGI" type="Control"]
+[node name="BassGI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,235 +28,80 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_gac50")
-script = ExtResource("2_v01ea")
-hover_text_follows_cursor = true
+script = ExtResource("1_268ni")
 
-[node name="BottomContainer" type="PanelContainer" parent="."]
+[node name="MainContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+
+[node name="HoverText" parent="MainContainer" instance=ExtResource("2_6qu0l")]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -48.0
+offset_top = -19.0
+offset_bottom = -4.0
+grow_vertical = 0
+
+[node name="DialogText" parent="MainContainer" instance=ExtResource("3_earfn")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5117m")
+grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer"]
-layout_mode = 2
-
-[node name="CommandsContainer" type="GridContainer" parent="BottomContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 3
-
-[node name="Open" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-toggle_mode = true
-button_group = ExtResource("3_77ocs")
-text = "Open"
-script = ExtResource("3_su7pr")
-command = 1
-
-[node name="PickUp" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-toggle_mode = true
-button_group = ExtResource("3_77ocs")
-text = "Pick Up"
-script = ExtResource("3_su7pr")
-command = 2
-
-[node name="Push" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-toggle_mode = true
-button_group = ExtResource("3_77ocs")
-text = "Push"
-script = ExtResource("3_su7pr")
-command = 3
-
-[node name="Close" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-toggle_mode = true
-button_group = ExtResource("3_77ocs")
-text = "Close"
-script = ExtResource("3_su7pr")
-command = 4
-
-[node name="LookAt" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-toggle_mode = true
-button_group = ExtResource("3_77ocs")
-text = "Look At"
-script = ExtResource("3_su7pr")
-command = 5
-
-[node name="Pull" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-toggle_mode = true
-button_group = ExtResource("3_77ocs")
-text = "Pull"
-script = ExtResource("3_su7pr")
-command = 6
-
-[node name="Give" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-toggle_mode = true
-button_group = ExtResource("3_77ocs")
-text = "Give"
-script = ExtResource("3_su7pr")
-command = 7
-
-[node name="TalkTo" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-toggle_mode = true
-button_group = ExtResource("3_77ocs")
-text = "Talk To"
-script = ExtResource("3_su7pr")
-command = 8
-
-[node name="Use" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-toggle_mode = true
-button_group = ExtResource("3_77ocs")
-text = "Use"
-script = ExtResource("3_su7pr")
-command = 9
-
-[node name="InventoryPanel" type="HBoxContainer" parent="BottomContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 0
-script = ExtResource("4_2hxon")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer/HBoxContainer/InventoryPanel"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Up" type="Button" parent="BottomContainer/HBoxContainer/InventoryPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "↑"
-
-[node name="Down" type="Button" parent="BottomContainer/HBoxContainer/InventoryPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "↓"
-
-[node name="Box" type="GridContainer" parent="BottomContainer/HBoxContainer/InventoryPanel"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/h_separation = 2
-theme_override_constants/v_separation = 2
-columns = 4
-
-[node name="PanelContainer" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
-
-[node name="PanelContainer2" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
-
-[node name="PanelContainer3" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
-
-[node name="PanelContainer4" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
-
-[node name="PanelContainer5" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
-
-[node name="PanelContainer6" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
-
-[node name="PanelContainer7" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
-
-[node name="PanelContainer8" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
-
-[node name="HoverText" parent="." instance=ExtResource("4_ljv1q")]
+[node name="SystemText" parent="MainContainer" instance=ExtResource("4_o82xq")]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -63.0
-offset_bottom = -48.0
-grow_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-script = ExtResource("6_olqnt")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -12.0
+offset_right = 120.0
+offset_bottom = 12.0
 
-[node name="SaveBtn" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -27.0
-offset_right = -4.0
-offset_bottom = 20.0
-grow_horizontal = 0
-text = "S"
-script = ExtResource("7_o7th5")
-
-[node name="SaveLoad" parent="." instance=ExtResource("5_v25yq")]
-visible = false
+[node name="DialogMenu" parent="MainContainer" instance=ExtResource("5_ayg0j")]
 layout_mode = 1
 
-[node name="DialogMenu" parent="." instance=ExtResource("7_n3yn3")]
-layout_mode = 1
-
-[node name="DialogText" parent="." instance=ExtResource("9_kfhqw")]
+[node name="Inventory" parent="MainContainer" instance=ExtResource("6_ovwnh")]
 layout_mode = 0
+offset_left = 4.0
+offset_right = 40.0
 
-[node name="Cursor" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_xtf0b")
-animation = &"active"
+[node name="Toolbar" parent="MainContainer" instance=ExtResource("7_mtpwc")]
+layout_mode = 1
+offset_left = -106.0
+offset_right = -4.0
 
-[connection signal="pressed" from="SaveBtn" to="SaveBtn" method="on_pressed"]
+[node name="ClickHandler" type="Button" parent="MainContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dlu6y")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1w7s2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_f0ojp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_pcw4k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_scpl3")
+
+[node name="History" parent="." instance=ExtResource("8_w7c05")]
+layout_mode = 1
+
+[node name="SaveLoad" parent="." instance=ExtResource("9_cvu7a")]
+visible = false
+layout_mode = 1

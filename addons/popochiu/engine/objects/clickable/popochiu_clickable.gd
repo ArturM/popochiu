@@ -60,25 +60,16 @@ func _unhandled_input(event: InputEvent):
 				if I.active:
 					_on_item_used(I.active)
 				else:
-					E.add_history({
-						action = 'Clicked with: %s' % description
-					})
 					on_action(mouse_event.button_index)
 					
 					times_clicked += 1
 			MOUSE_BUTTON_RIGHT:
 				if not I.active:
-					E.add_history({
-						action = 'Right-clicked at: %s' % description
-					})
 					on_action(mouse_event.button_index)
 					
 					times_right_clicked += 1
 			MOUSE_BUTTON_MIDDLE:
 				if not I.active:
-					E.add_history({
-						action = 'Middle-clicked at: %s' % description
-					})
 					on_action(mouse_event.button_index)
 					
 					times_middle_clicked += 1
@@ -191,6 +182,11 @@ func on_action(button_idx: int) -> void:
 		
 		if has_method(target_method % command_method):
 			suffix = command_method
+	
+	E.add_history({
+		action = suffix,
+		target = description
+	})
 	
 	call(target_method % suffix)
 

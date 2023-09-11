@@ -3,7 +3,7 @@ extends Control
 
 var is_disabled := false
 
-var _can_hide_inventory := true
+var _is_hidden := true
 
 @onready var _tween: Tween = null
 @onready var _hide_y := position.y - (size.y - 4)
@@ -14,57 +14,63 @@ var _can_hide_inventory := true
 func _ready():
 	if not E.settings.inventory_always_visible:
 		position.y = _hide_y
-		
-		# Connect to self signals
-		mouse_entered.connect(_open)
-		mouse_exited.connect(_close)
+	
+	# Connect to singleton signals
+	I.item_added.connect(_add_item)
+	I.item_removed.connect(_remove_item)
+	I.inventory_show_requested.connect(_show_and_hide)
+	I.inventory_hide_requested.connect(_close)
 	
 	# Check if there are already items in the inventory (set manually in the scene)
 	for ii in _box.get_children():
 		if ii is PopochiuInventoryItem:
 			ii.in_inventory = true
-			ii.description_toggled.connect(_show_item_info)
 			ii.selected.connect(_change_cursor)
 	
-	# Conectarse a las señales del papá de los inventarios
-	I.item_added.connect(_add_item)
-	I.item_removed.connect(_remove_item)
-	I.inventory_show_requested.connect(_show_and_hide)
-	I.inventory_hide_requested.connect(disable)
+	set_process_input(not E.settings.inventory_always_visible)
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		if _is_hidden and get_rect().has_point(get_global_mouse_position()):
+			_open()
+		elif not _is_hidden\
+		and not get_rect().has_point(get_global_mouse_position()):
+			_close()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
-func disable(use_tween := true) -> void:
-	is_disabled = true
-	
-	if E.settings.inventory_always_visible:
-		hide()
-		return
-	
-	if is_instance_valid(_tween) and _tween.is_running():
-		_tween.kill()
-	
-	if use_tween:
-		_tween = create_tween()
-		_tween.tween_property(self, 'position:y', _hide_y - 4.5, 0.3)\
-		.from_current().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-	else:
-		position.y = _hide_y - 4.5
-
-
-func enable() -> void:
-	is_disabled = false
-	
-	if E.settings.inventory_always_visible:
-		show()
-		return
-	
-	if is_instance_valid(_tween) and _tween.is_running():
-		_tween.kill()
-	
-	_tween = create_tween()
-	_tween.tween_property(self, 'position:y', _hide_y, 0.3)\
-	.from(_hide_y - 3.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+#func disable(use_tween := true) -> void:
+#	is_disabled = true
+#
+#	if E.settings.inventory_always_visible:
+#		hide()
+#		return
+#
+#	if is_instance_valid(_tween) and _tween.is_running():
+#		_tween.kill()
+#
+#	if use_tween:
+#		_tween = create_tween()
+#		_tween.tween_property(self, 'position:y', _hide_y - 4.5, 0.3)\
+#		.from_current().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+#	else:
+#		position.y = _hide_y - 4.5
+#
+#
+#func enable() -> void:
+#	is_disabled = false
+#
+#	if E.settings.inventory_always_visible:
+#		show()
+#		return
+#
+#	if is_instance_valid(_tween) and _tween.is_running():
+#		_tween.kill()
+#
+#	_tween = create_tween()
+#	_tween.tween_property(self, 'position:y', _hide_y, 0.3)\
+#	.from(_hide_y - 3.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
@@ -79,14 +85,14 @@ func _open() -> void:
 	_tween.tween_property(self, 'position:y', 0.0, 0.5)\
 	.from(_hide_y if not is_disabled else position.y)\
 	.set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	
+	_is_hidden = false
 
 
 func _close() -> void:
 	if E.settings.inventory_always_visible: return
 	
 	await get_tree().process_frame
-	
-	if not _can_hide_inventory: return
 	
 	if is_instance_valid(_tween) and _tween.is_running():
 		_tween.kill()
@@ -97,10 +103,12 @@ func _close() -> void:
 		_hide_y if not is_disabled else _hide_y - 3.5,
 		0.2
 	).from(0.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	
+	_is_hidden = true
 
 
-func _show_item_info(description := '') -> void:
-	_can_hide_inventory = false if description else true
+func _on_tween_finished() -> void:
+	_is_hidden = position.y == _hide_y
 
 
 func _change_cursor(item: PopochiuInventoryItem) -> void:
@@ -110,14 +118,20 @@ func _change_cursor(item: PopochiuInventoryItem) -> void:
 func _add_item(item: PopochiuInventoryItem, animate := true) -> void:
 	_box.add_child(item)
 	
-	item.description_toggled.connect(_show_item_info)
 	item.selected.connect(_change_cursor)
 	
 	if not E.settings.inventory_always_visible and animate:
+		# Show the inventory for a while and hide after a couple of seconds
+		# so players can see the item being added to the inventory
+		set_process_input(false)
+		
 		_open()
 		await get_tree().create_timer(2.0).timeout
+		
 		_close()
 		await get_tree().create_timer(0.5).timeout
+		
+		set_process_input(true)
 	else:
 		await get_tree().process_frame
 	
@@ -125,14 +139,11 @@ func _add_item(item: PopochiuInventoryItem, animate := true) -> void:
 
 
 func _remove_item(item: PopochiuInventoryItem, animate := true) -> void:
-	item.description_toggled.disconnect(_show_item_info)
 	item.selected.disconnect(_change_cursor)
 	
 	_box.remove_child(item)
 	
 	if not E.settings.inventory_always_visible:
-		_can_hide_inventory = true
-		
 		Cursor.set_cursor()
 		G.show_hover_text()
 		
@@ -146,6 +157,8 @@ func _remove_item(item: PopochiuInventoryItem, animate := true) -> void:
 
 
 func _show_and_hide(time := 1.0) -> void:
+	set_process_input(false)
+	
 	_open()
 	
 	await _tween.finished
@@ -154,5 +167,7 @@ func _show_and_hide(time := 1.0) -> void:
 	_close()
 	
 	await _tween.finished
+	
+	set_process_input(true)
 	
 	I.inventory_shown.emit()

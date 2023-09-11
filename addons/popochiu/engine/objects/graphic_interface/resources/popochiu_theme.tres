@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dpequqav4rjaf"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dpequqav4rjaf"]
 
 [ext_resource type="FontFile" uid="uid://dixh1egf7k2fb" path="res://addons/popochiu/fonts/monkeyisland_1991.ttf" id="1_sgqra"]
 [ext_resource type="Texture2D" uid="uid://cmxrewai8t2lm" path="res://addons/popochiu/engine/objects/graphic_interface/resources/sprites/close.png" id="2"]
@@ -40,6 +40,16 @@ border_width_bottom = 1
 border_color = Color(0.439216, 0.427451, 0.921569, 1)
 corner_detail = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_respd"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.180392, 0.172549, 0.607843, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
 [resource]
 default_font = ExtResource("1_sgqra")
 default_font_size = 16
@@ -55,6 +65,7 @@ Button/styles/focus = SubResource("StyleBoxEmpty_jts3x")
 Button/styles/hover = SubResource("7")
 Button/styles/normal = SubResource("7")
 Button/styles/pressed = SubResource("7")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_respd")
 Window/colors/title_color = Color(1, 1, 1, 1)
 Window/constants/close_h_offset = 8
 Window/constants/close_v_offset = 12

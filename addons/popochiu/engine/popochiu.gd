@@ -601,7 +601,7 @@ func add_hovered(node: PopochiuClickable, prepend := false) -> void:
 func remove_hovered(node: PopochiuClickable) -> bool:
 	_hovered_queue.erase(node)
 	
-	if not _hovered_queue.is_empty():
+	if not _hovered_queue.is_empty() and is_instance_valid(_hovered_queue[-1]):
 		var pc: PopochiuClickable = _hovered_queue[-1]
 		G.show_hover_text(pc.description)
 		Cursor.set_cursor(pc.cursor)
@@ -641,7 +641,10 @@ func set_hovered(value: PopochiuClickable) -> void:
 
 
 func get_hovered() -> PopochiuClickable:
-	return null if _hovered_queue.is_empty() else _hovered_queue[-1]
+	if not _hovered_queue.is_empty() and is_instance_valid(_hovered_queue[-1]):
+		return _hovered_queue[-1]
+	
+	return null
 
 
 func set_current_room(value: PopochiuRoom) -> void:
@@ -760,6 +763,6 @@ func _on_character_spoke(chr: PopochiuCharacter, msg := '') -> void:
 	G.block()
 	
 	add_history({
-		character = chr.description,
+		character = chr,
 		text = msg
 	})

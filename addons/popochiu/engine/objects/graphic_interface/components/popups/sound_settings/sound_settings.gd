@@ -14,6 +14,7 @@ var _slot := 0
 @onready var _channels_container: VBoxContainer = %ChannelsContainer
 @onready var _sliders_container: VBoxContainer = %SlidersContainer
 
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
 	G.sound_settings_requested.connect(_show_sound_settings)
