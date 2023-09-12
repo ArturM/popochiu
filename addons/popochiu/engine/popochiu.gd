@@ -163,12 +163,12 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_released('popochiu-skip'):
 		cutscene_skipped = true
-		$TransitionLayer.play_transition(
+		tl.play_transition(
 			PopochiuTransitionLayer.PASS_DOWN_IN,
 			settings.skip_cutscene_time
 		)
 		
-		await $TransitionLayer.transition_finished
+		await tl.transition_finished
 		
 		G.continue_clicked.emit()
 
@@ -240,11 +240,11 @@ func cutscene(instructions: Array) -> void:
 	set_process_input(false)
 	
 	if cutscene_skipped:
-		$TransitionLayer.play_transition(
-			$TransitionLayer.PASS_DOWN_OUT,
+		tl.play_transition(
+			tl.PASS_DOWN_OUT,
 			settings.skip_cutscene_time
 		)
-		await $TransitionLayer.transition_finished
+		await tl.transition_finished
 	
 	cutscene_skipped = false
 
@@ -265,8 +265,8 @@ func goto_room(
 	
 	_use_transition_on_room_change = use_transition
 	if use_transition:
-		$TransitionLayer.play_transition($TransitionLayer.FADE_IN)
-		await $TransitionLayer.transition_finished
+		tl.play_transition(tl.FADE_IN)
+		await tl.transition_finished
 	
 	if is_instance_valid(C.player) and Engine.get_process_frames() > 0:
 		C.player.last_room = current_room.script_name
@@ -385,8 +385,8 @@ func room_readied(room: PopochiuRoom) -> void:
 		)
 	
 	if _use_transition_on_room_change:
-		$TransitionLayer.play_transition($TransitionLayer.FADE_OUT)
-		await $TransitionLayer.transition_finished
+		tl.play_transition(tl.FADE_OUT)
+		await tl.transition_finished
 		await wait(0.3)
 	else:
 		await get_tree().process_frame
@@ -536,9 +536,9 @@ func queue_play_transition(type: int, duration: float) -> Callable:
 ## Plays the transition type animation in TransitionLayer.tscn that last duration
 ## in seconds. Possible type values can be found in TransitionLayer
 func play_transition(type: int, duration: float) -> void:
-	$TransitionLayer.play_transition(type, duration)
+	tl.play_transition(type, duration)
 	
-	await $TransitionLayer.transition_finished
+	await tl.transition_finished
 
 
 func change_text_speed() -> void:

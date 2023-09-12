@@ -186,10 +186,14 @@ func change_cue_volume(cue_name: String, volume := 0.0) -> void:
 func semitone_to_pitch(pitch: float) -> float:
 	return pow(twelfth_root_of_two, pitch)
 
+
 func set_bus_volume_db(bus_name: String, value: float) -> void:
 	if volume_settings.has(bus_name):
 		volume_settings[bus_name] = value
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), volume_settings[bus_name])
+		AudioServer.set_bus_volume_db(
+			AudioServer.get_bus_index(bus_name), volume_settings[bus_name]
+		)
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
 # Plays the sound and assigns it to a free AudioStreamPlayer, or creates one if
@@ -352,6 +356,9 @@ func load_sound_settings():
 		for bus_idx in range(AudioServer.get_bus_count()):
 			var bus_name = AudioServer.get_bus_name(bus_idx)
 			if volume_settings.has(bus_name):
-				AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name),volume_settings[bus_name])
+				AudioServer.set_bus_volume_db(
+					AudioServer.get_bus_index(bus_name),
+					volume_settings[bus_name]
+				)
 			else:
 				volume_settings[bus_name] = AudioServer.get_bus_volume_db(bus_idx)

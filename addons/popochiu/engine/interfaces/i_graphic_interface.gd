@@ -11,7 +11,7 @@ signal blocked
 signal interface_hidden
 signal interface_shown
 signal history_opened
-signal save_requested(date) # The date in YYYY/MM/DD HH:MM:SS format
+signal save_requested(slot_text)
 signal load_requested
 signal continue_requested
 signal sound_settings_requested
@@ -105,8 +105,8 @@ func show_history() -> void:
 	history_opened.emit()
 
 
-func show_save(date: String) -> void:
-	save_requested.emit(date)
+func show_save(slot_text := "") -> void:
+	save_requested.emit(slot_text)
 
 
 func show_load() -> void:

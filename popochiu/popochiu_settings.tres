@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PopochiuSettings" load_steps=3 format=3 uid="uid://cmu0kih6wcv5q"]
 
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/popochiu_settings.gd" id="1_6d6xl"]
-[ext_resource type="PackedScene" uid="uid://cwvuu8g0ih3i8" path="res://addons/popochiu/engine/objects/graphic_interface/templates/bass/bass_gi.tscn" id="1_m632j"]
+[ext_resource type="PackedScene" uid="uid://cwvuu8g0ih3i8" path="res://popochiu/graphic_interface/graphic_interface.tscn" id="1_m632j"]
 
 [resource]
 script = ExtResource("1_6d6xl")

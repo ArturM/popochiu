@@ -184,7 +184,7 @@ func on_action(button_idx: int) -> void:
 			suffix = command_method
 	
 	E.add_history({
-		action = suffix,
+		action = suffix if command.is_empty() else G.get_command(E.current_command),
 		target = description
 	})
 	

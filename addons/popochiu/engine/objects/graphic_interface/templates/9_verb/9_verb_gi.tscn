@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=26 format=3 uid="uid://bd0fika4hyhvw"]
 
 [ext_resource type="Theme" uid="uid://dpequqav4rjaf" path="res://addons/popochiu/engine/objects/graphic_interface/resources/popochiu_theme.tres" id="1_gac50"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
@@ -6,12 +6,15 @@
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_command_button.gd" id="3_su7pr"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_inventory_panel.gd" id="4_2hxon"]
 [ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="4_ljv1q"]
-[ext_resource type="PackedScene" uid="uid://codc5gwfbqwth" path="res://addons/popochiu/engine/objects/graphic_interface/components/save_load/save_load.tscn" id="5_v25yq"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_hover_text.gd" id="6_olqnt"]
 [ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="7_n3yn3"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/save_btn.gd" id="7_o7th5"]
 [ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="9_kfhqw"]
+[ext_resource type="PackedScene" uid="uid://bnjo044fkdcq7" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/quit/quit_popup.tscn" id="11_2mivx"]
 [ext_resource type="Texture2D" uid="uid://d0fwvj88bhggm" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_cursor.png" id="11_y5a23"]
+[ext_resource type="PackedScene" uid="uid://qe2d35bauand" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/settings/settings_popup.tscn" id="12_mnnax"]
+[ext_resource type="Texture2D" uid="uid://dcl6wrqgsdqa1" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_ico_settings.png" id="13_80hcp"]
+[ext_resource type="PackedScene" uid="uid://dfrsiyyqncspo" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/history/history_popup.tscn" id="15_5234w"]
+[ext_resource type="PackedScene" uid="uid://cndputybyj57n" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/save_and_load/save_and_load_popup.tscn" id="15_t7jqg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5117m"]
 bg_color = Color(0.180392, 0.172549, 0.607843, 1)
@@ -43,6 +46,10 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwabf"]
 atlas = ExtResource("11_y5a23")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flm5d"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vpmp7"]
 atlas = ExtResource("11_y5a23")
@@ -78,6 +85,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flm5d")
+}],
+"loop": true,
+"name": &"use",
 "speed": 5.0
 }, {
 "frames": [{
@@ -301,31 +316,52 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 script = ExtResource("6_olqnt")
 
-[node name="SaveBtn" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -27.0
-offset_right = -4.0
-offset_bottom = 20.0
-grow_horizontal = 0
-text = "S"
-script = ExtResource("7_o7th5")
-
-[node name="SaveLoad" parent="." instance=ExtResource("5_v25yq")]
-visible = false
-layout_mode = 1
-
 [node name="DialogMenu" parent="." instance=ExtResource("7_n3yn3")]
 layout_mode = 1
 
 [node name="DialogText" parent="." instance=ExtResource("9_kfhqw")]
 layout_mode = 0
 
+[node name="BtnSettings" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+texture_normal = ExtResource("13_80hcp")
+
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xtf0b")
-animation = &"wait"
+animation = &"use"
 
-[connection signal="pressed" from="SaveBtn" to="SaveBtn" method="on_pressed"]
+[node name="Popups" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SettingsPopup" parent="Popups" instance=ExtResource("12_mnnax")]
+visible = false
+layout_mode = 1
+
+[node name="SaveAndLoadPopup" parent="Popups" instance=ExtResource("15_t7jqg")]
+visible = false
+layout_mode = 1
+
+[node name="HistoryPopup" parent="Popups" instance=ExtResource("15_5234w")]
+visible = false
+layout_mode = 1
+
+[node name="QuitPopup" parent="Popups" instance=ExtResource("11_2mivx")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="BtnSettings" to="Popups/SettingsPopup" method="open"]
+[connection signal="quit_pressed" from="Popups/SettingsPopup" to="Popups/QuitPopup" method="open"]
