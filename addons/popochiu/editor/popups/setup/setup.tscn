@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbqppogchdate"]
+[gd_scene load_steps=8 format=3 uid="uid://dbqppogchdate"]
 
 [ext_resource type="Script" path="res://addons/popochiu/editor/popups/setup/setup.gd" id="1_vjboj"]
+[ext_resource type="Texture2D" uid="uid://d0kfwop28dwxj" path="res://addons/popochiu/icons/ico_bass.png" id="2_gbyal"]
+[ext_resource type="Texture2D" uid="uid://brnmaiifdxwm" path="res://addons/popochiu/icons/ico_9verb.png" id="3_dmp1q"]
+[ext_resource type="Texture2D" uid="uid://c7ncrxebt8ry" path="res://addons/popochiu/icons/ico_sierra.png" id="4_r1eit"]
+[ext_resource type="Texture2D" uid="uid://c00kw8v34vtsb" path="res://addons/popochiu/icons/ico_empty.png" id="5_joicf"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_sf5ny"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_8mwr3"]
 
 [node name="Setup" type="AcceptDialog"]
 position = Vector2i(0, 36)
@@ -12,7 +20,7 @@ script = ExtResource("1_vjboj")
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 488.0
-offset_bottom = 447.0
+offset_bottom = 462.0
 size_flags_horizontal = 4
 size_flags_vertical = 5
 
@@ -173,30 +181,76 @@ layout_mode = 2
 layout_mode = 2
 text = "GUI Template"
 
-[node name="GITemplates" type="HBoxContainer" parent="VBoxContainer/GITemplateContainer"]
+[node name="GITemplates" type="GridContainer" parent="VBoxContainer/GITemplateContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/h_separation = -12
+columns = 4
 
 [node name="BASS" type="CheckBox" parent="VBoxContainer/GITemplateContainer/GITemplates"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = SubResource("ImageTexture_sf5ny")
+theme_override_icons/unchecked = SubResource("ImageTexture_8mwr3")
 text = "BASS"
+icon = ExtResource("2_gbyal")
+alignment = 1
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
-[node name="9verb" type="CheckBox" parent="VBoxContainer/GITemplateContainer/GITemplates"]
+[node name="9Verb" type="CheckBox" parent="VBoxContainer/GITemplateContainer/GITemplates"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = SubResource("ImageTexture_sf5ny")
+theme_override_icons/unchecked = SubResource("ImageTexture_8mwr3")
+button_pressed = true
 text = "9 Verb"
+icon = ExtResource("3_dmp1q")
+alignment = 1
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
 [node name="Sierra" type="CheckBox" parent="VBoxContainer/GITemplateContainer/GITemplates"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-size_flags_horizontal = 3
-button_pressed = true
+size_flags_horizontal = 6
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = SubResource("ImageTexture_sf5ny")
+theme_override_icons/unchecked = SubResource("ImageTexture_8mwr3")
 text = "Sierra"
+icon = ExtResource("4_r1eit")
+alignment = 1
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
 [node name="Empty" type="CheckBox" parent="VBoxContainer/GITemplateContainer/GITemplates"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = SubResource("ImageTexture_sf5ny")
+theme_override_icons/unchecked = SubResource("ImageTexture_8mwr3")
 text = "Empty"
+icon = ExtResource("5_joicf")
+alignment = 1
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
 [node name="Advanced" type="HBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true

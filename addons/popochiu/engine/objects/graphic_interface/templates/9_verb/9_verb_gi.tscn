@@ -1,6 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=25 format=3 uid="uid://bd0fika4hyhvw"]
 
-[ext_resource type="Theme" uid="uid://dpequqav4rjaf" path="res://addons/popochiu/engine/objects/graphic_interface/resources/popochiu_theme.tres" id="1_gac50"]
+[ext_resource type="Theme" uid="uid://6vk2wej0sape" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_theme.tres" id="1_qh2tb"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
 [ext_resource type="ButtonGroup" uid="uid://y1thfsxxjowe" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_button_group.tres" id="3_77ocs"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_command_button.gd" id="3_su7pr"]
@@ -11,21 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="9_kfhqw"]
 [ext_resource type="PackedScene" uid="uid://bnjo044fkdcq7" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/quit/quit_popup.tscn" id="11_2mivx"]
 [ext_resource type="Texture2D" uid="uid://d0fwvj88bhggm" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_cursor.png" id="11_y5a23"]
-[ext_resource type="PackedScene" uid="uid://qe2d35bauand" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/settings/settings_popup.tscn" id="12_mnnax"]
+[ext_resource type="PackedScene" uid="uid://crla6to4mm0p7" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/settings/9_verb_settings_popup.tscn" id="12_b7ut3"]
 [ext_resource type="Texture2D" uid="uid://dcl6wrqgsdqa1" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_ico_settings.png" id="13_80hcp"]
 [ext_resource type="PackedScene" uid="uid://dfrsiyyqncspo" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/history/history_popup.tscn" id="15_5234w"]
 [ext_resource type="PackedScene" uid="uid://cndputybyj57n" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/save_and_load/save_and_load_popup.tscn" id="15_t7jqg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5117m"]
-bg_color = Color(0.180392, 0.172549, 0.607843, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_houqs"]
-draw_center = false
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.439216, 0.427451, 0.921569, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gcqg0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ckh2"]
 atlas = ExtResource("11_y5a23")
@@ -112,9 +103,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_gac50")
+theme = ExtResource("1_qh2tb")
 script = ExtResource("2_v01ea")
-hover_text_follows_cursor = true
 
 [node name="BottomContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -125,12 +115,31 @@ anchor_bottom = 1.0
 offset_top = -48.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_5117m")
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gcqg0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HoverTextCentered" parent="BottomContainer/VBoxContainer" instance=ExtResource("4_ljv1q")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 12
+fit_content = true
+script = ExtResource("6_olqnt")
+follows_cursor = false
+
+[node name="PanelContainer" type="PanelContainer" parent="BottomContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="CommandsContainer" type="GridContainer" parent="BottomContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="CommandsContainer" type="GridContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -138,183 +147,163 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 3
 
-[node name="Open" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
+[node name="Open" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 button_group = ExtResource("3_77ocs")
 text = "Open"
 script = ExtResource("3_su7pr")
 command = 1
 
-[node name="PickUp" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
+[node name="PickUp" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 button_group = ExtResource("3_77ocs")
 text = "Pick Up"
 script = ExtResource("3_su7pr")
 command = 2
 
-[node name="Push" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
+[node name="Push" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 button_group = ExtResource("3_77ocs")
 text = "Push"
 script = ExtResource("3_su7pr")
 command = 3
 
-[node name="Close" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
+[node name="Close" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 button_group = ExtResource("3_77ocs")
 text = "Close"
 script = ExtResource("3_su7pr")
 command = 4
 
-[node name="LookAt" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
+[node name="LookAt" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 button_group = ExtResource("3_77ocs")
 text = "Look At"
 script = ExtResource("3_su7pr")
 command = 5
 
-[node name="Pull" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
+[node name="Pull" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 button_group = ExtResource("3_77ocs")
 text = "Pull"
 script = ExtResource("3_su7pr")
 command = 6
 
-[node name="Give" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
+[node name="Give" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 button_group = ExtResource("3_77ocs")
 text = "Give"
 script = ExtResource("3_su7pr")
 command = 7
 
-[node name="TalkTo" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
+[node name="TalkTo" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 button_group = ExtResource("3_77ocs")
 text = "Talk To"
 script = ExtResource("3_su7pr")
 command = 8
 
-[node name="Use" type="Button" parent="BottomContainer/HBoxContainer/CommandsContainer"]
+[node name="Use" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 toggle_mode = true
 button_group = ExtResource("3_77ocs")
 text = "Use"
 script = ExtResource("3_su7pr")
 command = 9
 
-[node name="InventoryPanel" type="HBoxContainer" parent="BottomContainer/HBoxContainer"]
+[node name="InventoryPanel" type="HBoxContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 script = ExtResource("4_2hxon")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer/HBoxContainer/InventoryPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Up" type="Button" parent="BottomContainer/HBoxContainer/InventoryPanel/VBoxContainer"]
+[node name="Up" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "↑"
 
-[node name="Down" type="Button" parent="BottomContainer/HBoxContainer/InventoryPanel/VBoxContainer"]
+[node name="Down" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "↓"
 
-[node name="Box" type="GridContainer" parent="BottomContainer/HBoxContainer/InventoryPanel"]
+[node name="Box" type="GridContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 2
 columns = 4
 
-[node name="PanelContainer" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
 
-[node name="PanelContainer2" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer2" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
 
-[node name="PanelContainer3" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer3" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
 
-[node name="PanelContainer4" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer4" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
 
-[node name="PanelContainer5" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer5" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
 
-[node name="PanelContainer6" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer6" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
 
-[node name="PanelContainer7" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer7" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
 
-[node name="PanelContainer8" type="PanelContainer" parent="BottomContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer8" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_houqs")
-
-[node name="HoverText" parent="." instance=ExtResource("4_ljv1q")]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -63.0
-offset_bottom = -48.0
-grow_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-script = ExtResource("6_olqnt")
 
 [node name="DialogMenu" parent="." instance=ExtResource("7_n3yn3")]
 layout_mode = 1
@@ -328,8 +317,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -32.0
-offset_bottom = 32.0
+offset_left = -21.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 21.0
 grow_horizontal = 0
 texture_normal = ExtResource("13_80hcp")
 
@@ -337,6 +328,18 @@ texture_normal = ExtResource("13_80hcp")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xtf0b")
 animation = &"use"
+
+[node name="HoverTextCursor" parent="." instance=ExtResource("4_ljv1q")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = -199.0
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 12
+fit_content = true
+script = ExtResource("6_olqnt")
+follows_cursor = true
 
 [node name="Popups" type="Control" parent="."]
 layout_mode = 1
@@ -347,7 +350,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="SettingsPopup" parent="Popups" instance=ExtResource("12_mnnax")]
+[node name="9VerbSettingsPopup" parent="Popups" instance=ExtResource("12_b7ut3")]
 visible = false
 layout_mode = 1
 
@@ -360,8 +363,6 @@ visible = false
 layout_mode = 1
 
 [node name="QuitPopup" parent="Popups" instance=ExtResource("11_2mivx")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
-
-[connection signal="pressed" from="BtnSettings" to="Popups/SettingsPopup" method="open"]
-[connection signal="quit_pressed" from="Popups/SettingsPopup" to="Popups/QuitPopup" method="open"]

@@ -27,7 +27,7 @@ var _selected_template: CheckBox
 @onready var _btn_move_gi = %BtnMoveGI
 @onready var _btn_move_tl = %BtnMoveTL
 @onready var _btn_update_files = %BtnUpdateFiles
-@onready var gi_templates: HBoxContainer = %GITemplates
+@onready var gi_templates: GridContainer = %GITemplates
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░

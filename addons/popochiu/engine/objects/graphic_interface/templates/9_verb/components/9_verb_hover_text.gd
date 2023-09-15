@@ -1,5 +1,7 @@
 extends PopochiuHoverText
 
+@export var follows_cursor := false
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
@@ -8,11 +10,12 @@ func _ready() -> void:
 	E.current_command = NineVerbCommands.Commands.WALK_TO
 	_show_text()
 	
-	set_process(get_parent().hover_text_follows_cursor)
-	fit_content = get_parent().hover_text_follows_cursor
-	autowrap_mode = TextServer.AUTOWRAP_OFF\
-	if get_parent().hover_text_follows_cursor\
-	else TextServer.AUTOWRAP_WORD_SMART
+	set_process(follows_cursor)
+	autowrap_mode = (
+		TextServer.AUTOWRAP_OFF
+		if follows_cursor
+		else TextServer.AUTOWRAP_WORD_SMART
+	)
 
 
 func _process(delta: float) -> void:
@@ -36,8 +39,9 @@ func _process(delta: float) -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
 func _show_text(txt := "") -> void:
-	if get_parent().hover_text_follows_cursor:
-		text = ""
+	text = ""
+	
+	if follows_cursor:
 		size = Vector2.ZERO
 	
 	if txt.is_empty():
@@ -51,5 +55,5 @@ func _show_text(txt := "") -> void:
 	elif not txt.is_empty():
 		text = '[center]%s %s[/center]' % [G.get_command(E.current_command), txt]
 	
-	if get_parent().hover_text_follows_cursor:
+	if follows_cursor:
 		size += Vector2.ONE * 16.0

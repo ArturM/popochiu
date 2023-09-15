@@ -9,10 +9,9 @@ columns = 2
 script = ExtResource("1_360xl")
 
 [node name="ChannelsContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 alignment = 1
 
 [node name="SlidersContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(145, 0)
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2

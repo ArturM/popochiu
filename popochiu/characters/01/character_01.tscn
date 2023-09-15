@@ -9,18 +9,18 @@ text_color = Color(0.85098, 0.431373, 0.866667, 1)
 popochiu_placeholder = null
 script_name = "01"
 description = "01"
+walk_to_point = Vector2(-36, -26)
 cursor = 8
 
 [node name="InteractionPolygon" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-23, -32, -4, -46, 23, -32, 23, 0, -22, 0)
 
 [node name="BaselineHelper" type="Line2D" parent="."]
-visible = false
 points = PackedVector2Array(-10000, 0, 10000, 0)
 width = 1.0
 
 [node name="WalkToHelper" type="Marker2D" parent="."]
-visible = false
+position = Vector2(-36, -26)
 
 [node name="ColorRect" type="ColorRect" parent="WalkToHelper"]
 offset_left = -2.5
@@ -37,5 +37,4 @@ position = Vector2(0, -21)
 texture = ExtResource("2_gx5ny")
 
 [node name="DialogPos" type="Marker2D" parent="."]
-visible = false
 position = Vector2(1, -45)
