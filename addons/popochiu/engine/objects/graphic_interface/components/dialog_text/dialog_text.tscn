@@ -1,15 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg18h3icrip1r"]
+[gd_scene load_steps=10 format=3 uid="uid://cg18h3icrip1r"]
 
 [ext_resource type="FontFile" uid="uid://dixh1egf7k2fb" path="res://addons/popochiu/fonts/monkeyisland_1991.ttf" id="1_njktv"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://h156lkhxk5tl" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_continue.png" id="3"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/caption_text.gd" id="4_jrdgk"]
+[ext_resource type="Texture2D" uid="uid://cyw5drwwed7pn" path="res://popochiu/characters/goddiu/goddiu_single.png" id="5_mllec"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/portrait_text_panel.gd" id="5_rqqo1"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/portrait_text.gd" id="6_qu2px"]
+[ext_resource type="Texture2D" uid="uid://5wolkqtleulf" path="res://popochiu/characters/popsy/popsy_single.png" id="6_w7nsn"]
 
-[node name="DialogText" type="RichTextLabel"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cff0b"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="DialogText" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AboveCharacter" type="RichTextLabel" parent="."]
+visible = false
 clip_contents = false
 custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
 offset_right = 16.0
 offset_bottom = 16.0
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -19,7 +38,7 @@ scroll_active = false
 meta_underlined = false
 script = ExtResource("2")
 
-[node name="ContinueIcon" type="TextureProgressBar" parent="."]
+[node name="ContinueIcon" type="TextureProgressBar" parent="AboveCharacter"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
@@ -31,3 +50,104 @@ grow_horizontal = 0
 value = 100.0
 fill_mode = 2
 texture_progress = ExtResource("3")
+
+[node name="Caption" type="RichTextLabel" parent="."]
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("1_njktv")
+bbcode_enabled = true
+text = "[center]Hi my friend[/center]"
+scroll_active = false
+meta_underlined = false
+script = ExtResource("4_jrdgk")
+
+[node name="ContinueIcon" type="TextureProgressBar" parent="Caption"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+value = 100.0
+fill_mode = 2
+texture_progress = ExtResource("3")
+
+[node name="PortraitTextPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -57.0
+offset_right = -8.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cff0b")
+script = ExtResource("5_rqqo1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PortraitTextPanel"]
+layout_mode = 2
+
+[node name="LeftAvatar" type="TextureRect" parent="PortraitTextPanel/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("5_mllec")
+stretch_mode = 3
+
+[node name="Caption" type="RichTextLabel" parent="PortraitTextPanel/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("1_njktv")
+bbcode_enabled = true
+text = "[wave]Hi my popochiu!!![/wave]"
+scroll_active = false
+meta_underlined = false
+script = ExtResource("6_qu2px")
+
+[node name="ContinueIcon" type="TextureProgressBar" parent="PortraitTextPanel/HBoxContainer/Caption"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_top = 35.0
+offset_bottom = 51.0
+grow_horizontal = 0
+value = 100.0
+fill_mode = 2
+texture_progress = ExtResource("3")
+
+[node name="RightAvatar" type="TextureRect" parent="PortraitTextPanel/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("6_w7nsn")
+stretch_mode = 3

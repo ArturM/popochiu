@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=34 format=3 uid="uid://bd0fika4hyhvw"]
 
 [ext_resource type="Theme" uid="uid://6vk2wej0sape" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_theme.tres" id="1_qh2tb"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_panel/9_verb_inventory_panel.gd" id="7_tyrvx"]
 [ext_resource type="Texture2D" uid="uid://dfa511cxg31g5" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_panel/sprites/9verb_inventory_up.png" id="8_qcv76"]
 [ext_resource type="Texture2D" uid="uid://s4phlorab5ds" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_panel/sprites/9verb_inventory_down.png" id="9_45tgt"]
-[ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="9_kfhqw"]
 [ext_resource type="PackedScene" uid="uid://bnjo044fkdcq7" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/quit/quit_popup.tscn" id="11_2mivx"]
 [ext_resource type="Texture2D" uid="uid://d0fwvj88bhggm" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_cursor.png" id="11_y5a23"]
 [ext_resource type="PackedScene" uid="uid://crla6to4mm0p7" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/settings_popup/9_verb_settings_popup.tscn" id="12_b7ut3"]
@@ -351,9 +350,6 @@ size_flags_vertical = 3
 
 [node name="DialogMenu" parent="." instance=ExtResource("7_n3yn3")]
 layout_mode = 1
-
-[node name="DialogText" parent="." instance=ExtResource("9_kfhqw")]
-layout_mode = 0
 
 [node name="BtnSettings" type="TextureButton" parent="."]
 texture_filter = 1

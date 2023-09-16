@@ -95,7 +95,8 @@ func _on_middle_pick_up() -> void:
 
 # ---- SIERRA ------------------------------------------------------------------
 func _on_look() -> void:
-	C.Goddiu.say("It's my epatiu: Popsy")
+	await C.Goddiu.say("It's my epatiu: Popsy")
+	await C.Goddiu.say("I love it a lot because it's one of my softest epatius, and it always feeds me because it makes ice cream")
 
 
 func _on_right_look() -> void:

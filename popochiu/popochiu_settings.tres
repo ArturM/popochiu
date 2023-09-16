@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PopochiuSettings" load_steps=3 format=3 uid="uid://cmu0kih6wcv5q"]
 
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/popochiu_settings.gd" id="1_6d6xl"]
-[ext_resource type="PackedScene" uid="uid://6ucg5xkcreh5" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_gi.tscn" id="1_y87ur"]
+[ext_resource type="PackedScene" uid="uid://6ucg5xkcreh5" path="res://popochiu/graphic_interface/graphic_interface.tscn" id="1_y87ur"]
 
 [resource]
 script = ExtResource("1_6d6xl")
@@ -18,3 +18,4 @@ toolbar_always_visible = false
 fade_color = Color(0, 0, 0, 1)
 scale_gui = true
 max_dialog_options = 3
+dialog_style = 2

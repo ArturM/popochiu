@@ -309,7 +309,7 @@ layout_mode = 2
 texture_normal = ExtResource("8_6de8y")
 
 [node name="DialogText" parent="." instance=ExtResource("11_b4ttw")]
-layout_mode = 0
+layout_mode = 1
 
 [node name="DialogMenu" parent="." instance=ExtResource("14_3gq4k")]
 layout_mode = 1

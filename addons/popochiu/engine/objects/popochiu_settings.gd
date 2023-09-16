@@ -21,3 +21,4 @@ preload('res://addons/popochiu/engine/others/importer_defaults.gd')
 @export var fade_color: Color = Color.BLACK
 @export var scale_gui := true
 @export var max_dialog_options := 3
+@export_enum("Aboce Character", "Portrait", "Caption") var dialog_style := 0

@@ -6,8 +6,11 @@ extends RichTextLabel
 # warning-ignore-all:return_value_discarded
 
 signal animation_finished
+signal text_show_started
+signal text_show_finished
 
 const DFLT_SIZE := 'dflt_size'
+const DFLT_POSITION := "dflt_position"
 
 @export var wrap_width := 200.0
 @export var limit_margin := 4.0
@@ -27,6 +30,7 @@ var _y_limit := 0.0
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
 	set_meta(DFLT_SIZE, size)
+	set_meta(DFLT_POSITION, position)
 	
 	# Set the default values
 	clear()
@@ -42,7 +46,7 @@ func _ready() -> void:
 	E.text_speed_changed.connect(change_speed)
 	C.character_spoke.connect(_show_dialogue)
 	
-	visible = E.settings.dialog_style == 0
+	visible = E.settings.dialog_style == 1
 
 
 func _input(event: InputEvent) -> void:
@@ -91,36 +95,37 @@ func play_text(props: Dictionary) -> void:
 	rt.free()
 	# ===================================== Calculate the width of the node ====
 	# Define default position (before calculating overflow)
-	size = _size
-	position = props.position - size / 2.0
-	position.y -= size.y / 2.0
+#	size.y = _size.y
+#	position = props.position - size / 2.0
+#	position.y = get_meta(DFLT_POSITION).y - (size.y / 2.0)
 	
 	# Calculate overflow and reposition
-	if position.x < 0.0:
-		position.x = limit_margin
-	elif position.x + size.x > _x_limit:
-		position.x = _x_limit - limit_margin - size.x
-	if position.y < 0.0:
-		position.y = limit_margin
-	elif position.y + size.y > _y_limit:
-		position.y = _y_limit - limit_margin - size.y
+#	if position.x < 0.0:
+#		position.x = limit_margin
+#	elif position.x + size.x > _x_limit:
+#		position.x = _x_limit - limit_margin - size.x
+#	if position.y < 0.0:
+#		position.y = limit_margin
+#	elif position.y + size.y > _y_limit:
+#		position.y = _y_limit - limit_margin - size.y
 	
 	# Assign text and align mode (based checked overflow)
 	push_color(props.color)
+	append_text(msg)
 	
-	var center := floor(position.x + (size.x / 2))
-	if center == props.position.x:
-		append_text('[center]%s[/center]' % msg)
-	elif center < props.position.x:
-		append_text('[right]%s[/right]' % msg)
-	else:
-		append_text(msg)
+#	var center := floor(position.x + (size.x / 2))
+#	if center == props.position.x:
+#		append_text('[center]%s[/center]' % msg)
+#	elif center < props.position.x:
+#		append_text('[right]%s[/right]' % msg)
+#	else:
+#		append_text(msg)
 
 	if _secs_per_character > 0.0:
 		# Que el texto aparezca animado
 		if is_instance_valid(_tween) and _tween.is_running():
 			_tween.kill()
-		
+
 		_tween = create_tween()
 		_tween.tween_property(
 			self, 'visible_ratio',
@@ -160,6 +165,7 @@ func disappear() -> void:
 	if is_instance_valid(_tween) and _tween.is_running():
 		_tween.kill()
 	clear()
+	text = ""
 	
 	_continue_icon.hide()
 	_continue_icon.modulate.a = 1.0
@@ -168,9 +174,10 @@ func disappear() -> void:
 	and _continue_icon_tween.is_running():
 		_continue_icon_tween.kill()
 	
-	size = get_meta(DFLT_SIZE)
+#	size = get_meta(DFLT_SIZE)
 	
 	set_process_input(false)
+	text_show_finished.emit()
 
 
 func change_speed() -> void:
@@ -190,6 +197,7 @@ func _show_dialogue(chr: PopochiuCharacter, msg := '') -> void:
 	})
 	
 	set_process_input(true)
+	text_show_started.emit()
 
 
 func _wait_input() -> void:
@@ -226,8 +234,8 @@ func _show_icon() -> void:
 		_continue_icon.value = 100.0
 		_continue_icon_tween.tween_property(
 			_continue_icon, 'position:y',
-			size.y / 2.0 + 3.0, 0.8
-		).from(size.y / 2.0 - 1.0).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+			_continue_icon.position.y + 3.0, 0.8
+		).from(_continue_icon.position.y).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 		_continue_icon_tween.set_loops()
 	else:
 		# For automatic continuation: Make the icon appear like a progress bar
