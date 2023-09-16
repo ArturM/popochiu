@@ -56,6 +56,7 @@ func on_linked_item_discarded() -> void:
 	pass
 
 
+# ---- 9 Verb Command Methods --------------------------------------------------
 func _on_pick_up() -> void:
 	E.queue([
 		'Player: My old toy car!',
@@ -63,3 +64,10 @@ func _on_pick_up() -> void:
 		C.queue_face_clicked(),
 		I.ToyCar.queue_add()
 	])
+# -------------------------------------------------- 9 Verb Command Methods ----
+
+# ---- Sierra Command Methods --------------------------------------------------
+func _on_look() -> void:
+	await C.player.face_clicked()
+	await C.player.say("It's my toy car")
+# -------------------------------------------------- Sierra Command Methods ----

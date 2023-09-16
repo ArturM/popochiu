@@ -80,6 +80,7 @@ func done(wait := false) -> void:
 	
 	Cursor.unlock()
 	Cursor.set_cursor()
+	
 	freed.emit()
 
 ## Notifies that the graphic interface should hide.

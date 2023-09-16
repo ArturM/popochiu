@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://6ucg5xkcreh5"]
+[gd_scene load_steps=44 format=3 uid="uid://6ucg5xkcreh5"]
 
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_gi.gd" id="1_40nsv"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/sierra_commands.gd" id="2_2oa8n"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="11_b4ttw"]
 [ext_resource type="Texture2D" uid="uid://dwn416xagjwtd" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/sierra_cursor.png" id="13_udys2"]
 [ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="14_3gq4k"]
+[ext_resource type="PackedScene" uid="uid://dc7crw22yevoo" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/inventory_popup/sierra_inventory_popup.tscn" id="15_2hyjp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wfxk"]
 
@@ -70,6 +71,34 @@ texture = ExtResource("6_rqlwx")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvguw"]
+atlas = ExtResource("6_y48l1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdjye"]
+atlas = ExtResource("6_y48l1")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odwa6"]
+atlas = ExtResource("6_y48l1")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy7fm"]
+atlas = ExtResource("7_8gnnh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eccvv"]
+atlas = ExtResource("7_8gnnh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ahol"]
+atlas = ExtResource("7_8gnnh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3f06"]
+atlas = ExtResource("13_udys2")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xo8dr"]
 atlas = ExtResource("13_udys2")
 region = Rect2(64, 0, 32, 32)
@@ -82,12 +111,28 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("13_udys2")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyqmk"]
+atlas = ExtResource("13_udys2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlutb"]
+atlas = ExtResource("13_udys2")
+region = Rect2(160, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_e0opo"]
 atlas = ExtResource("13_udys2")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eo6w8"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3f06")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xo8dr")
@@ -110,6 +155,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyqmk")
+}],
+"loop": true,
+"name": &"use",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlutb")
+}],
+"loop": true,
+"name": &"wait",
 "speed": 5.0
 }, {
 "frames": [{
@@ -198,12 +259,16 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ykyyc")
 [node name="Inventory" type="TextureButton" parent="Menu/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-texture_normal = ExtResource("6_y48l1")
+texture_normal = SubResource("AtlasTexture_uvguw")
+texture_pressed = SubResource("AtlasTexture_mdjye")
+texture_hover = SubResource("AtlasTexture_odwa6")
 
 [node name="Settings" type="TextureButton" parent="Menu/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-texture_normal = ExtResource("7_8gnnh")
+texture_normal = SubResource("AtlasTexture_wy7fm")
+texture_pressed = SubResource("AtlasTexture_eccvv")
+texture_hover = SubResource("AtlasTexture_0ahol")
 
 [node name="Help" type="TextureButton" parent="Menu/HBoxContainer"]
 texture_filter = 1
@@ -219,5 +284,20 @@ layout_mode = 1
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_eo6w8")
-animation = &"talk"
+animation = &"idle"
 offset = Vector2(16, 16)
+
+[node name="Popups" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SierraInventoryPopup" parent="Popups" instance=ExtResource("15_2hyjp")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[connection signal="pressed" from="Menu/HBoxContainer/Inventory" to="." method="_on_inventory_pressed"]

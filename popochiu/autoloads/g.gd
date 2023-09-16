@@ -8,3 +8,7 @@ func get_command(id: int) -> String:
 		prints("[Popochiu] UI command not found:", id)
 	
 	return (commands_dic.get(id, "") as String)
+
+
+func get_command_description(id: int) -> String:
+	return get_command(id).to_snake_case()

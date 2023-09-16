@@ -8,6 +8,7 @@ signal language_changed
 signal game_saved
 signal game_loaded(data)
 signal redied
+signal command_selected
 
 const SAVELOAD_PATH := 'res://addons/popochiu/engine/others/popochiu_save_load.gd'
 
@@ -125,7 +126,10 @@ func _ready() -> void:
 	
 	# Add inventory items checked start (ignore animations (3rd parameter))
 	for key in settings.items_on_start:
-		I.add_item(key, false)
+		var ii: PopochiuInventoryItem = I.get_item_instance(key)
+		
+		if is_instance_valid(ii):
+			ii.add(false)
 	
 	set_process_input(false)
 	
@@ -654,6 +658,8 @@ func set_current_room(value: PopochiuRoom) -> void:
 
 func set_current_command(value: int) -> void:
 	current_command = value
+	
+	command_selected.emit()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░

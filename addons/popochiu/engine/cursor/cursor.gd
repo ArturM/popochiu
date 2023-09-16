@@ -33,6 +33,11 @@ func _process(delta):
 func set_cursor(type := Type.IDLE, ignore_block := false) -> void:
 	if not ignore_block and is_blocked: return
 	
+	# TODO: Temporary fix for mouse cursor change. This need improvements.
+	if E.current_command > -1:
+		show_cursor(G.get_command_description(E.current_command))
+		return
+	
 	if not Type.values().has(type):
 		prints("[Popochiu] Cursor has no type: %s" % type)
 		return
@@ -87,5 +92,7 @@ func replace_frames(new_node: AnimatedSprite2D) -> void:
 	$AnimatedSprite2D.offset = new_node.offset
 
 
-func show_cursor(anim_name: String) -> void:
+func show_cursor(anim_name: String, ignore_block := false) -> void:
+	if not ignore_block and is_blocked: return
+	
 	$AnimatedSprite2D.play(anim_name)

@@ -41,3 +41,10 @@ func _on_discard() -> void:
 	# Replace the call to super() to implement your code. This only
 	# makes the default behavior to happen.
 	super()
+
+
+# ---- Sierra Command Methods --------------------------------------------------
+func _on_look() -> void:
+	pass
+#	await C.Goddiu.say("It's my toy car")
+# -------------------------------------------------- Sierra Command Methods ----
