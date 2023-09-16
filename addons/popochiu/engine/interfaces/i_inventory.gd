@@ -6,6 +6,7 @@ signal item_add_done(item)
 signal item_removed(item, animate)
 signal item_remove_done(item)
 signal item_discarded(item)
+signal item_selected(item)
 signal inventory_show_requested(time)
 signal inventory_shown
 signal inventory_hide_requested(use_anim)

@@ -28,17 +28,16 @@ func _ready():
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
-func queue_display(msg: String) -> Callable:
-	return func (): await display(msg)
+func queue_show_system_text(msg: String) -> Callable:
+	return func (): await show_system_text(msg)
 
 
 # Shows a text in the center of the screen. Can be used as the narrator or to
 # give instructions to players. The visual style of the node that shows this text
 # can be modified in DisplayBox.tscn.
-func display(msg: String) -> void:
-	if not E.playing_queue:
-		# Show the click handler that blocks interactions
-		block()
+func show_system_text(msg: String) -> void:
+#	if not E.playing_queue:
+#		block()
 	
 	if E.cutscene_skipped:
 		await get_tree().process_frame
@@ -48,8 +47,8 @@ func display(msg: String) -> void:
 	
 	await self.continue_clicked
 	
-	if not E.playing_queue:
-		done()
+#	if not E.playing_queue:
+#		done()
 
 
 ## Shows a text at the bottom of the screen. It is used to show players the
@@ -65,6 +64,7 @@ func block() -> void:
 	
 	Cursor.set_cursor(Cursor.Type.WAIT)
 	Cursor.block()
+	
 	blocked.emit()
 
 

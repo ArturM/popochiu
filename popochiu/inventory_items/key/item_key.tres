@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://nr3jwwljxsw4"]
+
+[ext_resource type="Script" path="res://popochiu/inventory_items/key/item_key_state.gd" id="1_tuxtd"]
+
+[resource]
+resource_name = "Key"
+script = ExtResource("1_tuxtd")
+script_name = "Key"
+scene = "res://popochiu/inventory_items/key/item_key.tscn"

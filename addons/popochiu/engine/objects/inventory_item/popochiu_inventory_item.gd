@@ -36,6 +36,11 @@ func _on_right_click() -> void:
 	pass
 
 
+## When the item is middle clicked in the Inventory
+func _on_middle_click() -> void:
+	pass
+
+
 ## When the item is clicked and there is another inventory item selected
 func _on_item_used(item: PopochiuInventoryItem) -> void:
 	pass
@@ -132,14 +137,39 @@ func on_click() -> void:
 
 ## When the item is right clicked in the Inventory
 func on_right_click() -> void:
-	await G.display('Nothing to see in this item')
+	await G.show_system_text('Nothing to see in this item')
 
 
 ## When the item is clicked and there is another inventory item selected
 func on_item_used(item: PopochiuInventoryItem) -> void:
-	await G.display(
+	await G.show_system_text(
 		'Nothing happens when using %s in this item' % item.description
 	)
+
+
+func on_action(button_idx: int) -> void:
+	var command := G.get_command(E.current_command).to_snake_case()
+	var target_method := "_on_%s"
+	var suffix := "click"
+	
+	match button_idx:
+		MOUSE_BUTTON_RIGHT:
+			suffix = "right_" + suffix
+		MOUSE_BUTTON_MIDDLE:
+			suffix = "middle_" + suffix
+	
+	if not command.is_empty():
+		var command_method := suffix.replace("click", command)
+		
+		if has_method(target_method % command_method):
+			suffix = command_method
+	
+	E.add_history({
+		action = suffix if command.is_empty() else G.get_command(E.current_command),
+		target = description
+	})
+	
+	call(target_method % suffix)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░
@@ -170,11 +200,16 @@ func _toggle_description(display: bool) -> void:
 
 func _on_action_pressed(event: InputEvent) -> void: 
 	var mouse_event := event as InputEventMouseButton 
-	if mouse_event:
-		if mouse_event.is_action_pressed('popochiu-interact'):
-			if I.active:
-				_on_item_used(I.active)
-			else:
-				_on_click()
-		elif mouse_event.is_action_pressed('popochiu-look'):
-			_on_right_click()
+	if mouse_event and mouse_event.pressed:
+		match mouse_event.button_index:
+			MOUSE_BUTTON_LEFT:
+				if I.active:
+					_on_item_used(I.active)
+				else:
+					on_action(mouse_event.button_index)
+			MOUSE_BUTTON_RIGHT:
+				if not I.active:
+					on_action(mouse_event.button_index)
+			MOUSE_BUTTON_MIDDLE:
+				if not I.active:
+					on_action(mouse_event.button_index)

@@ -402,7 +402,7 @@ func room_readied(room: PopochiuRoom) -> void:
 	
 	if _loaded_game:
 		game_loaded.emit(_loaded_game)
-		await G.display('Game loaded')
+		await G.show_system_text('Game loaded')
 		
 		_loaded_game = {}
 	
@@ -572,7 +572,7 @@ func save_game(slot := 1, description := '') -> void:
 	if _saveload.save_game(slot, description):
 		game_saved.emit()
 		
-		await G.display('Game saved')
+		await G.show_system_text('Game saved')
 
 
 func load_game(slot := 1) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://6ucg5xkcreh5"]
+[gd_scene load_steps=48 format=3 uid="uid://6ucg5xkcreh5"]
 
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_gi.gd" id="1_40nsv"]
 [ext_resource type="Theme" uid="uid://csr0n32rthycw" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/resources/sierra_theme.tres" id="1_kw4gp"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dwn416xagjwtd" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/sierra_cursor.png" id="13_udys2"]
 [ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="14_3gq4k"]
 [ext_resource type="PackedScene" uid="uid://dc7crw22yevoo" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/inventory_popup/sierra_inventory_popup.tscn" id="15_2hyjp"]
+[ext_resource type="PackedScene" uid="uid://bdgs3xsbq3gdd" path="res://addons/popochiu/engine/objects/graphic_interface/components/system_text/system_text.tscn" id="18_x7swu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecos1"]
 content_margin_left = 6.0
@@ -332,5 +333,13 @@ mouse_filter = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+
+[node name="SystemText" parent="." instance=ExtResource("18_x7swu")]
+layout_mode = 1
+offset_left = 44.0
+offset_top = -11.0
+offset_right = -44.0
+offset_bottom = 11.0
+fit_content = false
 
 [connection signal="pressed" from="Menu/HBoxContainer/Inventory" to="." method="_on_inventory_pressed"]

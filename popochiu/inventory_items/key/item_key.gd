@@ -1,8 +1,8 @@
 extends PopochiuInventoryItem
 
-const Data := preload('item_toy_car_state.gd')
+const Data := preload('item_key_state.gd')
 
-var state: Data = load('res://popochiu/inventory_items/toy_car/item_toy_car.tres')
+var state: Data = load('res://popochiu/inventory_items/key/item_key.tres')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
@@ -12,26 +12,19 @@ var state: Data = load('res://popochiu/inventory_items/toy_car/item_toy_car.tres
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 # When the item is clicked in the inventory
 func _on_click() -> void:
-	# Replace the call to super() to implement your code. This only makes
-	# the default behavior to happen.
-	match G.template:
-		"Sierra":
-			match E.current_command:
-				SierraCommands.Commands.LOOK:
-					G.show_system_text("???")
-				_:
-					super.on_click()
+	# Replace the call to super.on_click() to implement your code.
+	super.on_click()
 
 
 # When the item is right clicked in the inventory
 func _on_right_click() -> void:
-	discard()
+	# Replace the call to super.on_right_click() to implement your code.
+	super.on_right_click()
 
 
 # When the item is clicked and there is another inventory item selected
 func _on_item_used(item: PopochiuInventoryItem) -> void:
-	# Replace the call to super(item) to implement your code. This only
-	# makes the default behavior to happen.
+	# Replace the call to super.on_item_used(item) to implement your code.
 	super.on_item_used(item)
 
 
@@ -47,10 +40,3 @@ func _on_discard() -> void:
 	# Replace the call to super() to implement your code. This only
 	# makes the default behavior to happen.
 	super()
-
-
-# ---- Sierra Command Methods --------------------------------------------------
-func _on_look() -> void:
-	G.show_system_text("It's the toy car of the Popochius")
-#	await C.Goddiu.say("It's my toy car")
-# -------------------------------------------------- Sierra Command Methods ----
