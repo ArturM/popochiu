@@ -96,3 +96,5 @@ func show_cursor(anim_name: String, ignore_block := false) -> void:
 	if not ignore_block and is_blocked: return
 	
 	$AnimatedSprite2D.play(anim_name)
+	$AnimatedSprite2D.show()
+	$Sprite2D.hide()

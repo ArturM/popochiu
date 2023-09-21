@@ -237,14 +237,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6wfxk")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="SierraCommands" type="HBoxContainer" parent="Menu/HBoxContainer"]
-unique_name_in_owner = true
+[node name="SierraCommandsContainer" type="HBoxContainer" parent="Menu/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 script = ExtResource("2_2oa8n")
 
-[node name="Walk" type="TextureButton" parent="Menu/HBoxContainer/SierraCommands"]
+[node name="Walk" type="TextureButton" parent="Menu/HBoxContainer/SierraCommandsContainer"]
 texture_filter = 1
 layout_mode = 2
 toggle_mode = true
@@ -253,7 +252,7 @@ texture_pressed = SubResource("AtlasTexture_ylk7h")
 texture_hover = SubResource("AtlasTexture_ao1oe")
 script = ExtResource("3_3pvuf")
 
-[node name="Look" type="TextureButton" parent="Menu/HBoxContainer/SierraCommands"]
+[node name="Look" type="TextureButton" parent="Menu/HBoxContainer/SierraCommandsContainer"]
 texture_filter = 1
 layout_mode = 2
 toggle_mode = true
@@ -263,7 +262,7 @@ texture_hover = SubResource("AtlasTexture_msotb")
 script = ExtResource("3_3pvuf")
 command = 1
 
-[node name="Interact" type="TextureButton" parent="Menu/HBoxContainer/SierraCommands"]
+[node name="Interact" type="TextureButton" parent="Menu/HBoxContainer/SierraCommandsContainer"]
 texture_filter = 1
 layout_mode = 2
 toggle_mode = true
@@ -273,7 +272,7 @@ texture_hover = SubResource("AtlasTexture_ddbjm")
 script = ExtResource("3_3pvuf")
 command = 2
 
-[node name="Talk" type="TextureButton" parent="Menu/HBoxContainer/SierraCommands"]
+[node name="Talk" type="TextureButton" parent="Menu/HBoxContainer/SierraCommandsContainer"]
 texture_filter = 1
 layout_mode = 2
 toggle_mode = true
@@ -331,7 +330,6 @@ mouse_filter = 2
 
 [node name="SierraInventoryPopup" parent="Popups" instance=ExtResource("15_2hyjp")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 
 [node name="SystemText" parent="." instance=ExtResource("18_x7swu")]
@@ -340,6 +338,5 @@ offset_left = 44.0
 offset_top = -11.0
 offset_right = -44.0
 offset_bottom = 11.0
-fit_content = false
 
 [connection signal="pressed" from="Menu/HBoxContainer/Inventory" to="." method="_on_inventory_pressed"]

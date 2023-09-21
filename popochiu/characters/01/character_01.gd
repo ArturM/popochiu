@@ -17,12 +17,14 @@ func _on_room_set() -> void:
 
 # When the node is clicked
 func _on_click() -> void:
-	C.walk_to_clicked()
+#	C.walk_to_clicked()
+	pass
 
 
 # When the node is right clicked
 func _on_right_click() -> void:
-	C.walk_to_clicked()
+#	C.walk_to_clicked()
+	pass
 
 
 # When the node is clicked and there is an inventory item selected

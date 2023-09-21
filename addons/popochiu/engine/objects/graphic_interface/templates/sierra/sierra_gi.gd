@@ -1,6 +1,6 @@
 extends PopochiuGraphicInterface
 
-@onready var sierra_commands: HBoxContainer = %SierraCommands
+const COMMANDS := preload("res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_commands.gd")
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░

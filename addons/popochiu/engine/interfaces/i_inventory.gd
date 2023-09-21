@@ -59,7 +59,6 @@ func hide_inventory(use_anim := true) -> void:
 	await get_tree().process_frame
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░
 func get_item_instance(item_name: String) -> PopochiuInventoryItem:
 	for ii in _item_instances:
 		var ii_name: String = ii.script_name
@@ -102,3 +101,8 @@ func is_item_in_inventory(item_name: String) -> bool:
 func is_full() -> bool:
 	return E.settings.inventory_limit > 0\
 	and E.settings.inventory_limit == items.size()
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░
+#func set_active(value: PopochiuInventoryItem) -> void:
+#	set_active_item(value)

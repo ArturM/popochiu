@@ -102,17 +102,3 @@ func _check_click(event: InputEvent) -> void:
 	and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
 		_on_cancel()
 		close()
-
-
-func _on_look_pressed() -> void:
-	E.current_command = SierraCommands.Commands.LOOK
-	
-	# Force changing the cursor
-	Cursor.show_cursor(
-		G.get_command(E.current_command).to_snake_case(),
-		true
-	)
-
-
-func _on_select_pressed() -> void:
-	Cursor.show_cursor("use")

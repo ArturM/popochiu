@@ -459,6 +459,11 @@ func _copy_gui_template(template_name: String) -> void:
 		"empty":
 			gui_path += "gi.tscn"
 	
+	if not FileAccess.file_exists(PopochiuResources.GRAPHIC_INTERFACE_POPOCHIU):
+		DirAccess.make_dir_recursive_absolute(
+			PopochiuResources.GRAPHIC_INTERFACE_POPOCHIU.get_base_dir()
+		)
+	
 	DirAccess.copy_absolute(
 		gui_path,
 		PopochiuResources.GRAPHIC_INTERFACE_POPOCHIU

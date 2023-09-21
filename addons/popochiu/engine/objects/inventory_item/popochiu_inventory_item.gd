@@ -158,18 +158,25 @@ func on_action(button_idx: int) -> void:
 		MOUSE_BUTTON_MIDDLE:
 			suffix = "middle_" + suffix
 	
+	var use_fallback := false
+	
 	if not command.is_empty():
 		var command_method := suffix.replace("click", command)
 		
 		if has_method(target_method % command_method):
 			suffix = command_method
+		else:
+			use_fallback = true
 	
 	E.add_history({
 		action = suffix if command.is_empty() else G.get_command(E.current_command),
 		target = description
 	})
 	
-	call(target_method % suffix)
+	if use_fallback:
+		E.gi.COMMANDS.call(command)
+	else:
+		call(target_method % suffix)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░

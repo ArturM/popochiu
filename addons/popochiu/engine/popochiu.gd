@@ -67,50 +67,57 @@ var _saveload: Resource = null
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
+	# Create the AudioManager
 	am = load(PopochiuResources.AUDIO_MANAGER).instantiate()
 	
 	_saveload = load(SAVELOAD_PATH).new()
 	_config = PopochiuResources.get_data_cfg()
 	
+	# Set the Graphic Interface node
 	if settings.graphic_interface:
 		gi = settings.graphic_interface.instantiate()
 		gi.name = 'GraphicInterface'
 	else:
 		gi = load(PopochiuResources.GRAPHIC_INTERFACE_ADDON).instantiate()
 	
+	# Load the commands for the game
 	var commands: String = PopochiuResources.get_data_value("ui", "commands", "")
 	if not commands.is_empty():
 		G.commands_dic = (load(commands).new()).commands_dic
-		prints("G.commands_dic", G.commands_dic)
 	
+	# Set the Transitions Layer node
 	if settings.transition_layer:
 		tl = settings.transition_layer.instantiate()
 		tl.name = 'TransitionLayer'
 	else:
 		tl = load(PopochiuResources.TRANSITION_LAYER_ADDON).instantiate()
 	
-	# Scale GI and TL
+	# Scale Graphic Interface and Transitions Layer
 	scale = Vector2(self.width, self.height) / Vector2(320.0, 180.0)
 	
+	# Add the AudioManager, the Graphic Interface, and the Transitions Layer
+	# to the tree
 	$GraphicInterfaceLayer.add_child(gi)
 	$TransitionsLayer.add_child(tl)
 	add_child(am)
 	
+	# Load the player-controlled character defined by the dev
 	if PopochiuResources.has_data_value('setup', 'pc'):
 		var pc_data_path: String = PopochiuResources.get_data_value(
 			'characters',
 			PopochiuResources.get_data_value('setup', 'pc', ''),
 			''
 		)
-		
+
 		if pc_data_path:
 			var pc_data: PopochiuCharacterData = load(pc_data_path)
 			var pc: PopochiuCharacter = load(pc_data.scene).instantiate()
-			
+
 			C.player = pc
 			C.characters.append(pc)
 			C.set(pc.script_name, pc)
 	
+	# Load the first PopochiuCharacter in the project as the default PC
 	if not C.player:
 		# Set the first character on the list to be the default player character
 		var characters := PopochiuResources.get_section('characters')
@@ -618,6 +625,13 @@ func remove_hovered(node: PopochiuClickable) -> bool:
 func clear_hovered() -> void:
 	_hovered_queue.clear()
 	self.hovered = null
+
+
+func command_fallback() -> void:
+	if gi.COMMANDS.has_method(G.get_command(current_command)):
+		gi.COMMANDS.call(G.get_command(current_command))
+	else:
+		gi.COMMANDS.fallback()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░

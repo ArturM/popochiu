@@ -37,13 +37,13 @@ func _on_click() -> void:
 				await C.Popsy.say("What about a kiss?")
 				await C.player.say("Awwwwwww")
 			_:
-				C.walk_to_clicked()
+				E.command_fallback()
 	# ---------------------------------------------------------- 9 verb ----
 
 
 # When the node is right clicked
 func _on_right_click() -> void:
-	C.walk_to_clicked()
+	E.command_fallback()
 
 
 # When the node is clicked and there is an inventory item selected

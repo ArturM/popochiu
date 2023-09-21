@@ -1,8 +1,8 @@
 ## Any Object that can move, walk, navigate rooms, have an inventory, etc.
 @tool
 @icon('res://addons/popochiu/icons/character.png')
-class_name PopochiuCharacter
 extends PopochiuClickable
+class_name PopochiuCharacter
 # TODO: Use a state machine
 
 enum FlipsWhen { NONE, MOVING_RIGHT, MOVING_LEFT }
@@ -40,6 +40,7 @@ func _ready():
 	else:
 		hide_helpers()
 		set_process(true)
+
 
 func _get_property_list():
 	var properties = []
