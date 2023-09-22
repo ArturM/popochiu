@@ -1,51 +1,48 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhth611pb4a2l"]
+[gd_scene load_steps=10 format=3 uid="uid://cfoomir1l85r3"]
 
-[ext_resource type="Script" path="res://popochiu/rooms/house/room_house.gd" id="1_5s51l"]
-[ext_resource type="PackedScene" uid="uid://c0yuinu6anryy" path="res://popochiu/rooms/house/props/bg/prop_bg.tscn" id="2_s2nyx"]
-[ext_resource type="PackedScene" uid="uid://uvtywyf3pq1a" path="res://addons/popochiu/engine/objects/walkable_area/popochiu_walkable_area.tscn" id="2_s8q7b"]
-[ext_resource type="Script" path="res://popochiu/rooms/house/walkable_areas/floor/walkable_area_floor.gd" id="3_xsa8n"]
-[ext_resource type="PackedScene" uid="uid://61e3u8ba5jrq" path="res://popochiu/rooms/house/props/toy_car/prop_toy_car.tscn" id="4_0fq0w"]
-[ext_resource type="Texture2D" uid="uid://bgr746xh7k5ed" path="res://popochiu/rooms/house/props/bg/background.png" id="5_p84ts"]
-[ext_resource type="Texture2D" uid="uid://ct4gttx7etote" path="res://popochiu/rooms/house/props/toy_car/toy_car.png" id="7_c1lb3"]
-[ext_resource type="PackedScene" uid="uid://c7oacc86kxt3e" path="res://popochiu/characters/goddiu/character_goddiu.tscn" id="8_kbv2w"]
-[ext_resource type="Script" path="res://popochiu/characters/goddiu/character_goddiu.gd" id="9_xtirv"]
-[ext_resource type="PackedScene" uid="uid://dpnqksegjn80g" path="res://popochiu/characters/popsy/character_popsy.tscn" id="10_cxlhm"]
-[ext_resource type="Script" path="res://popochiu/characters/popsy/character_popsy.gd" id="11_tlbxd"]
+[ext_resource type="Script" path="res://popochiu/rooms/house/room_house.gd" id="1_wu4vb"]
+[ext_resource type="PackedScene" uid="uid://5u07np11vicc" path="res://popochiu/rooms/house/props/bg/prop_bg.tscn" id="2_5c3bf"]
+[ext_resource type="PackedScene" uid="uid://uvtywyf3pq1a" path="res://addons/popochiu/engine/objects/walkable_area/popochiu_walkable_area.tscn" id="2_8en3i"]
+[ext_resource type="Script" path="res://popochiu/rooms/house/walkable_areas/floor/walkable_area_floor.gd" id="3_x6kcf"]
+[ext_resource type="Texture2D" uid="uid://2pnpb4vxcweb" path="res://popochiu/rooms/house/props/bg/background.png" id="4_cykrm"]
+[ext_resource type="PackedScene" uid="uid://ccp8yt3rm4kps" path="res://popochiu/rooms/house/props/toy_car/prop_toy_car.tscn" id="5_c3cmx"]
+[ext_resource type="Texture2D" uid="uid://b2wyxt34cjrwd" path="res://popochiu/rooms/house/props/toy_car/toy_car.png" id="9_d8e6u"]
+[ext_resource type="PackedScene" uid="uid://d4gsi5bn5fsj8" path="res://popochiu/characters/goddiu/character_goddiu.tscn" id="10_hwjov"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ig1rh"]
-vertices = PackedVector2Array(-88, 16, -40, 7, 81, 12, 111, 54, 59, 71, -78, 68, -111, 49)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hxler"]
+vertices = PackedVector2Array(-90, 15, -7, 6, 84, 13, 112, 52, 57, 71, -75, 69, -108, 51)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-88, 16, -40, 7, 81, 12, 111, 54, 59, 71, -78, 68, -111, 49)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-90, 15, -7, 6, 84, 13, 112, 52, 57, 71, -75, 69, -108, 51)])
 
 [node name="RoomHouse" type="Node2D"]
-script = ExtResource("1_5s51l")
+script = ExtResource("1_wu4vb")
 script_name = "House"
 
 [node name="WalkableAreas" type="Node2D" parent="."]
 
-[node name="Floor" parent="WalkableAreas" instance=ExtResource("2_s8q7b")]
+[node name="Floor" parent="WalkableAreas" instance=ExtResource("2_8en3i")]
 position = Vector2(160, 90)
-script = ExtResource("3_xsa8n")
+script = ExtResource("3_x6kcf")
 script_name = "Floor"
 description = "Floor"
 
 [node name="Perimeter" type="NavigationRegion2D" parent="WalkableAreas/Floor"]
 modulate = Color(0, 1, 0, 1)
-navigation_polygon = SubResource("NavigationPolygon_ig1rh")
+navigation_polygon = SubResource("NavigationPolygon_hxler")
 
 [node name="Props" type="Node2D" parent="."]
 
-[node name="Bg" parent="Props" instance=ExtResource("2_s2nyx")]
+[node name="Bg" parent="Props" instance=ExtResource("2_5c3bf")]
 position = Vector2(160, 90)
-texture = ExtResource("5_p84ts")
+texture = ExtResource("4_cykrm")
 
-[node name="ToyCar" parent="Props" instance=ExtResource("4_0fq0w")]
-position = Vector2(104, 127)
-texture = ExtResource("7_c1lb3")
-link_to_item = "ToyCar"
+[node name="ToyCar" parent="Props" instance=ExtResource("5_c3cmx")]
+position = Vector2(96, 123)
+texture = ExtResource("9_d8e6u")
+walk_to_point = Vector2(16, -4)
 
 [node name="InteractionPolygon" type="CollisionPolygon2D" parent="Props/ToyCar"]
-polygon = PackedVector2Array(-8, 1, -7, -4, 0, -5, 7, -2, 7, 3, 2, 5, -6, 4)
+polygon = PackedVector2Array(-9, 4, -7, -6, 7, -6, 10, 1, 1, 7)
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -53,56 +50,7 @@ polygon = PackedVector2Array(-8, 1, -7, -4, 0, -5, 7, -2, 7, 3, 2, 5, -6, 4)
 
 [node name="Markers" type="Node2D" parent="."]
 
-[node name="Left" type="Marker2D" parent="Markers"]
-position = Vector2(73, 129)
-
-[node name="Right" type="Marker2D" parent="Markers"]
-position = Vector2(244, 127)
-
 [node name="Characters" type="Node2D" parent="."]
 
-[node name="CharacterGoddiu *" type="Area2D" parent="Characters" instance=ExtResource("8_kbv2w")]
-position = Vector2(119, 109)
-script = ExtResource("9_xtirv")
-flips_when = 2
-popochiu_placeholder = null
-script_name = "Goddiu"
-description = "Goddiu"
-clickable = false
-cursor = 8
-metadata/_popochiu_aseprite_config_ = {
-"o_folder": "res://popochiu/characters/goddiu",
-"o_name": "",
-"only_visible_layers": false,
-"op_exp": true,
-"player": "/root/@@16579/@@655/@@656/@@664/@@667/@@675/@@683/@@684/@@686/@@712/@@713/@@752/MainScreen/@@9766/@@9593/@@9595/@@9597/@@9598/@@9599/@@9600/CharacterGoddiu/AnimationPlayer",
-"source": "res://popochiu/sources/aseprite/goddiu.aseprite",
-"tags": [{
-"import": true,
-"loops": true,
-"tag_name": "idle"
-}, {
-"import": true,
-"loops": true,
-"tag_name": "jump"
-}, {
-"import": true,
-"loops": true,
-"tag_name": "talk"
-}, {
-"import": true,
-"loops": true,
-"tag_name": "walk"
-}],
-"wipe_old_anims": true
-}
-
-[node name="CharacterPopsy *" type="Area2D" parent="Characters" instance=ExtResource("10_cxlhm")]
-position = Vector2(214, 123)
-script = ExtResource("11_tlbxd")
-text_color = Color(0.768627, 0.423529, 0.443137, 1)
-popochiu_placeholder = null
-script_name = "Popsy"
-description = "Popsy"
-walk_to_point = Vector2(-33, -14)
-cursor = 8
+[node name="CharacterGoddiu *" parent="Characters" instance=ExtResource("10_hwjov")]
+position = Vector2(137, 104)

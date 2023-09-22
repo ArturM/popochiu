@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_gi.gd" id="1_40nsv"]
 [ext_resource type="Theme" uid="uid://csr0n32rthycw" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/resources/sierra_theme.tres" id="1_kw4gp"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/sierra_commands.gd" id="2_2oa8n"]
 [ext_resource type="Texture2D" uid="uid://cnxdologw7ax8" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/btn_walk.png" id="2_7cktd"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/sierra_command_button.gd" id="3_3pvuf"]
 [ext_resource type="Texture2D" uid="uid://57nl6xfjetoe" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/btn_look.png" id="3_ben2t"]
 [ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="3_ev600"]
 [ext_resource type="Texture2D" uid="uid://mbfkdny6pub7" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/btn_interact.png" id="4_j5w70"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/sierra_commands_container.gd" id="4_ogedy"]
 [ext_resource type="Texture2D" uid="uid://b5vpolfm4o5f4" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/btn_talk.png" id="5_v5ime"]
 [ext_resource type="Texture2D" uid="uid://cqfu38l1h5v8j" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/separator.png" id="6_rqlwx"]
 [ext_resource type="Texture2D" uid="uid://binqewyag102g" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/btn_inventory.png" id="6_y48l1"]
@@ -241,7 +241,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
-script = ExtResource("2_2oa8n")
+script = ExtResource("4_ogedy")
 
 [node name="Walk" type="TextureButton" parent="Menu/HBoxContainer/SierraCommandsContainer"]
 texture_filter = 1

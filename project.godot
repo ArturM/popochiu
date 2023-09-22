@@ -27,7 +27,7 @@ C="*res://popochiu/autoloads/c.gd"
 I="*res://popochiu/autoloads/i.gd"
 D="*res://popochiu/autoloads/d.gd"
 A="*res://popochiu/autoloads/a.gd"
-G="*res://popochiu/autoloads/g.gd"
+G="*res://addons/popochiu/engine/interfaces/i_graphic_interface.gd"
 
 [display]
 

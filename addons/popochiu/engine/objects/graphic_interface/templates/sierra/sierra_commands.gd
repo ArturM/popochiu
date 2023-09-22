@@ -13,14 +13,14 @@ var commands_dic := {
 }
 
 
-static func fallback() -> void:
+func fallback() -> void:
 	walk()
 
 
-static func walk() -> void:
-	E.get_node("/root/C").walk_to_clicked()
-#	C.walk_to_clicked()
+func walk() -> void:
+#	E.get_node("/root/C").walk_to_clicked()
+	C.walk_to_clicked()
 
 
-static func look() -> void:
+func look() -> void:
 	G.show_system_text("Nothing to say about this item")

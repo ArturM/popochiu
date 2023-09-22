@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="PopochiuSettings" load_steps=3 format=3 uid="uid://cmu0kih6wcv5q"]
+[gd_resource type="Resource" script_class="PopochiuSettings" load_steps=3 format=3 uid="uid://blp1mgivpnors"]
 
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/popochiu_settings.gd" id="1_6d6xl"]
-[ext_resource type="PackedScene" uid="uid://6ucg5xkcreh5" path="res://popochiu/graphic_interface/graphic_interface.tscn" id="1_y87ur"]
+[ext_resource type="PackedScene" uid="uid://bd0fika4hyhvw" path="res://popochiu/graphic_interface/graphic_interface.tscn" id="1_fjcsx"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/popochiu_settings.gd" id="1_xsw0g"]
 
 [resource]
-script = ExtResource("1_6d6xl")
-graphic_interface = ExtResource("1_y87ur")
+script = ExtResource("1_xsw0g")
+graphic_interface = ExtResource("1_fjcsx")
 skip_cutscene_time = 0.2
 text_speeds = [0.1, 0.01, 0.0]
 default_text_speed = 0
@@ -18,4 +18,4 @@ toolbar_always_visible = false
 fade_color = Color(0, 0, 0, 1)
 scale_gui = true
 max_dialog_options = 3
-dialog_style = 2
+dialog_style = 0

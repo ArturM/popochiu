@@ -5,6 +5,7 @@ class_name PopochiuGraphicInterface
 # warning-ignore-all:return_value_discarded
 
 var popups_stack := []
+var commands: Resource = null
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░

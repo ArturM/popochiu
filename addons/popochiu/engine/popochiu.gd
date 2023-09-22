@@ -67,39 +67,8 @@ var _saveload: Resource = null
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
-	# Create the AudioManager
-	am = load(PopochiuResources.AUDIO_MANAGER).instantiate()
-	
 	_saveload = load(SAVELOAD_PATH).new()
 	_config = PopochiuResources.get_data_cfg()
-	
-	# Set the Graphic Interface node
-	if settings.graphic_interface:
-		gi = settings.graphic_interface.instantiate()
-		gi.name = 'GraphicInterface'
-	else:
-		gi = load(PopochiuResources.GRAPHIC_INTERFACE_ADDON).instantiate()
-	
-	# Load the commands for the game
-	var commands: String = PopochiuResources.get_data_value("ui", "commands", "")
-	if not commands.is_empty():
-		G.commands_dic = (load(commands).new()).commands_dic
-	
-	# Set the Transitions Layer node
-	if settings.transition_layer:
-		tl = settings.transition_layer.instantiate()
-		tl.name = 'TransitionLayer'
-	else:
-		tl = load(PopochiuResources.TRANSITION_LAYER_ADDON).instantiate()
-	
-	# Scale Graphic Interface and Transitions Layer
-	scale = Vector2(self.width, self.height) / Vector2(320.0, 180.0)
-	
-	# Add the AudioManager, the Graphic Interface, and the Transitions Layer
-	# to the tree
-	$GraphicInterfaceLayer.add_child(gi)
-	$TransitionsLayer.add_child(tl)
-	add_child(am)
 	
 	# Load the player-controlled character defined by the dev
 	if PopochiuResources.has_data_value('setup', 'pc'):
@@ -150,6 +119,40 @@ func _ready() -> void:
 		
 		res.save_childs_states()
 	
+	# --------------------------------------------------------------------------
+	# Create the AudioManager
+	am = load(PopochiuResources.AUDIO_MANAGER).instantiate()
+	
+	# Set the Graphic Interface node
+	if settings.graphic_interface:
+		gi = settings.graphic_interface.instantiate()
+		gi.name = 'GraphicInterface'
+	else:
+		gi = load(PopochiuResources.GRAPHIC_INTERFACE_ADDON).instantiate()
+	
+	# Load the commands for the game
+	var commands: String = PopochiuResources.get_data_value("ui", "commands", "")
+	if not commands.is_empty():
+		G.commands_dic = (load(commands).new()).commands_dic
+	
+	# Set the Transitions Layer node
+	if settings.transition_layer:
+		tl = settings.transition_layer.instantiate()
+		tl.name = 'TransitionLayer'
+	else:
+		tl = load(PopochiuResources.TRANSITION_LAYER_ADDON).instantiate()
+	
+	# Scale Graphic Interface and Transitions Layer
+	scale = Vector2(self.width, self.height) / Vector2(320.0, 180.0)
+	
+	# Add the AudioManager, the Graphic Interface, and the Transitions Layer
+	# to the tree
+	$GraphicInterfaceLayer.add_child(gi)
+	$TransitionsLayer.add_child(tl)
+	add_child(am)
+	
+	# --------------------------------------------------------------------------
+	# Connect to singletons signals
 	C.character_spoke.connect(_on_character_spoke)
 	
 	redied.emit()
@@ -628,10 +631,12 @@ func clear_hovered() -> void:
 
 
 func command_fallback() -> void:
-	if gi.COMMANDS.has_method(G.get_command(current_command)):
-		gi.COMMANDS.call(G.get_command(current_command))
+	if not gi.commands: return
+	
+	if gi.commands.has_method(G.get_command_description(current_command)):
+		gi.commands.call(G.get_command_description(current_command))
 	else:
-		gi.COMMANDS.fallback()
+		gi.commands.fallback()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░

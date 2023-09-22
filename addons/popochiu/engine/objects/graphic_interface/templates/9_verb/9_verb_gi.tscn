@@ -1,8 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=35 format=3 uid="uid://bd0fika4hyhvw"]
 
 [ext_resource type="Theme" uid="uid://6vk2wej0sape" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_theme.tres" id="1_qh2tb"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
 [ext_resource type="ButtonGroup" uid="uid://y1thfsxxjowe" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_button_group.tres" id="3_77ocs"]
+[ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="3_oliab"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_command_button.gd" id="3_su7pr"]
 [ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="4_ljv1q"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_hover_text.gd" id="6_olqnt"]
@@ -138,6 +139,9 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_qh2tb")
 script = ExtResource("2_v01ea")
+
+[node name="DialogText" parent="." instance=ExtResource("3_oliab")]
+layout_mode = 1
 
 [node name="BottomContainer" type="PanelContainer" parent="."]
 layout_mode = 1

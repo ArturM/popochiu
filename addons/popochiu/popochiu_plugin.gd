@@ -51,7 +51,7 @@ func _init():
 	add_autoload_singleton('I', PopochiuResources.I_SNGL)
 	add_autoload_singleton('D', PopochiuResources.D_SNGL)
 	add_autoload_singleton('A', PopochiuResources.A_SNGL)
-	add_autoload_singleton('G', PopochiuResources.G_SNGL)
+	add_autoload_singleton('G', PopochiuResources.IGRAPHIC_INTERFACE_SNGL)
 
 
 func _enter_tree() -> void:
@@ -457,7 +457,7 @@ func _copy_gui_template(template_name: String) -> void:
 		"sierra":
 			gui_path += "templates/sierra/sierra_gi.tscn"
 		"empty":
-			gui_path += "gi.tscn"
+			gui_path += "popochiu_graphic_interface.tscn"
 	
 	if not FileAccess.file_exists(PopochiuResources.GRAPHIC_INTERFACE_POPOCHIU):
 		DirAccess.make_dir_recursive_absolute(

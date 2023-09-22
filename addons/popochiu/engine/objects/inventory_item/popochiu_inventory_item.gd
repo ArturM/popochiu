@@ -174,7 +174,7 @@ func on_action(button_idx: int) -> void:
 	})
 	
 	if use_fallback:
-		E.gi.COMMANDS.call(command)
+		E.command_fallback()
 	else:
 		call(target_method % suffix)
 

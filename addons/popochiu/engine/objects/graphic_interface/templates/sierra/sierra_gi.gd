@@ -1,11 +1,13 @@
 extends PopochiuGraphicInterface
 
-const COMMANDS := preload("res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_commands.gd")
-
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
 	super()
+	
+	commands = load(
+		"res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_commands.gd"
+	).new()
 	
 	Cursor.replace_frames($Cursor)
 	

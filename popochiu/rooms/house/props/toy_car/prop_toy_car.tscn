@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://61e3u8ba5jrq"]
+[gd_scene load_steps=2 format=3 uid="uid://ccp8yt3rm4kps"]
 
-[ext_resource type="Script" path="res://popochiu/rooms/house/props/toy_car/prop_toy_car.gd" id="1_y43oq"]
+[ext_resource type="Script" path="res://popochiu/rooms/house/props/toy_car/prop_toy_car.gd" id="1_nfp4w"]
 
 [node name="ToyCar" type="Area2D"]
-script = ExtResource("1_y43oq")
+script = ExtResource("1_nfp4w")
 script_name = "ToyCar"
 description = "Toy Car"
 cursor = 1

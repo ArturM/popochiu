@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="AudioCueMusic" load_steps=3 format=3 uid="uid://bpv8jsafef3ap"]
+[gd_resource type="Resource" script_class="AudioCueMusic" load_steps=3 format=3 uid="uid://53jsmcw143bp"]
 
-[ext_resource type="AudioStream" uid="uid://b5iy06aajeti3" path="res://popochiu/rooms/house/audio/mx_house.ogg" id="1_sinvw"]
-[ext_resource type="Script" path="res://addons/popochiu/engine/audio_manager/audio_cue_music.gd" id="2_qor3c"]
+[ext_resource type="AudioStream" uid="uid://c6sskeni78mmy" path="res://popochiu/rooms/house/audio/mx_house.ogg" id="1_3chnm"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/audio_manager/audio_cue_music.gd" id="2_lv3wn"]
 
 [resource]
 resource_name = "mx_house"
-script = ExtResource("2_qor3c")
-audio = ExtResource("1_sinvw")
+script = ExtResource("2_lv3wn")
+audio = ExtResource("1_3chnm")
 loop = true
 is_2d = false
 pitch = 1.05946
