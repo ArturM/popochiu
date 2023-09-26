@@ -17,12 +17,15 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-90, 15, -7, 6, 84, 13,
 [node name="RoomHouse" type="Node2D"]
 script = ExtResource("1_wu4vb")
 script_name = "House"
+script_name = "House"
 
 [node name="WalkableAreas" type="Node2D" parent="."]
 
 [node name="Floor" parent="WalkableAreas" instance=ExtResource("2_8en3i")]
 position = Vector2(160, 90)
 script = ExtResource("3_x6kcf")
+script_name = "Floor"
+description = "Floor"
 script_name = "Floor"
 description = "Floor"
 
@@ -38,6 +41,9 @@ texture = ExtResource("4_cykrm")
 
 [node name="ToyCar" parent="Props" instance=ExtResource("5_c3cmx")]
 position = Vector2(96, 123)
+walk_to_point = Vector2(16, -4)
+texture = ExtResource("9_d8e6u")
+walk_to_point = Vector2(16, -4)
 texture = ExtResource("9_d8e6u")
 walk_to_point = Vector2(16, -4)
 

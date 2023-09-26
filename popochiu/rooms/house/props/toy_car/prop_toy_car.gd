@@ -8,13 +8,13 @@ extends PopochiuProp
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 # When the node is clicked
 func _on_click() -> void:
-	# Replace the call to super.on_click() to implement your code.
-	# E.g. you can make the character walk to the Prop and then say
-	# something:
-#	await C.player.walk_to_clicked()
-#	await C.player.face_clicked()
-#	await C.player.say("Not picking that up!")
-	super.on_click()
+	E.queue([
+		C.queue_walk_to_clicked(),
+		C.queue_face_clicked(),
+		"Player: Can't open it, but well... who cares about windows anyway. [wave]I'll use the door[/wave].",
+		"Player(sad): So....",
+		"Player(happy): This is my TOY CAR!!!",
+	])
 
 
 # When the node is right clicked

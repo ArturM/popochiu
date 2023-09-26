@@ -16,8 +16,10 @@ signal move_ended
 @export var flips_when: FlipsWhen = FlipsWhen.NONE
 @export var voices := []:
 	set = set_voices # (Array, Dictionary)
-@export var follow_player := false
+@export var avatars := []:
+	set = set_avatars # (Array, Dictionary)
 @export var walk_speed := 200.0
+@export var follow_player := false
 @export var can_move := true
 @export var ignore_walkable_areas := false
 
@@ -425,6 +427,18 @@ func face_direction(destination: Vector2):
 		_looking_dir = Looking.UP_LEFT
 
 
+func get_avatar_for_emotion(emo := "") -> Texture:
+	var texture: Texture = null
+	
+	for dic in avatars:
+		if dic.emotion == emo:
+			texture = dic.avatar
+			
+			break
+	
+	return texture
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░
 func get_dialog_pos() -> float:
 	return $DialogPos.position.y
@@ -440,6 +454,19 @@ func set_voices(value: Array) -> void:
 				cue = '',
 				variations = 0
 			}
+			notify_property_list_changed()
+
+
+func set_avatars(value: Array) -> void:
+	avatars = value
+	
+	for idx in value.size():
+		if not value[idx]:
+			avatars[idx] = {
+				emotion = '',
+				avatar = Texture.new(),
+			}
+			
 			notify_property_list_changed()
 
 
