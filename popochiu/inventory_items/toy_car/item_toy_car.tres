@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://daxb0aq5o6cd0"]
+
+[ext_resource type="Script" path="res://popochiu/inventory_items/toy_car/item_toy_car_state.gd" id="1_bfv06"]
+
+[resource]
+resource_name = "ToyCar"
+script = ExtResource("1_bfv06")
+script_name = "ToyCar"
+scene = "res://popochiu/inventory_items/toy_car/item_toy_car.tscn"
+script_name = "ToyCar"
+scene = "res://popochiu/inventory_items/toy_car/item_toy_car.tscn"

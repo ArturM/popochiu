@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=37 format=3 uid="uid://bd0fika4hyhvw"]
 
 [ext_resource type="Theme" uid="uid://6vk2wej0sape" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_theme.tres" id="1_qh2tb"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dfa511cxg31g5" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_panel/sprites/9verb_inventory_up.png" id="8_qcv76"]
 [ext_resource type="Texture2D" uid="uid://s4phlorab5ds" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_panel/sprites/9verb_inventory_down.png" id="9_45tgt"]
 [ext_resource type="PackedScene" uid="uid://bnjo044fkdcq7" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/quit/quit_popup.tscn" id="11_2mivx"]
+[ext_resource type="PackedScene" uid="uid://dt8qgv0ddcr8a" path="res://popochiu/inventory_items/key/item_key.tscn" id="11_r45jb"]
+[ext_resource type="PackedScene" uid="uid://rinuypk1mpu" path="res://popochiu/inventory_items/toy_car/item_toy_car.tscn" id="11_s6u0p"]
 [ext_resource type="Texture2D" uid="uid://d0fwvj88bhggm" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_cursor.png" id="11_y5a23"]
 [ext_resource type="PackedScene" uid="uid://crla6to4mm0p7" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/settings_popup/9_verb_settings_popup.tscn" id="12_b7ut3"]
 [ext_resource type="Texture2D" uid="uid://dcl6wrqgsdqa1" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_ico_settings.png" id="13_80hcp"]
@@ -142,6 +144,12 @@ script = ExtResource("2_v01ea")
 
 [node name="DialogText" parent="." instance=ExtResource("3_oliab")]
 layout_mode = 1
+
+[node name="Caption" parent="DialogText" index="2"]
+offset_left = 16.0
+offset_top = -67.0
+offset_right = -16.0
+offset_bottom = -51.0
 
 [node name="BottomContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -305,49 +313,94 @@ texture_hover = SubResource("AtlasTexture_jhaqa")
 texture_disabled = SubResource("AtlasTexture_5757h")
 stretch_mode = 3
 
-[node name="Box" type="GridContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="Box" type="GridContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 2
 columns = 4
 
-[node name="PanelContainer" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer2" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="Itemkey" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer" instance=ExtResource("11_r45jb")]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer3" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer2" instance=ExtResource("11_s6u0p")]
+layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer4" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer4" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer5" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer5" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer6" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer6" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer7" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer7" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer8" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+[node name="PanelContainer8" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer9" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer10" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer11" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer12" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -410,3 +463,5 @@ layout_mode = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+
+[editable path="DialogText"]

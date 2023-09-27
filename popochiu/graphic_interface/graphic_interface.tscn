@@ -1,17 +1,135 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwvuu8g0ih3i8"]
+[gd_scene load_steps=35 format=3 uid="uid://bd0fika4hyhvw"]
 
-[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/bass/bass_gi.gd" id="1_268ni"]
-[ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="2_6qu0l"]
-[ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="2_v42aw"]
-[ext_resource type="PackedScene" uid="uid://bdgs3xsbq3gdd" path="res://addons/popochiu/engine/objects/graphic_interface/components/system_text/system_text.tscn" id="4_o82xq"]
-[ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="5_ayg0j"]
-[ext_resource type="PackedScene" uid="uid://ciar5j7qm85bc" path="res://addons/popochiu/engine/objects/graphic_interface/components/inventory_bar/inventory_bar.tscn" id="6_ovwnh"]
-[ext_resource type="PackedScene" uid="uid://0cqerawlxb3o" path="res://addons/popochiu/engine/objects/graphic_interface/templates/bass/components/settings_bar/settings_bar.tscn" id="7_mtpwc"]
-[ext_resource type="PackedScene" uid="uid://dfrsiyyqncspo" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/history/history_popup.tscn" id="8_207hf"]
-[ext_resource type="PackedScene" uid="uid://cndputybyj57n" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/save_and_load/save_and_load_popup.tscn" id="9_ueme0"]
-[ext_resource type="PackedScene" uid="uid://dwxm2p1iyhpx6" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/sound_settings/sound_settings_popup.tscn" id="10_csjib"]
+[ext_resource type="Theme" uid="uid://6vk2wej0sape" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_theme.tres" id="1_qh2tb"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
+[ext_resource type="ButtonGroup" uid="uid://y1thfsxxjowe" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_button_group.tres" id="3_77ocs"]
+[ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="3_oliab"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_command_button.gd" id="3_su7pr"]
+[ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="4_ljv1q"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_hover_text.gd" id="6_olqnt"]
+[ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="7_n3yn3"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_panel/9_verb_inventory_panel.gd" id="7_tyrvx"]
+[ext_resource type="Texture2D" uid="uid://dfa511cxg31g5" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_panel/sprites/9verb_inventory_up.png" id="8_qcv76"]
+[ext_resource type="Texture2D" uid="uid://s4phlorab5ds" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_panel/sprites/9verb_inventory_down.png" id="9_45tgt"]
+[ext_resource type="PackedScene" uid="uid://bnjo044fkdcq7" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/quit/quit_popup.tscn" id="11_2mivx"]
+[ext_resource type="Texture2D" uid="uid://d0fwvj88bhggm" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_cursor.png" id="11_y5a23"]
+[ext_resource type="PackedScene" uid="uid://crla6to4mm0p7" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/settings_popup/9_verb_settings_popup.tscn" id="12_b7ut3"]
+[ext_resource type="Texture2D" uid="uid://dcl6wrqgsdqa1" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_ico_settings.png" id="13_80hcp"]
+[ext_resource type="PackedScene" uid="uid://dfrsiyyqncspo" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/history/history_popup.tscn" id="15_5234w"]
+[ext_resource type="PackedScene" uid="uid://cndputybyj57n" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/save_and_load/save_and_load_popup.tscn" id="15_t7jqg"]
 
-[node name="BassGI" type="Control"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gcqg0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxi4b"]
+atlas = ExtResource("8_qcv76")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogfoj"]
+atlas = ExtResource("8_qcv76")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af2l8"]
+atlas = ExtResource("8_qcv76")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qft8m"]
+atlas = ExtResource("8_qcv76")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1x80"]
+atlas = ExtResource("9_45tgt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qjlh"]
+atlas = ExtResource("9_45tgt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhaqa"]
+atlas = ExtResource("9_45tgt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5757h"]
+atlas = ExtResource("9_45tgt")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ckh2"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jysoy"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2brv"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lngh"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwabf"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flm5d"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpmp7"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtf0b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ckh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jysoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2brv")
+}],
+"loop": true,
+"name": &"active",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lngh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwabf")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flm5d")
+}],
+"loop": true,
+"name": &"use",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpmp7")
+}],
+"loop": true,
+"name": &"wait",
+"speed": 5.0
+}]
+
+[node name="9VerbGI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,46 +137,253 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_268ni")
+theme = ExtResource("1_qh2tb")
+script = ExtResource("2_v01ea")
 
-[node name="DialogText" parent="." instance=ExtResource("2_v42aw")]
+[node name="DialogText" parent="." instance=ExtResource("3_oliab")]
 layout_mode = 1
 
-[node name="HoverText" parent="." instance=ExtResource("2_6qu0l")]
+[node name="BottomContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -19.0
-offset_bottom = -4.0
+offset_top = -48.0
+grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gcqg0")
 
-[node name="SystemText" parent="." instance=ExtResource("4_o82xq")]
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HoverTextCentered" parent="BottomContainer/VBoxContainer" instance=ExtResource("4_ljv1q")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 12
+fit_content = true
+script = ExtResource("6_olqnt")
+follows_cursor = false
+
+[node name="PanelContainer" type="PanelContainer" parent="BottomContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="CommandsContainer" type="GridContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="Open" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
+text = "Open"
+script = ExtResource("3_su7pr")
+command = 1
+
+[node name="PickUp" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
+text = "Pick Up"
+script = ExtResource("3_su7pr")
+command = 2
+
+[node name="Push" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
+text = "Push"
+script = ExtResource("3_su7pr")
+command = 3
+
+[node name="Close" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
+text = "Close"
+script = ExtResource("3_su7pr")
+command = 4
+
+[node name="LookAt" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
+text = "Look At"
+script = ExtResource("3_su7pr")
+command = 5
+
+[node name="Pull" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
+text = "Pull"
+script = ExtResource("3_su7pr")
+command = 6
+
+[node name="Give" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
+text = "Give"
+script = ExtResource("3_su7pr")
+command = 7
+
+[node name="TalkTo" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
+text = "Talk To"
+script = ExtResource("3_su7pr")
+command = 8
+
+[node name="Use" type="Button" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/CommandsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+toggle_mode = true
+button_group = ExtResource("3_77ocs")
+text = "Use"
+script = ExtResource("3_su7pr")
+command = 9
+
+[node name="InventoryPanel" type="HBoxContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+script = ExtResource("7_tyrvx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Up" type="TextureButton" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_oxi4b")
+texture_pressed = SubResource("AtlasTexture_ogfoj")
+texture_hover = SubResource("AtlasTexture_af2l8")
+texture_disabled = SubResource("AtlasTexture_qft8m")
+stretch_mode = 3
+
+[node name="Down" type="TextureButton" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_l1x80")
+texture_pressed = SubResource("AtlasTexture_8qjlh")
+texture_hover = SubResource("AtlasTexture_jhaqa")
+texture_disabled = SubResource("AtlasTexture_5757h")
+stretch_mode = 3
+
+[node name="Box" type="GridContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer3" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer4" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer5" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer6" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer7" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer8" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DialogMenu" parent="." instance=ExtResource("7_n3yn3")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -120.0
-offset_top = -12.0
-offset_right = 120.0
-offset_bottom = 12.0
 
-[node name="DialogMenu" parent="." instance=ExtResource("5_ayg0j")]
-layout_mode = 1
-
-[node name="InventoryBar" parent="." instance=ExtResource("6_ovwnh")]
-layout_mode = 0
-offset_left = 4.0
-offset_right = 40.0
-
-[node name="SettingsBar" parent="." instance=ExtResource("7_mtpwc")]
+[node name="BtnSettings" type="TextureButton" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -126.0
+offset_left = -21.0
+offset_top = 4.0
 offset_right = -4.0
+offset_bottom = 21.0
 grow_horizontal = 0
+texture_normal = ExtResource("13_80hcp")
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_xtf0b")
+animation = &"use"
+
+[node name="HoverTextCursor" parent="." instance=ExtResource("4_ljv1q")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = -199.0
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 12
+fit_content = true
+script = ExtResource("6_olqnt")
+follows_cursor = true
 
 [node name="Popups" type="Control" parent="."]
 layout_mode = 1
@@ -69,14 +394,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HistoryPopup" parent="Popups" instance=ExtResource("8_207hf")]
+[node name="9VerbSettingsPopup" parent="Popups" instance=ExtResource("12_b7ut3")]
 visible = false
 layout_mode = 1
 
-[node name="SaveAndLoadPopup" parent="Popups" instance=ExtResource("9_ueme0")]
+[node name="SaveAndLoadPopup" parent="Popups" instance=ExtResource("15_t7jqg")]
 visible = false
 layout_mode = 1
 
-[node name="SoundSettingsPopup" parent="Popups" instance=ExtResource("10_csjib")]
+[node name="HistoryPopup" parent="Popups" instance=ExtResource("15_5234w")]
+visible = false
+layout_mode = 1
+
+[node name="QuitPopup" parent="Popups" instance=ExtResource("11_2mivx")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1

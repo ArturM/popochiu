@@ -95,6 +95,10 @@ func replace_frames(new_node: AnimatedSprite2D) -> void:
 func show_cursor(anim_name: String, ignore_block := false) -> void:
 	if not ignore_block and is_blocked: return
 	
+	if not $AnimatedSprite2D.sprite_frames.has_animation(anim_name):
+		prints("[Popochiu] Cursor has no animation: %s" % anim_name)
+		return
+	
 	$AnimatedSprite2D.play(anim_name)
 	$AnimatedSprite2D.show()
 	$Sprite2D.hide()

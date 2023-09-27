@@ -112,7 +112,6 @@ func _create() -> void:
 	new_item.script_name = _pascal_name
 	new_item.description = _pascal_name.capitalize()
 	new_item.cursor = Constants.CURSOR_TYPE.USE
-	new_item.size_flags_vertical = new_item.SIZE_SHRINK_CENTER
 	
 	# ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 	# Save the item scene (.tscn)

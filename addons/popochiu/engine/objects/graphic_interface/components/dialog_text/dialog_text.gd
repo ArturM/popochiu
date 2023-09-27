@@ -98,12 +98,20 @@ func play_text(props: Dictionary) -> void:
 		'normal_font',
 		get_theme_font("normal_font")
 	)
-	lbl.size.y = get_meta(DFLT_SIZE).y
+	
+	match E.settings.dialog_style:
+		0:
+			lbl.size.y = get_meta(DFLT_SIZE).y
+		_:
+			lbl.size = get_meta(DFLT_SIZE)
+	
 	lbl.text = rt.get_parsed_text()
 	add_child(lbl)
 	
 	rt.clear()
 	rt.text = ""
+	
+	await get_tree().process_frame
 	
 	var _size := lbl.size
 	
@@ -149,7 +157,9 @@ func play_text(props: Dictionary) -> void:
 		2:
 			# Define size and position (before calculating overflow)
 			size.y = _size.y
-			position.y = get_meta(DFLT_POSITION).y - (size.y / 2.0)
+			position.y = (
+				get_meta(DFLT_POSITION).y - (_size.y - get_meta(DFLT_SIZE).y)
+			)
 	
 	# Assign text and align mode
 	push_color(props.color)
@@ -166,10 +176,7 @@ func play_text(props: Dictionary) -> void:
 		1:
 			append_text(msg)
 		2:
-			prints("msg", '[center]%s[/center]' % msg)
 			text = '[center]%s[/center]' % msg
-			
-			#append_text('[center]%s[/center]' % msg)
 	
 	match E.settings.dialog_style:
 		0,1:
@@ -218,7 +225,9 @@ func disappear() -> void:
 	
 	if is_instance_valid(_tween) and _tween.is_running():
 		_tween.kill()
+	
 	clear()
+	text = ""
 	
 	_continue_icon.hide()
 	_continue_icon.modulate.a = 1.0
@@ -250,6 +259,9 @@ func _show_dialogue(chr: PopochiuCharacter, msg := '') -> void:
 			E.scale if E.settings.scale_gui else Vector2.ONE
 		),
 	})
+	
+	Cursor.block()
+	Cursor.set_cursor(Cursor.Type.WAIT, true)
 	
 	set_process_input(true)
 	text_show_started.emit()
@@ -287,10 +299,21 @@ func _show_icon() -> void:
 	if not E.settings.auto_continue_text:
 		# For manual continuation: make the continue icon jump
 		_continue_icon.value = 100.0
+		
+		var from_pos := 0.0
+		var to_pos := 0.0
+		
+		match E.settings.dialog_style:
+			0:
+				from_pos = size.y / 2.0 - 1.0
+				to_pos = size.y / 2.0 + 3.0
+			2:
+				to_pos = size.y - _continue_icon.size.y + 2.0
+				from_pos = size.y - _continue_icon.size.y - 1.0
+		
 		_continue_icon_tween.tween_property(
-			_continue_icon, 'position:y',
-			size.y / 2.0 + 3.0, 0.8
-		).from(size.y / 2.0 - 1.0).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+			_continue_icon, 'position:y', to_pos, 0.8
+		).from(from_pos).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 		_continue_icon_tween.set_loops()
 	else:
 		# For automatic continuation: Make the icon appear like a progress bar

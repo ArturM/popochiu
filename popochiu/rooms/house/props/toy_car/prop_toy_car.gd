@@ -46,3 +46,9 @@ func on_linked_item_removed() -> void:
 # the inventory (i.e. when the player throws the object out of the inventory).
 func on_linked_item_discarded() -> void:
 	pass
+
+
+func _on_look_at() -> void:
+	await C.player.say("Can't open it, but well... who cares about windows anyway. [wave]I'll use the door[/wave].")
+	await C.player.say("So....")
+	await C.player.say("This is my TOY CAR!!!")
