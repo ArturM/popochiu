@@ -23,7 +23,7 @@ func _ready() -> void:
 	if not E.settings.toolbar_always_visible:
 		position.y = _hide_y
 	
-	# Conectarse a señales de los hijos de la mamá
+	# Connect to child signals
 	for b in _box.get_children():
 		(b as TextureButton).mouse_entered.connect(_disable_hide)
 		(b as TextureButton).mouse_exited.connect(_enable_hide)

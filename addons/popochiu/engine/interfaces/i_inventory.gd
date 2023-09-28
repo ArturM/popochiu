@@ -1,4 +1,4 @@
-# (I) Data and functions to work with inventory items.
+## (I) Data and functions to work with inventory items.
 extends Node
 
 signal item_added(item, animate)

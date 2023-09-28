@@ -28,9 +28,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton\
-#	and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_RIGHT\
-	and event.is_pressed():
+	if (event is InputEventMouseButton and event.is_pressed()
+	and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_RIGHT):
 		if E.get_hovered():
 			E.clicked = E.get_hovered()
 			C.walk_to_clicked()

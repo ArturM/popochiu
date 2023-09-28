@@ -288,12 +288,12 @@ size_flags_horizontal = 3
 mouse_filter = 0
 script = ExtResource("7_tyrvx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel"]
+[node name="ScrollButtons" type="VBoxContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel"]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Up" type="TextureButton" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/VBoxContainer"]
+[node name="Up" type="TextureButton" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollButtons"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -303,7 +303,7 @@ texture_hover = SubResource("AtlasTexture_af2l8")
 texture_disabled = SubResource("AtlasTexture_qft8m")
 stretch_mode = 3
 
-[node name="Down" type="TextureButton" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/VBoxContainer"]
+[node name="Down" type="TextureButton" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollButtons"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -316,10 +316,12 @@ stretch_mode = 3
 [node name="ScrollContainer" type="ScrollContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+scroll_vertical_custom_step = 27.0
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
 [node name="Box" type="GridContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -351,11 +353,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer3" instance=ExtResource("11_s6u0p")]
+layout_mode = 2
+
 [node name="PanelContainer4" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer4" instance=ExtResource("11_s6u0p")]
+layout_mode = 2
 
 [node name="PanelContainer5" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
@@ -363,11 +371,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer5" instance=ExtResource("11_s6u0p")]
+layout_mode = 2
+
 [node name="PanelContainer6" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer6" instance=ExtResource("11_s6u0p")]
+layout_mode = 2
 
 [node name="PanelContainer7" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
@@ -375,11 +389,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer7" instance=ExtResource("11_s6u0p")]
+layout_mode = 2
+
 [node name="PanelContainer8" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer8" instance=ExtResource("11_s6u0p")]
+layout_mode = 2
 
 [node name="PanelContainer9" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
@@ -387,11 +407,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Itemkey" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer9" instance=ExtResource("11_r45jb")]
+layout_mode = 2
+
 [node name="PanelContainer10" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Itemkey" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer10" instance=ExtResource("11_r45jb")]
+layout_mode = 2
 
 [node name="PanelContainer11" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
@@ -399,11 +425,53 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Itemkey" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer11" instance=ExtResource("11_r45jb")]
+layout_mode = 2
+
 [node name="PanelContainer12" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Itemkey" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer12" instance=ExtResource("11_r45jb")]
+layout_mode = 2
+
+[node name="PanelContainer13" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Itemkey" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer13" instance=ExtResource("11_r45jb")]
+layout_mode = 2
+
+[node name="PanelContainer14" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Itemkey" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer14" instance=ExtResource("11_r45jb")]
+layout_mode = 2
+
+[node name="PanelContainer15" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Itemkey" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer15" instance=ExtResource("11_r45jb")]
+layout_mode = 2
+
+[node name="PanelContainer16" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+custom_minimum_size = Vector2(31, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer16" instance=ExtResource("11_s6u0p")]
+layout_mode = 2
 
 [node name="DialogMenu" parent="." instance=ExtResource("7_n3yn3")]
 layout_mode = 1
