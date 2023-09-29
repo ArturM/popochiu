@@ -82,8 +82,8 @@ func play_music_cue(
 	
 	if _mx_cues.has(cue_name.to_lower()):
 		var cue: AudioCue = _mx_cues[cue_name.to_lower()]
-		# FIX: #27 AudioCues were losing the volume set in editor when played
-		# with a fade
+		# NOTE: fixes #27 AudioCues were losing the volume set in editor when
+		# played with a fade
 		cue.volume = _dflt_volumes[cue_name.to_lower()]
 		if fade_duration > 0.0:
 			stream_player = _fade_in(

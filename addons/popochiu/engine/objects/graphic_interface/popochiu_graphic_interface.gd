@@ -17,6 +17,8 @@ func _ready():
 	G.interface_shown.connect(_show_panels)
 	G.mouse_entered_clickable.connect(_on_mouse_entered_clickable)
 	G.mouse_exited_clickable.connect(_on_mouse_exited_clickable)
+	G.mouse_entered_inventory_item.connect(_on_mouse_entered_inventory_item)
+	G.mouse_exited_inventory_item.connect(_on_mouse_exited_inventory_item)
 	
 #	if E.settings.scale_gui:
 #		$MainContainer.scale = E.scale
@@ -28,6 +30,14 @@ func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 
 
 func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
+	pass
+
+
+func _on_mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem) -> void:
+	pass
+
+
+func _on_mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem) -> void:
 	pass
 
 

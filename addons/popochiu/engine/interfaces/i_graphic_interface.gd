@@ -15,8 +15,10 @@ signal save_requested(slot_text)
 signal load_requested
 signal continue_requested
 signal sound_settings_requested
-signal mouse_entered_clickable(clickable)
-signal mouse_exited_clickable(clickable)
+signal mouse_entered_clickable(clickable: PopochiuClickable)
+signal mouse_exited_clickable(clickable: PopochiuClickable)
+signal mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem)
+signal mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem)
 
 var is_blocked := false
 var template := ""

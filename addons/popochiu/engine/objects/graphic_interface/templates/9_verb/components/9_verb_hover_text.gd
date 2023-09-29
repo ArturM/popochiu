@@ -52,8 +52,10 @@ func _show_text(txt := "") -> void:
 			]
 		elif E.current_command != NineVerbCommands.Commands.WALK_TO:
 			text = '[center]%s[/center]' % G.get_command(E.current_command)
-	elif not txt.is_empty():
+	elif not txt.is_empty() and not I.active:
 		text = '[center]%s %s[/center]' % [G.get_command(E.current_command), txt]
+	elif I.active:
+		super(txt)
 	
 	if follows_cursor:
 		size += Vector2.ONE * 16.0

@@ -34,9 +34,9 @@ func set_cursor(type := Type.IDLE, ignore_block := false) -> void:
 	if not ignore_block and is_blocked: return
 	
 	# TODO: Temporary fix for mouse cursor change. This need improvements.
-	if E.current_command > -1:
-		show_cursor(G.get_command_description(E.current_command))
-		return
+	#if E.current_command > -1:
+		#show_cursor(G.get_command_description(E.current_command))
+		#return
 	
 	if not Type.values().has(type):
 		prints("[Popochiu] Cursor has no type: %s" % type)

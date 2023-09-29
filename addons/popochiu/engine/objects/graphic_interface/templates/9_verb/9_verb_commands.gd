@@ -45,7 +45,9 @@ func close() -> void:
 
 
 func look_at() -> void:
-	await C.player.face_clicked()
+	if E.clicked:
+		await C.player.face_clicked()
+	
 	await C.player.say("I have nothing to say about that")
 
 

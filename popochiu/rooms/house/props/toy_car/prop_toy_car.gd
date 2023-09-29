@@ -33,7 +33,13 @@ func _on_item_used(item: PopochiuInventoryItem) -> void:
 	# E.g. you can make the PC react checked using some items in this Prop
 #	if item.script_name == 'Key':
 #		await C.player.say("I can't do that")
-	super.on_item_used(item)
+	if E.current_command == NineVerbCommands.Commands.GIVE:
+		await C.player.say("[rainbow][wave]Oooooohhhh myyyyyyyyy[/wave][/rainbow]")
+	else:
+		await C.player.say("[shake]Brrrrrr[/shake]")
+	
+	I.active = null
+	G.done()
 
 
 # When an inventory item linked to this Prop (link_to_item) is removed from

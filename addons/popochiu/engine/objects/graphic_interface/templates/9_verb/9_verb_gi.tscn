@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=39 format=3 uid="uid://bd0fika4hyhvw"]
 
 [ext_resource type="Theme" uid="uid://6vk2wej0sape" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_theme.tres" id="1_qh2tb"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="3_oliab"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_command_button.gd" id="3_su7pr"]
 [ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="4_ljv1q"]
+[ext_resource type="PackedScene" uid="uid://bdgs3xsbq3gdd" path="res://addons/popochiu/engine/objects/graphic_interface/components/system_text/system_text.tscn" id="4_ninsa"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_hover_text.gd" id="6_olqnt"]
 [ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="7_n3yn3"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_panel/9_verb_inventory_panel.gd" id="7_tyrvx"]
@@ -82,6 +83,10 @@ region = Rect2(160, 0, 32, 32)
 atlas = ExtResource("11_y5a23")
 region = Rect2(128, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0twu0"]
+atlas = ExtResource("11_y5a23")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_xtf0b"]
 animations = [{
 "frames": [{
@@ -129,6 +134,14 @@ animations = [{
 "loop": true,
 "name": &"wait",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0twu0")
+}],
+"loop": true,
+"name": &"walk_to",
+"speed": 5.0
 }]
 
 [node name="9VerbGI" type="Control"]
@@ -150,6 +163,13 @@ offset_left = 16.0
 offset_top = -67.0
 offset_right = -16.0
 offset_bottom = -51.0
+
+[node name="SystemText" parent="." instance=ExtResource("4_ninsa")]
+layout_mode = 1
+offset_left = 39.0
+offset_top = -10.0
+offset_right = -39.0
+offset_bottom = 10.0
 
 [node name="BottomContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -329,49 +349,49 @@ theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 2
 columns = 4
 
-[node name="PanelContainer" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+[node name="Slot00" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Itemkey" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer" instance=ExtResource("11_r45jb")]
+[node name="Itemkey" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/Slot00" instance=ExtResource("11_r45jb")]
 layout_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+[node name="Slot01" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer2" instance=ExtResource("11_s6u0p")]
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/Slot01" instance=ExtResource("11_s6u0p")]
 layout_mode = 2
 
-[node name="PanelContainer3" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+[node name="Slot02" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer3" instance=ExtResource("11_s6u0p")]
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/Slot02" instance=ExtResource("11_s6u0p")]
 layout_mode = 2
 
-[node name="PanelContainer4" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+[node name="Slot03" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer4" instance=ExtResource("11_s6u0p")]
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/Slot03" instance=ExtResource("11_s6u0p")]
 layout_mode = 2
 
-[node name="PanelContainer5" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
+[node name="Slot04" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
 custom_minimum_size = Vector2(31, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/PanelContainer5" instance=ExtResource("11_s6u0p")]
+[node name="Itemtoy_car" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box/Slot04" instance=ExtResource("11_s6u0p")]
 layout_mode = 2
 
 [node name="PanelContainer6" type="PanelContainer" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer/InventoryPanel/ScrollContainer/Box"]
@@ -492,7 +512,7 @@ texture_normal = ExtResource("13_80hcp")
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xtf0b")
-animation = &"use"
+animation = &"active"
 
 [node name="HoverTextCursor" parent="." instance=ExtResource("4_ljv1q")]
 unique_name_in_owner = true

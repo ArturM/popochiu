@@ -40,3 +40,18 @@ func _on_discard() -> void:
 	# Replace the call to super() to implement your code. This only
 	# makes the default behavior to happen.
 	super()
+
+
+func _on_look_at() -> void:
+	await C.player.say("It's my toy car")
+	await C.player.say("I used to play with it a lot")
+
+
+func _on_give() -> void:
+	I.active = self
+	G.show_hover_text("Give %s to" % description)
+
+
+func _on_use() -> void:
+	I.active = self
+	G.show_hover_text("Use %s in" % description)

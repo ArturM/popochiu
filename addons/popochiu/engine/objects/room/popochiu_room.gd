@@ -338,8 +338,8 @@ func _update_navigation_path(
 
 
 func _clear_navigation_path(character: PopochiuCharacter) -> void:
-	# FIX: 'function signature missmatch in Web export' error thrown when clearing
-	# an empty Array.
+	# INFO: fixes 'function signature missmatch in Web export' error thrown when
+	# clearing an empty Array.
 	if not _moving_characters.has(character.get_instance_id()):
 		return
 	

@@ -195,11 +195,17 @@ func get_description() -> String:
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
-func _toggle_description(display: bool) -> void:
-	Cursor.set_cursor(cursor if display else CURSOR.Type.IDLE)
-	G.show_hover_text(self.description if display else '')
+func _toggle_description(is_hover: bool) -> void:
+	if is_hover:
+		G.mouse_entered_inventory_item.emit(self)
+	else:
+		G.mouse_exited_inventory_item.emit(self)
 	
-	if display:
+	# NOTE: Not sure this should go here
+	#Cursor.set_cursor(cursor if is_hover else CURSOR.Type.IDLE)
+	#G.show_hover_text(self.description if is_hover else '')
+	
+	if is_hover:
 		description_toggled.emit(description if description else script_name)
 	else:
 		description_toggled.emit('')

@@ -4,6 +4,7 @@ extends PopochiuGraphicInterface
 @onready var settings_popup: PopochiuPopup = $"Popups/9VerbSettingsPopup"
 
 
+#region Godot
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
 	super()
@@ -37,6 +38,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			C.player.walk(R.current.get_local_mouse_position())
 
 
+#endregion
+#region Virtual
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 func _on_gi_blocked(props := { blocking = true }) -> void:
 	E.current_command = -1
@@ -60,21 +63,48 @@ func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 	
 	Cursor.show_cursor('active')
 	
-	if not I.active:
-		G.show_hover_text(clickable.description)
-	else:
+	if I.active:
 		G.show_hover_text(
-			'Use %s with %s' % [I.active.description, clickable.description]
+			'%s %s %s %s' % [
+				G.get_command(E.current_command),
+				I.active.description,
+				"to" if E.current_command == NineVerbCommands.Commands.GIVE else "in",
+				clickable.description
+			]
 		)
+	else:
+		G.show_hover_text(clickable.description)
 
 
 func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
 	if G.is_blocked: return
 	
 	Cursor.show_cursor('normal')
+	
+	if I.active: return
 	G.show_hover_text()
 
 
+func _on_mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem) -> void:
+	if E.current_command == NineVerbCommands.Commands.WALK_TO:
+		E.current_command = NineVerbCommands.Commands.LOOK_AT
+	
+	Cursor.show_cursor('active')
+	G.show_hover_text(inventory_item.description)
+
+
+func _on_mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem) -> void:
+	if E.current_command == NineVerbCommands.Commands.LOOK_AT:
+		E.current_command = NineVerbCommands.Commands.WALK_TO
+	
+	Cursor.show_cursor('normal')
+	
+	if I.active: return
+	G.show_hover_text()
+
+
+#endregion
+#region Private
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
 func _on_settings_pressed() -> void:
 	settings_popup.open()
@@ -98,3 +128,6 @@ func _on_classic_sentence_toggled(button_pressed: bool) -> void:
 
 func _on_quit_pressed() -> void:
 	%QuitPopup.open()
+
+
+#endregion
