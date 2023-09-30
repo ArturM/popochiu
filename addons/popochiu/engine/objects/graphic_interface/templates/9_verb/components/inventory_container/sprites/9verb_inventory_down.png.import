@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://s4phlorab5ds"
-path="res://.godot/imported/9verb_inventory_down.png-d3386f7fcfbc88353d5ad036370e935c.ctex"
+path="res://.godot/imported/9verb_inventory_down.png-787f3654ff9597e23ea7e6f9b624027b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_panel/sprites/9verb_inventory_down.png"
-dest_files=["res://.godot/imported/9verb_inventory_down.png-d3386f7fcfbc88353d5ad036370e935c.ctex"]
+source_file="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_container/sprites/9verb_inventory_down.png"
+dest_files=["res://.godot/imported/9verb_inventory_down.png-787f3654ff9597e23ea7e6f9b624027b.ctex"]
 
 [params]
 

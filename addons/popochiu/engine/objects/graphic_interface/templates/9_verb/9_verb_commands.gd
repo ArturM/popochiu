@@ -29,7 +29,7 @@ func walk_to() -> void:
 	
 	await C.player.move_ended
 	E.current_command = E.clicked.suggested_command
-	E.clicked.on_action(MOUSE_BUTTON_LEFT)
+	E.clicked.on_command(MOUSE_BUTTON_LEFT)
 
 
 func open() -> void:

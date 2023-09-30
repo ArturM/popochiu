@@ -70,6 +70,38 @@ func _ready() -> void:
 	_saveload = load(SAVELOAD_PATH).new()
 	_config = PopochiuResources.get_data_cfg()
 	
+	# --------------------------------------------------------------------------
+	# Create the AudioManager
+	am = load(PopochiuResources.AUDIO_MANAGER).instantiate()
+	
+	# Set the Graphic Interface node
+	if settings.graphic_interface:
+		gi = settings.graphic_interface.instantiate()
+		gi.name = 'GraphicInterface'
+	else:
+		gi = load(PopochiuResources.GRAPHIC_INTERFACE_ADDON).instantiate()
+	
+	# Load the commands for the game
+	var commands: String = PopochiuResources.get_data_value("ui", "commands", "")
+	if not commands.is_empty():
+		G.commands_dic = (load(commands).new()).commands_dic
+	
+	# Set the Transitions Layer node
+	if settings.transition_layer:
+		tl = settings.transition_layer.instantiate()
+		tl.name = 'TransitionLayer'
+	else:
+		tl = load(PopochiuResources.TRANSITION_LAYER_ADDON).instantiate()
+	
+	# Scale Graphic Interface and Transitions Layer
+	scale = Vector2(self.width, self.height) / Vector2(320.0, 180.0)
+	
+	# Add the AudioManager, the Graphic Interface, and the Transitions Layer
+	# to the tree
+	$GraphicInterfaceLayer.add_child(gi)
+	$TransitionsLayer.add_child(tl)
+	add_child(am)
+	
 	# Load the player-controlled character defined by the dev
 	if PopochiuResources.has_data_value('setup', 'pc'):
 		var pc_data_path: String = PopochiuResources.get_data_value(
@@ -118,38 +150,6 @@ func _ready() -> void:
 		E.rooms_states[res.script_name] = res
 		
 		res.save_childs_states()
-	
-	# --------------------------------------------------------------------------
-	# Create the AudioManager
-	am = load(PopochiuResources.AUDIO_MANAGER).instantiate()
-	
-	# Set the Graphic Interface node
-	if settings.graphic_interface:
-		gi = settings.graphic_interface.instantiate()
-		gi.name = 'GraphicInterface'
-	else:
-		gi = load(PopochiuResources.GRAPHIC_INTERFACE_ADDON).instantiate()
-	
-	# Load the commands for the game
-	var commands: String = PopochiuResources.get_data_value("ui", "commands", "")
-	if not commands.is_empty():
-		G.commands_dic = (load(commands).new()).commands_dic
-	
-	# Set the Transitions Layer node
-	if settings.transition_layer:
-		tl = settings.transition_layer.instantiate()
-		tl.name = 'TransitionLayer'
-	else:
-		tl = load(PopochiuResources.TRANSITION_LAYER_ADDON).instantiate()
-	
-	# Scale Graphic Interface and Transitions Layer
-	scale = Vector2(self.width, self.height) / Vector2(320.0, 180.0)
-	
-	# Add the AudioManager, the Graphic Interface, and the Transitions Layer
-	# to the tree
-	$GraphicInterfaceLayer.add_child(gi)
-	$TransitionsLayer.add_child(tl)
-	add_child(am)
 	
 	# --------------------------------------------------------------------------
 	# Connect to singletons signals

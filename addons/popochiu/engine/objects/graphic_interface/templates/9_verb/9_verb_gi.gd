@@ -55,7 +55,8 @@ func _on_gi_freed() -> void:
 func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 	if G.is_blocked: return
 	
-	commands_container.highlight_command(clickable.suggested_command)
+	if clickable.get("suggested_command"):
+		commands_container.highlight_command(clickable.suggested_command)
 	Cursor.show_cursor('active')
 	
 	if I.active:
@@ -74,7 +75,8 @@ func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
 	if G.is_blocked: return
 	
-	commands_container.highlight_command(clickable.suggested_command, false)
+	if clickable.get("suggested_command"):
+		commands_container.highlight_command(clickable.suggested_command, false)
 	Cursor.show_cursor('normal')
 	
 	if I.active: return

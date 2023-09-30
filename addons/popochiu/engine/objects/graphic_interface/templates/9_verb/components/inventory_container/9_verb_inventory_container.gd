@@ -1,6 +1,8 @@
 extends HBoxContainer
 
-var rows := 0.0
+const SLOT := preload("9_verb_slot.tscn")
+
+var rows := 0
 var max_scroll := 0.0
 
 @onready var scroll_container: ScrollContainer = $ScrollContainer
@@ -20,7 +22,7 @@ func _ready():
 		if slot.visible:
 			visible_slots += 1
 	rows = visible_slots / box.columns
-	max_scroll = ((slot_size + gap_size) * int(rows / 2.0)) + 1.0
+	max_scroll = ((slot_size + gap_size) * int(rows / 2)) + 1.0
 	
 	# Check if there are inventory items in the scene tree and add them to the
 	# Inventory interface class (I)
@@ -56,7 +58,8 @@ func _on_down_pressed() -> void:
 
 
 func _add_item(item: PopochiuInventoryItem, _animate := true) -> void:
-	box.get_child(0).add_child(item)
+	box.get_child(I.items.size() - 1).add_child(item)
+	box.set_meta(item.script_name, item.get_parent())
 	
 	item.selected.connect(_change_cursor)
 	_check_scroll_buttons()
@@ -71,7 +74,10 @@ func _add_item(item: PopochiuInventoryItem, _animate := true) -> void:
 func _remove_item(item: PopochiuInventoryItem, _animate := true) -> void:
 	item.selected.disconnect(_change_cursor)
 	
-	box.get_child(0).remove_child(item)
+	box.get_meta(item.script_name).queue_free()
+	box.add_child(SLOT.instantiate())
+	box.get_child(-1).name = "Slot"
+	
 	_check_scroll_buttons()
 	
 	await get_tree().process_frame
@@ -86,7 +92,15 @@ func _change_cursor(item: PopochiuInventoryItem) -> void:
 ## Checks if the UP and DOWN buttons should be enabled
 func _check_scroll_buttons() -> void:
 	up.disabled = scroll_container.scroll_vertical == 0
-	down.disabled = scroll_container.scroll_vertical >= max_scroll
+	down.disabled = (
+		scroll_container.scroll_vertical >= max_scroll
+		or not (I.items.size() > box.columns * 2)
+	)
+
+
+## Organizes the inventory to avoid empty spaces between items.
+func _arrange_items(from := 0) -> void:
+	pass
 
 
 func _on_scroll(_value: float) -> void:

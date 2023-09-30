@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfoomir1l85r3"]
+[gd_scene load_steps=13 format=3 uid="uid://cfoomir1l85r3"]
 
 [ext_resource type="Script" path="res://popochiu/rooms/house/room_house.gd" id="1_wu4vb"]
 [ext_resource type="PackedScene" uid="uid://5u07np11vicc" path="res://popochiu/rooms/house/props/bg/prop_bg.tscn" id="2_5c3bf"]
@@ -6,8 +6,11 @@
 [ext_resource type="Script" path="res://popochiu/rooms/house/walkable_areas/floor/walkable_area_floor.gd" id="3_x6kcf"]
 [ext_resource type="Texture2D" uid="uid://2pnpb4vxcweb" path="res://popochiu/rooms/house/props/bg/background.png" id="4_cykrm"]
 [ext_resource type="PackedScene" uid="uid://ccp8yt3rm4kps" path="res://popochiu/rooms/house/props/toy_car/prop_toy_car.tscn" id="5_c3cmx"]
+[ext_resource type="PackedScene" uid="uid://hfvjxu5map27" path="res://addons/popochiu/engine/objects/hotspot/popochiu_hotspot.tscn" id="8_y3uam"]
 [ext_resource type="Texture2D" uid="uid://b2wyxt34cjrwd" path="res://popochiu/rooms/house/props/toy_car/toy_car.png" id="9_d8e6u"]
+[ext_resource type="Script" path="res://popochiu/rooms/house/hotspots/door/hotspot_door.gd" id="9_k0wwx"]
 [ext_resource type="PackedScene" uid="uid://d4gsi5bn5fsj8" path="res://popochiu/characters/goddiu/character_goddiu.tscn" id="10_hwjov"]
+[ext_resource type="Script" path="res://popochiu/rooms/house/hotspots/window/hotspot_window.gd" id="10_swuq3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hxler"]
 vertices = PackedVector2Array(-90, 15, -7, 6, 84, 13, 112, 52, 57, 71, -75, 69, -108, 51)
@@ -53,6 +56,46 @@ walk_to_point = Vector2(16, -4)
 polygon = PackedVector2Array(-9, 4, -7, -6, 7, -6, 10, 1, 1, 7)
 
 [node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Door" type="Area2D" parent="Hotspots" instance=ExtResource("8_y3uam")]
+position = Vector2(98, 75)
+script = ExtResource("9_k0wwx")
+script_name = "Door"
+description = "Door"
+walk_to_point = Vector2(15, 30)
+cursor = 1
+script_name = "Door"
+description = "Door"
+walk_to_point = Vector2(15, 30)
+cursor = 1
+script_name = "Door"
+description = "Door"
+walk_to_point = Vector2(15, 30)
+cursor = 1
+
+[node name="InteractionPolygon" type="CollisionPolygon2D" parent="Hotspots/Door"]
+modulate = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(-17, 23, -21, 3, -16, -24, 7, -28, 19, -14, 19, 19)
+
+[node name="Window" type="Area2D" parent="Hotspots" instance=ExtResource("8_y3uam")]
+position = Vector2(152, 61)
+script = ExtResource("10_swuq3")
+script_name = "Window"
+description = "Window"
+walk_to_point = Vector2(13, 43)
+cursor = 1
+script_name = "Window"
+description = "Window"
+walk_to_point = Vector2(13, 43)
+cursor = 1
+script_name = "Window"
+description = "Window"
+walk_to_point = Vector2(13, 43)
+cursor = 1
+
+[node name="InteractionPolygon" type="CollisionPolygon2D" parent="Hotspots/Window"]
+modulate = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(0, 22, 19, 16, 21, -12, 4, -23, -19, -17, -25, 0, -17, 17)
 
 [node name="Regions" type="Node2D" parent="."]
 

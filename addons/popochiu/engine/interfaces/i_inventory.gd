@@ -1,15 +1,16 @@
 ## (I) Data and functions to work with inventory items.
 extends Node
 
-signal item_added(item, animate)
-signal item_add_done(item)
-signal item_removed(item, animate)
-signal item_remove_done(item)
-signal item_discarded(item)
-signal item_selected(item)
-signal inventory_show_requested(time)
+signal item_added(item: PopochiuInventoryItem, animate: bool)
+signal item_add_done(item: PopochiuInventoryItem)
+signal item_removed(item: PopochiuInventoryItem, animate: bool)
+signal item_remove_done(item: PopochiuInventoryItem)
+signal item_replaced(item: PopochiuInventoryItem, new_item: PopochiuInventoryItem)
+signal item_discarded(item: PopochiuInventoryItem)
+signal item_selected(item: PopochiuInventoryItem)
+signal inventory_show_requested(time: float)
 signal inventory_shown
-signal inventory_hide_requested(use_anim)
+signal inventory_hide_requested(use_anim: bool)
 
 var active: PopochiuInventoryItem
 # -- Used for saving the game -------- 
