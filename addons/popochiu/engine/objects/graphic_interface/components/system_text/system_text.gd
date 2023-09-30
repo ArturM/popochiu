@@ -60,25 +60,6 @@ func _show_text(msg := '') -> void:
 	clear()
 	text = ""
 	size = get_meta(DFLT_SIZE)
-	
-	# ==== Calculate the width of the node =====================================
-	var rt := RichTextLabel.new()
-	var lbl := Label.new()
-	
-	rt.append_text(msg)
-	lbl.text = rt.get_parsed_text()
-	
-	add_child(lbl)
-	
-	var new_size := lbl.size
-	if new_size.x > get_meta(DFLT_SIZE).x:
-		new_size.x = get_meta(DFLT_SIZE).x - 16.0
-	
-	lbl.free()
-	rt.free()
-	# ===================================== Calculate the width of the node ====
-	
-#	size = new_size
 	append_text('[center]%s[/center]' % msg)
 	
 	if msg:

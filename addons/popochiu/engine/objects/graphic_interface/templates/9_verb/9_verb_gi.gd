@@ -144,7 +144,7 @@ func _on_classic_sentence_toggled(button_pressed: bool) -> void:
 
 
 func _on_quit_pressed() -> void:
-	%QuitPopup.open()
+	%"9VerbQuitPopup".open()
 
 
 #endregion
