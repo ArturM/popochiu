@@ -6,7 +6,6 @@ class_name PopochiuInventoryItem
 
 const CURSOR := preload('res://addons/popochiu/engine/cursor/cursor.gd')
 
-signal description_toggled(description)
 signal selected(item)
 
 @export var description := '' : get = get_description
@@ -22,7 +21,7 @@ var in_inventory := false : set = set_in_inventory
 func _ready():
 	mouse_entered.connect(_toggle_description.bind(true))
 	mouse_exited.connect(_toggle_description.bind(false))
-	gui_input.connect(_on_action_pressed)
+	gui_input.connect(_on_gui_input)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
@@ -147,7 +146,7 @@ func on_item_used(item: PopochiuInventoryItem) -> void:
 	)
 
 
-func on_action(button_idx: int) -> void:
+func on_command(button_idx: int) -> void:
 	var command := G.get_command(E.current_command).to_snake_case()
 	var target_method := "_on_%s"
 	var suffix := "click"
@@ -165,6 +164,9 @@ func on_action(button_idx: int) -> void:
 		
 		if has_method(target_method % command_method):
 			suffix = command_method
+		elif has_method(target_method % command):
+			# Check if the default LEFT CLICK command method exists
+			suffix = command
 		else:
 			use_fallback = true
 	
@@ -204,14 +206,9 @@ func _toggle_description(is_hover: bool) -> void:
 	# NOTE: Not sure this should go here
 	#Cursor.set_cursor(cursor if is_hover else CURSOR.Type.IDLE)
 	#G.show_hover_text(self.description if is_hover else '')
-	
-	if is_hover:
-		description_toggled.emit(description if description else script_name)
-	else:
-		description_toggled.emit('')
 
 
-func _on_action_pressed(event: InputEvent) -> void: 
+func _on_gui_input(event: InputEvent) -> void: 
 	var mouse_event := event as InputEventMouseButton 
 	if mouse_event and mouse_event.pressed:
 		match mouse_event.button_index:
@@ -219,10 +216,10 @@ func _on_action_pressed(event: InputEvent) -> void:
 				if I.active:
 					_on_item_used(I.active)
 				else:
-					on_action(mouse_event.button_index)
+					on_command(mouse_event.button_index)
 			MOUSE_BUTTON_RIGHT:
 				if not I.active:
-					on_action(mouse_event.button_index)
+					on_command(mouse_event.button_index)
 			MOUSE_BUTTON_MIDDLE:
 				if not I.active:
-					on_action(mouse_event.button_index)
+					on_command(mouse_event.button_index)

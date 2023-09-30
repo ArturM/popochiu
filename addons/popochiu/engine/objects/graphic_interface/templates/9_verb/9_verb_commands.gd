@@ -1,4 +1,4 @@
-extends Resource
+extends RefCounted
 class_name NineVerbCommands
 
 enum Commands {
@@ -26,6 +26,10 @@ func fallback() -> void:
 func walk_to() -> void:
 #	E.get_node("/root/C").walk_to_clicked()
 	C.player.walk_to_clicked()
+	
+	await C.player.move_ended
+	E.current_command = E.clicked.suggested_command
+	E.clicked.on_action(MOUSE_BUTTON_LEFT)
 
 
 func open() -> void:

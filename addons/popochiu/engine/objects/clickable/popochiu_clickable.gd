@@ -60,17 +60,17 @@ func _unhandled_input(event: InputEvent):
 				if I.active:
 					_on_item_used(I.active)
 				else:
-					on_action(mouse_event.button_index)
+					on_command(mouse_event.button_index)
 					
 					times_clicked += 1
 			MOUSE_BUTTON_RIGHT:
 				if not I.active:
-					on_action(mouse_event.button_index)
+					on_command(mouse_event.button_index)
 					
 					times_right_clicked += 1
 			MOUSE_BUTTON_MIDDLE:
 				if not I.active:
-					on_action(mouse_event.button_index)
+					on_command(mouse_event.button_index)
 					
 					times_middle_clicked += 1
 
@@ -166,7 +166,7 @@ func on_item_used(item: PopochiuInventoryItem) -> void:
 	await G.show_system_text("Can't USE %s here" % item.description)
 
 
-func on_action(button_idx: int) -> void:
+func on_command(button_idx: int) -> void:
 	var command := G.get_command(E.current_command).to_snake_case()
 	var target_method := "_on_%s"
 	var suffix := "click"
@@ -184,6 +184,9 @@ func on_action(button_idx: int) -> void:
 		
 		if has_method(target_method % command_method):
 			suffix = command_method
+		elif has_method(target_method % command):
+			# Check if the default LEFT CLICK command method exists
+			suffix = command
 		else:
 			use_fallback = true
 	

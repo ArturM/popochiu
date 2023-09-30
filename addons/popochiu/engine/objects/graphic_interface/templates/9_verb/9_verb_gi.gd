@@ -19,7 +19,7 @@ func _ready() -> void:
 	$Cursor.hide()
 	%HoverTextCentered.hide()
 	
-	# Connect to child signals
+	# Connect to childs signals
 	$BtnSettings.pressed.connect(_on_settings_pressed)
 	settings_popup.classic_sentence_toggled.connect(_on_classic_sentence_toggled)
 	settings_popup.quit_pressed.connect(_on_quit_pressed)
@@ -29,13 +29,10 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Make the PC move to the clicked point on RIGHT CLICK
 	if (event is InputEventMouseButton and event.is_pressed()
 	and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_RIGHT):
-		if E.get_hovered():
-			E.clicked = E.get_hovered()
-			C.walk_to_clicked()
-		else:
-			C.player.walk(R.current.get_local_mouse_position())
+		C.player.walk(R.current.get_local_mouse_position())
 
 
 #endregion
@@ -50,17 +47,15 @@ func _on_gi_freed() -> void:
 	E.current_command = NineVerbCommands.Commands.WALK_TO
 	G.show_hover_text()
 	
-	for b in commands_container.get_children():
-		var btn := b as Button
-		btn.set_pressed_no_signal(false)
-		
-		if btn.has_focus():
-			btn.release_focus()
+	
+	# Make all commands to look as no pressed
+	commands_container.unpress_commands()
 
 
 func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 	if G.is_blocked: return
 	
+	commands_container.highlight_command(clickable.suggested_command)
 	Cursor.show_cursor('active')
 	
 	if I.active:
@@ -79,6 +74,7 @@ func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
 	if G.is_blocked: return
 	
+	commands_container.highlight_command(clickable.suggested_command, false)
 	Cursor.show_cursor('normal')
 	
 	if I.active: return
@@ -89,6 +85,7 @@ func _on_mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem) -> 
 	if E.current_command == NineVerbCommands.Commands.WALK_TO:
 		E.current_command = NineVerbCommands.Commands.LOOK_AT
 	
+	commands_container.highlight_command(NineVerbCommands.Commands.LOOK_AT)
 	Cursor.show_cursor('active')
 	G.show_hover_text(inventory_item.description)
 
@@ -97,9 +94,11 @@ func _on_mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem) -> v
 	if E.current_command == NineVerbCommands.Commands.LOOK_AT:
 		E.current_command = NineVerbCommands.Commands.WALK_TO
 	
+	commands_container.highlight_command(NineVerbCommands.Commands.LOOK_AT, false)
 	Cursor.show_cursor('normal')
 	
 	if I.active: return
+	
 	G.show_hover_text()
 
 

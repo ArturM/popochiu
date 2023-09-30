@@ -4,6 +4,8 @@ extends PopochiuProp
 # Use await E.queue([]) if you want to pause the excecution of
 # the function until the sequence of events finishes.
 
+var suggested_command := NineVerbCommands.Commands.PICK_UP
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 # When the node is clicked
@@ -29,10 +31,6 @@ func _on_right_click() -> void:
 
 # When the node is clicked and there is an inventory item selected
 func _on_item_used(item: PopochiuInventoryItem) -> void:
-	# Replace the call to super.on_item_used(item) to implement your code.
-	# E.g. you can make the PC react checked using some items in this Prop
-#	if item.script_name == 'Key':
-#		await C.player.say("I can't do that")
 	if E.current_command == NineVerbCommands.Commands.GIVE:
 		await C.player.say("[rainbow][wave]Oooooohhhh myyyyyyyyy[/wave][/rainbow]")
 	else:
@@ -58,3 +56,10 @@ func _on_look_at() -> void:
 	await C.player.say("Can't open it, but well... who cares about windows anyway. [wave]I'll use the door[/wave].")
 	await C.player.say("So....")
 	await C.player.say("This is my TOY CAR!!!")
+
+
+func _on_pick_up() -> void:
+	await C.face_clicked()
+	await C.walk_to_clicked()
+	await I.ToyCar.add()
+	await C.player.say("I'm gonna play with it later")

@@ -43,8 +43,10 @@ texture = ExtResource("4_cykrm")
 position = Vector2(96, 123)
 walk_to_point = Vector2(16, -4)
 texture = ExtResource("9_d8e6u")
+link_to_item = "ToyCar"
 walk_to_point = Vector2(16, -4)
 texture = ExtResource("9_d8e6u")
+link_to_item = "ToyCar"
 walk_to_point = Vector2(16, -4)
 
 [node name="InteractionPolygon" type="CollisionPolygon2D" parent="Props/ToyCar"]

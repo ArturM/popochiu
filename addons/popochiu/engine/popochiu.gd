@@ -154,6 +154,7 @@ func _ready() -> void:
 	# --------------------------------------------------------------------------
 	# Connect to singletons signals
 	C.character_spoke.connect(_on_character_spoke)
+	G.freed.connect(_on_gi_freed)
 	
 	redied.emit()
 
@@ -791,3 +792,7 @@ func _on_character_spoke(chr: PopochiuCharacter, msg := '') -> void:
 		character = chr,
 		text = msg
 	})
+
+
+func _on_gi_freed() -> void:
+	clicked = null

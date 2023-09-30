@@ -5,7 +5,7 @@ class_name PopochiuGraphicInterface
 # warning-ignore-all:return_value_discarded
 
 var popups_stack := []
-var commands: Resource = null
+var commands: RefCounted = null
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
@@ -25,23 +25,6 @@ func _ready():
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
-func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
-	pass
-
-
-func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
-	pass
-
-
-func _on_mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem) -> void:
-	pass
-
-
-func _on_mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem) -> void:
-	pass
-
-
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
 func _on_gi_blocked(props := { blocking = true }) -> void:
 	pass
 
@@ -55,4 +38,20 @@ func _hide_panels() -> void:
 
 
 func _show_panels() -> void:
+	pass
+
+
+func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
+	pass
+
+
+func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
+	pass
+
+
+func _on_mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem) -> void:
+	pass
+
+
+func _on_mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem) -> void:
 	pass
