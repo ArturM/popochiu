@@ -2,18 +2,19 @@ extends HBoxContainer
 
 var _items_in_grid := {}
 
-@onready var scroll_up: TextureButton = $ScrollButtonsContainer/ScrollUp
-@onready var scroll_down: TextureButton = $ScrollButtonsContainer/ScrollDown
+#@onready var scroll_up: TextureButton = $ScrollButtonsContainer/ScrollUp
+#@onready var scroll_down: TextureButton = $ScrollButtonsContainer/ScrollDown
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
 	# Connect to singletons signals
-	I.item_added.connect(_on_item_added)
-	I.item_removed.connect(_on_item_removed)
+	#I.item_added.connect(_on_item_added)
+	#I.item_removed.connect(_on_item_removed)
 	
-	scroll_up.disabled = I.items.is_empty() or I.items.size() <= 15
-	scroll_down.disabled = I.items.is_empty() or I.items.size() <= 15
+	#scroll_up.disabled = I.items.is_empty() or I.items.size() <= 15
+	#scroll_down.disabled = I.items.is_empty() or I.items.size() <= 15
+	pass
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░

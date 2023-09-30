@@ -2,6 +2,7 @@ extends PopochiuGraphicInterface
 
 @onready var commands_container: GridContainer = %CommandsContainer
 @onready var settings_popup: PopochiuPopup = $"Popups/9VerbSettingsPopup"
+@onready var quit_popup: PanelContainer = %"9VerbQuitPopup"
 
 
 #region Godot
@@ -144,7 +145,7 @@ func _on_classic_sentence_toggled(button_pressed: bool) -> void:
 
 
 func _on_quit_pressed() -> void:
-	%"9VerbQuitPopup".open()
+	quit_popup.open()
 
 
 #endregion

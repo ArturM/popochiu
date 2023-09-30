@@ -102,7 +102,7 @@ func _replace_item(
 
 
 func _change_cursor(item: PopochiuInventoryItem) -> void:
-	I.set_active_item(item)
+	I.set_active_item(item, true)
 
 
 ## Checks if the UP and DOWN buttons should be enabled
@@ -112,11 +112,6 @@ func _check_scroll_buttons() -> void:
 		scroll_container.scroll_vertical >= max_scroll
 		or not (I.items.size() > box.columns * 2)
 	)
-
-
-## Organizes the inventory to avoid empty spaces between items.
-func _arrange_items(from := 0) -> void:
-	pass
 
 
 func _on_scroll(_value: float) -> void:
