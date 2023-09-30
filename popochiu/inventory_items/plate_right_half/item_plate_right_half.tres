@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c7e4cm1umrpmk"]
+
+[ext_resource type="Script" path="res://popochiu/inventory_items/plate_right_half/item_plate_right_half_state.gd" id="1_tax2n"]
+
+[resource]
+resource_name = "PlateRightHalf"
+script = ExtResource("1_tax2n")
+script_name = "PlateRightHalf"
+scene = "res://popochiu/inventory_items/plate_right_half/item_plate_right_half.tscn"
+script_name = "PlateRightHalf"
+scene = "res://popochiu/inventory_items/plate_right_half/item_plate_right_half.tscn"

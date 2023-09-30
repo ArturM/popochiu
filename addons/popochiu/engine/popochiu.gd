@@ -796,3 +796,4 @@ func _on_character_spoke(chr: PopochiuCharacter, msg := '') -> void:
 
 func _on_gi_freed() -> void:
 	clicked = null
+	current_command = 0

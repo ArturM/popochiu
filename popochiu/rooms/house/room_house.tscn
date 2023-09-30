@@ -57,41 +57,35 @@ polygon = PackedVector2Array(-9, 4, -7, -6, 7, -6, 10, 1, 1, 7)
 
 [node name="Hotspots" type="Node2D" parent="."]
 
-[node name="Door" type="Area2D" parent="Hotspots" instance=ExtResource("8_y3uam")]
+[node name="Door" parent="Hotspots" instance=ExtResource("8_y3uam")]
 position = Vector2(98, 75)
 script = ExtResource("9_k0wwx")
 script_name = "Door"
 description = "Door"
 walk_to_point = Vector2(15, 30)
-cursor = 1
 script_name = "Door"
 description = "Door"
 walk_to_point = Vector2(15, 30)
-cursor = 1
 script_name = "Door"
 description = "Door"
 walk_to_point = Vector2(15, 30)
-cursor = 1
 
 [node name="InteractionPolygon" type="CollisionPolygon2D" parent="Hotspots/Door"]
 modulate = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(-17, 23, -21, 3, -16, -24, 7, -28, 19, -14, 19, 19)
 
-[node name="Window" type="Area2D" parent="Hotspots" instance=ExtResource("8_y3uam")]
+[node name="Window" parent="Hotspots" instance=ExtResource("8_y3uam")]
 position = Vector2(152, 61)
 script = ExtResource("10_swuq3")
 script_name = "Window"
 description = "Window"
 walk_to_point = Vector2(13, 43)
-cursor = 1
 script_name = "Window"
 description = "Window"
 walk_to_point = Vector2(13, 43)
-cursor = 1
 script_name = "Window"
 description = "Window"
 walk_to_point = Vector2(13, 43)
-cursor = 1
 
 [node name="InteractionPolygon" type="CollisionPolygon2D" parent="Hotspots/Window"]
 modulate = Color(0, 0, 1, 1)

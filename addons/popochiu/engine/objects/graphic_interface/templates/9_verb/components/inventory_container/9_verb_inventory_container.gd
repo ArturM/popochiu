@@ -40,6 +40,7 @@ func _ready():
 	# Connect to singletons signals
 	I.item_added.connect(_add_item)
 	I.item_removed.connect(_remove_item)
+	I.item_replaced.connect(_replace_item)
 	
 	_check_scroll_buttons()
 
@@ -74,6 +75,7 @@ func _add_item(item: PopochiuInventoryItem, _animate := true) -> void:
 func _remove_item(item: PopochiuInventoryItem, _animate := true) -> void:
 	item.selected.disconnect(_change_cursor)
 	
+	box.get_meta(item.script_name).remove_child(item)
 	box.get_meta(item.script_name).queue_free()
 	box.add_child(SLOT.instantiate())
 	box.get_child(-1).name = "Slot"
@@ -83,6 +85,20 @@ func _remove_item(item: PopochiuInventoryItem, _animate := true) -> void:
 	await get_tree().process_frame
 	
 	I.item_remove_done.emit(item)
+
+
+func _replace_item(
+	item: PopochiuInventoryItem, new_item: PopochiuInventoryItem
+) -> void:
+	item.replace_by(new_item)
+	box.remove_meta(item.script_name)
+	box.set_meta(new_item.script_name, new_item.get_parent())
+	
+	_check_scroll_buttons()
+	
+	await get_tree().process_frame
+	
+	I.item_replace_done.emit()
 
 
 func _change_cursor(item: PopochiuInventoryItem) -> void:

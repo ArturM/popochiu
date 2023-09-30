@@ -6,6 +6,7 @@ signal item_add_done(item: PopochiuInventoryItem)
 signal item_removed(item: PopochiuInventoryItem, animate: bool)
 signal item_remove_done(item: PopochiuInventoryItem)
 signal item_replaced(item: PopochiuInventoryItem, new_item: PopochiuInventoryItem)
+signal item_replace_done
 signal item_discarded(item: PopochiuInventoryItem)
 signal item_selected(item: PopochiuInventoryItem)
 signal inventory_show_requested(time: float)
@@ -19,6 +20,11 @@ var items_states := {}
 # -------- Used for saving the game --
 
 var _item_instances := []
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
+func _ready() -> void:
+	G.freed.connect(_on_gi_freed)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
@@ -104,6 +110,6 @@ func is_full() -> bool:
 	and E.settings.inventory_limit == items.size()
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░
-#func set_active(value: PopochiuInventoryItem) -> void:
-#	set_active_item(value)
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
+func _on_gi_freed() -> void:
+	active = null

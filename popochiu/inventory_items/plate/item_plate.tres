@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bvsdhjf5gblst"]
+
+[ext_resource type="Script" path="res://popochiu/inventory_items/plate/item_plate_state.gd" id="1_ke0el"]
+
+[resource]
+resource_name = "Plate"
+script = ExtResource("1_ke0el")
+script_name = "Plate"
+scene = "res://popochiu/inventory_items/plate/item_plate.tscn"
+script_name = "Plate"
+scene = "res://popochiu/inventory_items/plate/item_plate.tscn"

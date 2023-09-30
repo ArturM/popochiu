@@ -89,7 +89,21 @@ func _on_mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem) -> 
 	
 	commands_container.highlight_command(NineVerbCommands.Commands.LOOK_AT)
 	Cursor.show_cursor('active')
-	G.show_hover_text(inventory_item.description)
+	
+	if I.active:
+		if (
+			E.current_command == NineVerbCommands.Commands.USE
+			and I.active != inventory_item
+		):
+			G.show_hover_text(
+				'%s %s in %s' % [
+					G.get_command(E.current_command),
+					I.active.description,
+					inventory_item.description
+				]
+			)
+	else:
+		G.show_hover_text(inventory_item.description)
 
 
 func _on_mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem) -> void:
@@ -99,7 +113,9 @@ func _on_mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem) -> v
 	commands_container.highlight_command(NineVerbCommands.Commands.LOOK_AT, false)
 	Cursor.show_cursor('normal')
 	
-	if I.active: return
+	if I.active:
+		G.show_hover_text("Use %s in" % I.active.description)
+		return
 	
 	G.show_hover_text()
 

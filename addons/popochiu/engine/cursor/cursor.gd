@@ -25,8 +25,23 @@ func _ready():
 
 
 func _process(delta):
+	var texture_size := ($AnimatedSprite2D.sprite_frames.get_frame_texture(
+		$AnimatedSprite2D.animation,
+		$AnimatedSprite2D.frame
+	) as Texture2D).get_size()
+	
 	$AnimatedSprite2D.position = $AnimatedSprite2D.get_global_mouse_position()
 	$Sprite2D.position = $AnimatedSprite2D.get_global_mouse_position()
+	
+	if $AnimatedSprite2D.position.x < 1.0:
+		$AnimatedSprite2D.position.x = 1.0
+	elif $AnimatedSprite2D.position.x > 318.0:
+		$AnimatedSprite2D.position.x = 318.0
+	
+	if $AnimatedSprite2D.position.y < 1.0:
+		$AnimatedSprite2D.position.y = 1.0
+	elif $AnimatedSprite2D.position.y > 178.0:
+		$AnimatedSprite2D.position.y = 178.0
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░

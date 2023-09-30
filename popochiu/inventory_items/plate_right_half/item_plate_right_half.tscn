@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1nje33hykw2g"]
+
+[ext_resource type="Script" path="res://popochiu/inventory_items/plate_right_half/item_plate_right_half.gd" id="1_4cfwb"]
+[ext_resource type="Texture2D" uid="uid://ba25vk1qdxy23" path="res://popochiu/inventory_items/plate_right_half/plate_right_half.png" id="1_acng1"]
+
+[node name="ItemPlateRightHalf" type="TextureRect"]
+texture_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("1_acng1")
+stretch_mode = 5
+script = ExtResource("1_4cfwb")
+description = "Plate Right Half"
+script_name = "PlateRightHalf"

@@ -110,6 +110,23 @@ func remove(animate := false) -> void:
 	I.item_removed.emit(self, animate)
 	
 	await I.item_remove_done
+	
+	G.done()
+
+
+func replace(new_item: PopochiuInventoryItem) -> void:
+	in_inventory = false
+	
+	I.items.erase(script_name)
+	I.set_active_item(null)
+	I.items.append(new_item.script_name)
+	new_item.in_inventory = true
+	
+	I.item_replaced.emit(self, new_item)
+	
+	await I.item_replace_done
+	
+	G.done()
 
 
 func queue_discard(animate := false) -> Callable:
