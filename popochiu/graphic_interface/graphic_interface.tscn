@@ -313,13 +313,6 @@ layout_mode = 1
 [node name="DialogMenu" parent="." instance=ExtResource("14_3gq4k")]
 layout_mode = 1
 
-[node name="SystemText" parent="." instance=ExtResource("18_x7swu")]
-layout_mode = 1
-offset_left = 44.0
-offset_top = -11.0
-offset_right = -44.0
-offset_bottom = 11.0
-
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_eo6w8")
@@ -339,5 +332,12 @@ mouse_filter = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+
+[node name="SystemText" parent="." instance=ExtResource("18_x7swu")]
+layout_mode = 1
+offset_left = 44.0
+offset_top = -11.0
+offset_right = -44.0
+offset_bottom = 11.0
 
 [connection signal="pressed" from="Menu/HBoxContainer/Inventory" to="." method="_on_inventory_pressed"]

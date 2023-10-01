@@ -42,6 +42,17 @@ func _on_discard() -> void:
 	super()
 
 
+# ---- 9 verb ------------------------------------------------------------------
 func _on_use() -> void:
 	I.active = self
 	G.show_hover_text("Use %s in" % description)
+
+
+# ---- Sierra ------------------------------------------------------------------
+func _on_interact() -> void:
+	#I.active = self
+	selected.emit(self)
+
+
+func _on_look() -> void:
+	G.show_system_text("It's the key that opens this room's door")

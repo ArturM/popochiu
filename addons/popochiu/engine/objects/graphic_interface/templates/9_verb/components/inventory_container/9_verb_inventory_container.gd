@@ -2,6 +2,8 @@ extends HBoxContainer
 
 const SLOT := preload("9_verb_slot.tscn")
 
+@export var visible_rows := 2
+
 var rows := 0
 var max_scroll := 0.0
 
@@ -22,7 +24,7 @@ func _ready():
 		if slot.visible:
 			visible_slots += 1
 	rows = visible_slots / box.columns
-	max_scroll = ((slot_size + gap_size) * int(rows / 2)) + 1.0
+	max_scroll = ((slot_size + gap_size) * int(rows / 2))
 	
 	# Check if there are inventory items in the scene tree and add them to the
 	# Inventory interface class (I)
@@ -49,12 +51,12 @@ func _ready():
 #region Private
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
 func _on_up_pressed() -> void:
-	scroll_container.scroll_vertical -= (slot_size + gap_size) + 1.0
+	scroll_container.scroll_vertical -= (slot_size + gap_size) + 1
 	_check_scroll_buttons()
 
 
 func _on_down_pressed() -> void:
-	scroll_container.scroll_vertical += (slot_size + gap_size) + 1.0
+	scroll_container.scroll_vertical += (slot_size + gap_size) + 1
 	_check_scroll_buttons()
 
 
@@ -110,7 +112,7 @@ func _check_scroll_buttons() -> void:
 	up.disabled = scroll_container.scroll_vertical == 0
 	down.disabled = (
 		scroll_container.scroll_vertical >= max_scroll
-		or not (I.items.size() > box.columns * 2)
+		or not (I.items.size() > box.columns * visible_rows)
 	)
 
 

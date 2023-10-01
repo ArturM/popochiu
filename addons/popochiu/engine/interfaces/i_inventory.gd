@@ -112,4 +112,6 @@ func is_full() -> bool:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
 func _on_gi_freed() -> void:
-	active = null
+	#NOTE: Doing this will fuck the Sierra inventory popup
+	#active = null
+	pass

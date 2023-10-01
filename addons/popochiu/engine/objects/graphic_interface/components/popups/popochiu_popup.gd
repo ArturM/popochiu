@@ -62,13 +62,13 @@ func open() -> void:
 
 ## Closes the popup unlocking interactions with the graphic interface.
 func close() -> void:
-	_close()
-	
 	(E.gi as PopochiuGraphicInterface).popups_stack.erase(self)
 	
 	if (E.gi as PopochiuGraphicInterface).popups_stack.is_empty():
 		G.done()
 		Cursor.unlock()
+	
+	_close()
 	
 	hide()
 
