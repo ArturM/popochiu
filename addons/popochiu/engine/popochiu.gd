@@ -9,6 +9,7 @@ signal game_saved
 signal game_loaded(data)
 signal redied
 signal command_selected
+signal dialog_style_changed
 
 const SAVELOAD_PATH := 'res://addons/popochiu/engine/others/popochiu_save_load.gd'
 
@@ -29,7 +30,8 @@ var half_width := 0.0 : get = get_half_width
 var half_height := 0.0 : get = get_half_height
 var settings := PopochiuResources.get_settings()
 var current_text_speed_idx := settings.default_text_speed
-var current_text_speed: float = settings.text_speeds[current_text_speed_idx]
+var current_text_speed: float = settings.text_speeds[current_text_speed_idx] :
+	set = set_current_text_speed
 var current_language := 0
 var auto_continue_after := -1.0
 var scale := Vector2.ONE
@@ -42,6 +44,7 @@ var playing_queue := false
 var gi: Control = null
 var tl: Node2D = null
 var current_command := -1 : set = set_current_command
+var current_dialog_style := settings.dialog_style : set = set_dialog_style
 
 # TODO: This could be in the camera's own script
 var _is_camera_shaking := false
@@ -676,10 +679,20 @@ func set_current_room(value: PopochiuRoom) -> void:
 	R.current = value
 
 
+func set_current_text_speed(value: float) -> void:
+	current_text_speed = value
+	text_speed_changed.emit()
+
+
 func set_current_command(value: int) -> void:
 	current_command = value
 	
 	command_selected.emit()
+
+
+func set_dialog_style(value: int) -> void:
+	current_dialog_style = value
+	dialog_style_changed.emit()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░

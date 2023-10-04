@@ -34,9 +34,6 @@ func _ready() -> void:
 	set_meta(DFLT_SIZE, size)
 	set_meta(DFLT_POSITION, position)
 	
-	if E.settings.dialog_style != 0:
-		wrap_width = size.x
-	
 	# Set the default values
 	clear()
 	
@@ -49,9 +46,10 @@ func _ready() -> void:
 	
 	# Connect to singletons events
 	E.text_speed_changed.connect(change_speed)
+	E.dialog_style_changed.connect(_on_dialog_style_changed)
 	C.character_spoke.connect(_show_dialogue)
 	
-	visible = E.settings.dialog_style == used_when
+	_on_dialog_style_changed()
 
 
 func _input(event: InputEvent) -> void:
@@ -99,7 +97,7 @@ func play_text(props: Dictionary) -> void:
 		get_theme_font("normal_font")
 	)
 	
-	match E.settings.dialog_style:
+	match E.current_dialog_style:
 		0:
 			lbl.size.y = get_meta(DFLT_SIZE).y
 		_:
@@ -138,7 +136,7 @@ func play_text(props: Dictionary) -> void:
 	rt.free()
 	# ====================================== Calculate the size of the node ====
 	
-	match E.settings.dialog_style:
+	match E.current_dialog_style:
 		0:
 			# Define size and position (before calculating overflow)
 			size = _size
@@ -164,7 +162,7 @@ func play_text(props: Dictionary) -> void:
 	# Assign text and align mode
 	push_color(props.color)
 	
-	match E.settings.dialog_style:
+	match E.current_dialog_style:
 		0:
 			var center := floor(position.x + (size.x / 2))
 			if center == props.position.x:
@@ -178,7 +176,7 @@ func play_text(props: Dictionary) -> void:
 		2:
 			text = '[center]%s[/center]' % msg
 	
-	match E.settings.dialog_style:
+	match E.current_dialog_style:
 		0,1:
 			if _secs_per_character > 0.0:
 				# The text will appear with an animation
@@ -303,7 +301,7 @@ func _show_icon() -> void:
 		var from_pos := 0.0
 		var to_pos := 0.0
 		
-		match E.settings.dialog_style:
+		match E.current_dialog_style:
 			0:
 				from_pos = size.y / 2.0 - 1.0
 				to_pos = size.y / 2.0 + 3.0
@@ -337,4 +335,11 @@ func _show_icon() -> void:
 func _continue(forced_continue := false) -> void:
 	if E.settings.auto_continue_text or forced_continue:
 		G.continue_requested.emit()
+
+
+func _on_dialog_style_changed() -> void:
+	visible = E.current_dialog_style == used_when
+	
+	if E.current_dialog_style != 0:
+		wrap_width = size.x
 #endregion

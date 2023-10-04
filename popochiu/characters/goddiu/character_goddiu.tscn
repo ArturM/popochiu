@@ -272,25 +272,6 @@ _data = {
 
 [node name="CharacterGoddiu" type="Area2D"]
 script = ExtResource("1_nykan")
-script_name = "Goddiu"
-description = "Goddiu"
-clickable = false
-cursor = 8
-flips_when = 2
-avatars = [{
-"avatar": ExtResource("2_p726b"),
-"emotion": ""
-}, {
-"avatar": ExtResource("3_rle58"),
-"emotion": "sad"
-}, {
-"avatar": ExtResource("4_65rtr"),
-"emotion": "happy"
-}]
-script_name = "Goddiu"
-description = "Goddiu"
-clickable = false
-cursor = 8
 flips_when = 2
 avatars = [{
 "avatar": ExtResource("2_p726b"),

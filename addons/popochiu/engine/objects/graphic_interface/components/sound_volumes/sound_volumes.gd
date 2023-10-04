@@ -73,8 +73,3 @@ func _on_audio_manager_ready() -> void:
 					value if value > MIN_VOLUME else MUTE_VOLUME
 				)
 		).bind(bus_name))
-		
-#		volume_row.add_child(label)
-#		volume_row.add_child(slider)
-		
-#		add_child(volume_row)

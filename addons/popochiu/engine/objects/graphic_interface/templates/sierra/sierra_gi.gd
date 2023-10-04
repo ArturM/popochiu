@@ -15,6 +15,8 @@ func _ready() -> void:
 	$Menu.hide()
 	
 	E.current_command = SierraCommands.Commands.WALK
+	
+	%SierraSettingsPopup.option_selected.connect(_on_settings_option_selected)
 
 
 func _input(event: InputEvent) -> void:
@@ -69,3 +71,19 @@ func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
 func _on_inventory_pressed() -> void:
 	%SierraInventoryPopup.open()
 	$Menu.hide()
+
+
+func _on_settings_pressed() -> void:
+	%SierraSettingsPopup.open()
+
+
+func _on_settings_option_selected(option_name: String) -> void:
+	match option_name:
+		"sound":
+			%SierraSoundPopup.open()
+		"text":
+			%SierraTextPopup.open()
+		"save":
+			%SaveAndLoadPopup.open_save()
+		"load":
+			%SaveAndLoadPopup.open_load()

@@ -51,7 +51,7 @@ func on_linked_item_removed() -> void:
 func on_linked_item_discarded() -> void:
 	pass
 
-
+# ---- 9 verb ------------------------------------------------------------------
 func _on_look_at() -> void:
 	await C.player.say("Can't open it, but well... who cares about windows anyway. [wave]I'll use the door[/wave].")
 	await C.player.say("So....")
@@ -63,3 +63,10 @@ func _on_pick_up() -> void:
 	await C.walk_to_clicked()
 	await I.ToyCar.add()
 	await C.player.say("I'm gonna play with it later")
+
+# ---- Sierra ------------------------------------------------------------------
+func _on_look() -> void:
+	await C.player.say("Can't open it, but well... who cares \
+about windows anyway. [wave]I'll use the door[/wave].")
+	await C.player.say("So....")
+	await C.player.say("This is my TOY CAR!!!")

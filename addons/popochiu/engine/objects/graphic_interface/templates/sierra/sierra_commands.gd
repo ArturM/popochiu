@@ -23,4 +23,18 @@ func walk() -> void:
 
 
 func look() -> void:
-	G.show_system_text("Nothing to say about this item")
+	G.show_system_text(
+		"%s has nothing to say about that object" % C.player.description
+	)
+
+
+func interact() -> void:
+	G.show_system_text(
+		"%s doesn't want to do anything with that object" % C.player.description
+	)
+
+
+func talk() -> void:
+	G.show_system_text(
+		"%s can't talk with that" % C.player.description
+	)

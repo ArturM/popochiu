@@ -16,10 +16,10 @@
 vertices = PackedVector2Array(-90, 15, -7, 6, 84, 13, 112, 52, 57, 71, -75, 69, -108, 51)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-90, 15, -7, 6, 84, 13, 112, 52, 57, 71, -75, 69, -108, 51)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="RoomHouse" type="Node2D"]
 script = ExtResource("1_wu4vb")
-script_name = "House"
 script_name = "House"
 
 [node name="WalkableAreas" type="Node2D" parent="."]
@@ -27,8 +27,6 @@ script_name = "House"
 [node name="Floor" parent="WalkableAreas" instance=ExtResource("2_8en3i")]
 position = Vector2(160, 90)
 script = ExtResource("3_x6kcf")
-script_name = "Floor"
-description = "Floor"
 script_name = "Floor"
 description = "Floor"
 
@@ -44,10 +42,6 @@ texture = ExtResource("4_cykrm")
 
 [node name="ToyCar" parent="Props" instance=ExtResource("5_c3cmx")]
 position = Vector2(96, 123)
-walk_to_point = Vector2(16, -4)
-texture = ExtResource("9_d8e6u")
-link_to_item = "ToyCar"
-walk_to_point = Vector2(16, -4)
 texture = ExtResource("9_d8e6u")
 link_to_item = "ToyCar"
 walk_to_point = Vector2(16, -4)
@@ -63,12 +57,6 @@ script = ExtResource("9_k0wwx")
 script_name = "Door"
 description = "Door"
 walk_to_point = Vector2(15, 30)
-script_name = "Door"
-description = "Door"
-walk_to_point = Vector2(15, 30)
-script_name = "Door"
-description = "Door"
-walk_to_point = Vector2(15, 30)
 
 [node name="InteractionPolygon" type="CollisionPolygon2D" parent="Hotspots/Door"]
 modulate = Color(0, 0, 1, 1)
@@ -77,12 +65,6 @@ polygon = PackedVector2Array(-17, 23, -21, 3, -16, -24, 7, -28, 19, -14, 19, 19)
 [node name="Window" parent="Hotspots" instance=ExtResource("8_y3uam")]
 position = Vector2(152, 61)
 script = ExtResource("10_swuq3")
-script_name = "Window"
-description = "Window"
-walk_to_point = Vector2(13, 43)
-script_name = "Window"
-description = "Window"
-walk_to_point = Vector2(13, 43)
 script_name = "Window"
 description = "Window"
 walk_to_point = Vector2(13, 43)

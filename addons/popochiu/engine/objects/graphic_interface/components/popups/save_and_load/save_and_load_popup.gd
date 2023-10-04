@@ -67,6 +67,15 @@ func _on_ok() -> void:
 	close()
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
+func open_save() -> void:
+	_show_save()
+
+
+func open_load() -> void:
+	_show_load()
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
 func _show_save(slot_text := "") -> void:
 	lbl_title.text = 'Choose a slot to save the game'
