@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://6ucg5xkcreh5"]
+[gd_scene load_steps=60 format=3 uid="uid://6ucg5xkcreh5"]
 
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sierra_gi.gd" id="1_40nsv"]
 [ext_resource type="Theme" uid="uid://csr0n32rthycw" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/resources/sierra_theme.tres" id="1_kw4gp"]
@@ -16,12 +16,15 @@
 [ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="11_b4ttw"]
 [ext_resource type="Texture2D" uid="uid://dwn416xagjwtd" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/sierra_cursor.png" id="13_udys2"]
 [ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="14_3gq4k"]
+[ext_resource type="Texture2D" uid="uid://c1gik8lkdekx4" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/btn_quit.png" id="14_wt2hk"]
 [ext_resource type="PackedScene" uid="uid://dc7crw22yevoo" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/inventory_popup/sierra_inventory_popup.tscn" id="15_2hyjp"]
+[ext_resource type="Texture2D" uid="uid://crffsrf7dn6gk" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/sprites/sierra_text_continue_icon.png" id="15_xaenu"]
 [ext_resource type="PackedScene" uid="uid://c24vj4s0u08jr" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/settings_popup/sierra_settings_popup.tscn" id="18_sv4ik"]
 [ext_resource type="PackedScene" uid="uid://bdgs3xsbq3gdd" path="res://addons/popochiu/engine/objects/graphic_interface/components/system_text/system_text.tscn" id="18_x7swu"]
 [ext_resource type="PackedScene" uid="uid://mh7ymcslp4xv" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/sound_popup/sierra_sound_popup.tscn" id="19_3kc82"]
 [ext_resource type="PackedScene" uid="uid://de68lx1xqv7fb" path="res://addons/popochiu/engine/objects/graphic_interface/templates/sierra/components/text_popup/sierra_text_popup.tscn" id="20_anvsw"]
 [ext_resource type="PackedScene" uid="uid://cndputybyj57n" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/save_and_load/save_and_load_popup.tscn" id="21_1xmwq"]
+[ext_resource type="PackedScene" uid="uid://bnjo044fkdcq7" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/quit/quit_popup.tscn" id="24_50bps"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecos1"]
 content_margin_left = 6.0
@@ -105,6 +108,18 @@ region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ahol"]
 atlas = ExtResource("7_8gnnh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8jt5"]
+atlas = ExtResource("14_wt2hk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0o1t"]
+atlas = ExtResource("14_wt2hk")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs767"]
+atlas = ExtResource("14_wt2hk")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p3f06"]
@@ -194,6 +209,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_baq17"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_foak3"]
 content_margin_left = 8.0
 content_margin_top = 4.0
@@ -243,7 +260,6 @@ layout_mode = 2
 text = "Score: 0"
 
 [node name="Menu" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -321,12 +337,29 @@ texture_pressed = SubResource("AtlasTexture_eccvv")
 texture_hover = SubResource("AtlasTexture_0ahol")
 
 [node name="Help" type="TextureButton" parent="Menu/HBoxContainer"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 texture_normal = ExtResource("8_6de8y")
 
+[node name="Quit" type="TextureButton" parent="Menu/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_f8jt5")
+texture_pressed = SubResource("AtlasTexture_c0o1t")
+texture_hover = SubResource("AtlasTexture_hs767")
+
 [node name="DialogText" parent="." instance=ExtResource("11_b4ttw")]
 layout_mode = 1
+
+[node name="ContinueIcon" parent="DialogText/AboveCharacterText" index="1"]
+texture_progress = ExtResource("15_xaenu")
+
+[node name="ContinueIcon" parent="DialogText/PortraitTextPanel/HBoxContainer/PanelContainer/PortraitText" index="1"]
+texture_progress = ExtResource("15_xaenu")
+
+[node name="ContinueIcon" parent="DialogText/CaptionText" index="1"]
+texture_progress = ExtResource("15_xaenu")
 
 [node name="DialogMenu" parent="." instance=ExtResource("14_3gq4k")]
 layout_mode = 1
@@ -370,7 +403,14 @@ layout_mode = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-theme = ExtResource("1_kw4gp")
+theme = null
+theme_override_styles/panel = SubResource("StyleBoxEmpty_baq17")
+
+[node name="QuitPopup" parent="Popups" instance=ExtResource("24_50bps")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+theme = null
 
 [node name="SystemText" parent="." instance=ExtResource("18_x7swu")]
 layout_mode = 1
@@ -383,3 +423,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_foak3")
 
 [connection signal="pressed" from="Menu/HBoxContainer/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+
+[editable path="DialogText"]

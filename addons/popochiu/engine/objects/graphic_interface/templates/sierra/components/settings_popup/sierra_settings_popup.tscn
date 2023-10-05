@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://p32i25numi5e" path="res://addons/popochiu/engine/objects/graphic_interface/resources/sprites/close_highlight.png" id="4_38rye"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_roir4"]
-bg_color = Color(0, 0, 0, 0.498039)
+bg_color = Color(0, 0, 0, 0.247059)
 
 [node name="SierraSettingsPopup" type="PanelContainer"]
 anchors_preset = 15
@@ -50,14 +50,19 @@ texture_hover = ExtResource("4_38rye")
 [node name="BodyContainer" type="VBoxContainer" parent="PopupPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="Save" type="Button" parent="PopupPanel/VBoxContainer/BodyContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer/BodyContainer"]
+layout_mode = 2
+
+[node name="Save" type="Button" parent="PopupPanel/VBoxContainer/BodyContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Save"
 
-[node name="Load" type="Button" parent="PopupPanel/VBoxContainer/BodyContainer"]
+[node name="Load" type="Button" parent="PopupPanel/VBoxContainer/BodyContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Load"
 
 [node name="Sound" type="Button" parent="PopupPanel/VBoxContainer/BodyContainer"]
@@ -69,6 +74,11 @@ text = "Sound options"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Text options"
+
+[node name="Quit" type="Button" parent="PopupPanel/VBoxContainer/BodyContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
 
 [node name="FooterContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer"]
 layout_mode = 2

@@ -87,3 +87,9 @@ func _on_settings_option_selected(option_name: String) -> void:
 			%SaveAndLoadPopup.open_save()
 		"load":
 			%SaveAndLoadPopup.open_load()
+		"quit":
+			_on_quit_pressed()
+
+
+func _on_quit_pressed() -> void:
+	%QuitPopup.open()

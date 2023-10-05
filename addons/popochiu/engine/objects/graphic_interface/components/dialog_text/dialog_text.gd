@@ -305,7 +305,7 @@ func _show_icon() -> void:
 			0:
 				from_pos = size.y / 2.0 - 1.0
 				to_pos = size.y / 2.0 + 3.0
-			2:
+			1, 2:
 				to_pos = size.y - _continue_icon.size.y + 2.0
 				from_pos = size.y - _continue_icon.size.y - 1.0
 		
@@ -317,7 +317,11 @@ func _show_icon() -> void:
 		# For automatic continuation: Make the icon appear like a progress bar
 		# the time players wil have to read befor auto-continuing
 		_continue_icon.value = 0.0
-		_continue_icon.position.y = size.y + 3.0
+		
+		match E.current_dialog_style:
+			0:
+				_continue_icon.position.y = size.y / 2.0
+		
 		_continue_icon_tween.tween_property(
 			_continue_icon, 'value',
 			100.0, 3.0,
@@ -334,12 +338,13 @@ func _show_icon() -> void:
 
 func _continue(forced_continue := false) -> void:
 	if E.settings.auto_continue_text or forced_continue:
-		G.continue_requested.emit()
+		disappear()
+		G.continue_clicked.emit()
 
 
 func _on_dialog_style_changed() -> void:
 	visible = E.current_dialog_style == used_when
 	
-	if E.current_dialog_style != 0:
+	if E.current_dialog_style != 0 and E.current_dialog_style == used_when:
 		wrap_width = size.x
 #endregion

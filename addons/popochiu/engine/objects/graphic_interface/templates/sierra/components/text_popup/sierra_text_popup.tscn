@@ -33,6 +33,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.180392, 0.172549, 0.607843, 1)
 text = "Text options"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -50,28 +51,31 @@ texture_hover = ExtResource("4_gfs8i")
 [node name="BodyContainer" type="VBoxContainer" parent="PopupPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextSpeedContainer" type="VBoxContainer" parent="PopupPanel/VBoxContainer/BodyContainer"]
+[node name="TextSpeedContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer/BodyContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PopupPanel/VBoxContainer/BodyContainer/TextSpeedContainer"]
 layout_mode = 2
 text = "Text speed"
-horizontal_alignment = 1
 
 [node name="TextSpeed" type="HSlider" parent="PopupPanel/VBoxContainer/BodyContainer/TextSpeedContainer"]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
 max_value = 0.1
 step = 0.01
 
-[node name="DisplayTypeContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer/BodyContainer"]
+[node name="DialogStyleContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer/BodyContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PopupPanel/VBoxContainer/BodyContainer/DisplayTypeContainer"]
+[node name="Label" type="Label" parent="PopupPanel/VBoxContainer/BodyContainer/DialogStyleContainer"]
 layout_mode = 2
 text = "Style"
+horizontal_alignment = 1
 
-[node name="DialogStyle" type="OptionButton" parent="PopupPanel/VBoxContainer/BodyContainer/DisplayTypeContainer"]
+[node name="DialogStyle" type="OptionButton" parent="PopupPanel/VBoxContainer/BodyContainer/DialogStyleContainer"]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
@@ -84,6 +88,21 @@ popup/item_1/text = "Portrait"
 popup/item_1/id = 1
 popup/item_2/text = "Caption"
 popup/item_2/id = 2
+
+[node name="ContinueModeContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer/BodyContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PopupPanel/VBoxContainer/BodyContainer/ContinueModeContainer"]
+layout_mode = 2
+text = "Auto-continue"
+horizontal_alignment = 1
+
+[node name="ContinueMode" type="CheckBox" parent="PopupPanel/VBoxContainer/BodyContainer/ContinueModeContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 10
+icon_alignment = 2
 
 [node name="FooterContainer" type="HBoxContainer" parent="PopupPanel/VBoxContainer"]
 layout_mode = 2
