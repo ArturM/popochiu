@@ -15,6 +15,9 @@ signal selected(item)
 
 var amount := 1
 var in_inventory := false : set = set_in_inventory
+# NOTE Don't know if this will make sense, or if it this object should emit
+# a signal about the click (command execution)
+var last_click_button := -1
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
@@ -218,6 +221,8 @@ func _toggle_description(is_hover: bool) -> void:
 	if is_hover:
 		G.mouse_entered_inventory_item.emit(self)
 	else:
+		last_click_button = -1
+		
 		G.mouse_exited_inventory_item.emit(self)
 	
 	# NOTE: Not sure this should go here
@@ -228,6 +233,8 @@ func _toggle_description(is_hover: bool) -> void:
 func _on_gui_input(event: InputEvent) -> void: 
 	var mouse_event := event as InputEventMouseButton 
 	if mouse_event and mouse_event.pressed:
+		last_click_button = mouse_event.button_index
+		
 		match mouse_event.button_index:
 			MOUSE_BUTTON_LEFT:
 				if I.active:

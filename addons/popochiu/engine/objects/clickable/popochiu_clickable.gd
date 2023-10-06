@@ -18,6 +18,9 @@ var room: Node2D = null : set = set_room # It is a PopochiuRoom
 var times_clicked := 0
 var times_right_clicked := 0
 var times_middle_clicked := 0
+# NOTE Don't know if this will make sense, or if it this object should emit
+# a signal about the click (command execution)
+var last_click_button := -1
 
 @onready var _description_code := description
 
@@ -53,6 +56,8 @@ func _unhandled_input(event: InputEvent):
 		if not E.hovered or E.hovered != self: return
 		
 		E.clicked = self
+		last_click_button = mouse_event.button_index
+		
 		get_viewport().set_input_as_handled()
 		
 		match mouse_event.button_index:
@@ -196,9 +201,9 @@ func on_command(button_idx: int) -> void:
 	})
 	
 	if use_fallback:
-		E.command_fallback()
+		await E.command_fallback()
 	else:
-		call(target_method % suffix)
+		await call(target_method % suffix)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
@@ -216,6 +221,8 @@ func _toggle_description(display: bool) -> void:
 		
 		G.mouse_entered_clickable.emit(self)
 	else:
+		last_click_button = -1
+		
 		if E.remove_hovered(self):
 			G.mouse_exited_clickable.emit(self)
 

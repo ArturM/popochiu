@@ -34,6 +34,7 @@ var current_text_speed: float = settings.text_speeds[current_text_speed_idx] :
 	set = set_current_text_speed
 var current_language := 0
 var auto_continue_after := -1.0
+var current_dialog_style := settings.dialog_style : set = set_dialog_style
 var scale := Vector2.ONE
 var am: PopochiuAudioManager = null
 # TODO: This might not just be a boolean, but there could be an array that puts
@@ -44,7 +45,12 @@ var playing_queue := false
 var gi: Control = null
 var tl: Node2D = null
 var current_command := -1 : set = set_current_command
-var current_dialog_style := settings.dialog_style : set = set_dialog_style
+var commands := {
+	"-1" = {
+		"name" = "fallback",
+		fallback = _command_fallback
+	}
+}
 
 # TODO: This could be in the camera's own script
 var _is_camera_shaking := false
@@ -69,6 +75,7 @@ var _saveload: Resource = null
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
+#region Godot
 func _ready() -> void:
 	_saveload = load(SAVELOAD_PATH).new()
 	_config = PopochiuResources.get_data_cfg()
@@ -85,9 +92,11 @@ func _ready() -> void:
 		gi = load(PopochiuResources.GRAPHIC_INTERFACE_ADDON).instantiate()
 	
 	# Load the commands for the game
-	var commands: String = PopochiuResources.get_data_value("ui", "commands", "")
-	if not commands.is_empty():
-		G.commands_dic = (load(commands).new()).commands_dic
+	var commands_path: String = PopochiuResources.get_data_value("ui", "commands", "")
+	if not commands_path.is_empty():
+		var commands: RefCounted = load(commands_path).new()
+		G.commands_dic = commands.commands_dic
+		gi.commands = commands
 	
 	# Set the Transitions Layer node
 	if settings.transition_layer:
@@ -197,7 +206,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	pass
 
 
+#endregion
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
+#region Public
 func queue_wait(time := 1.0) -> Callable:
 	return func (): await wait(time)
 
@@ -634,16 +645,44 @@ func clear_hovered() -> void:
 	self.hovered = null
 
 
-func command_fallback() -> void:
-	if not gi.commands: return
+func register_command(id: int, command_name: String, fallback: Callable) -> void:
+	commands[id] = {
+		"name" = command_name,
+		"fallback" = fallback
+	}
+
+
+func register_command_without_id(command_name: String, fallback: Callable) -> int:
+	var id := commands.size()
+	register_command(id, command_name, fallback)
 	
-	if gi.commands.has_method(G.get_command_description(current_command)):
-		gi.commands.call(G.get_command_description(current_command))
-	else:
-		gi.commands.fallback()
+	return id
 
 
+func command_fallback() -> void:
+	var fallback: Callable = commands["-1"].fallback
+	
+	if commands.has(E.current_command):
+		fallback = commands[E.current_command].fallback
+	
+	await fallback.call()
+
+
+func get_command_name(command_id: int, in_snake_case := false) -> String:
+	var command_name := ""
+	
+	if commands.has(command_id):
+		command_name = commands[command_id].name
+	
+	if in_snake_case:
+		command_name = command_name.to_snake_case()
+	
+	return command_name
+
+
+#endregion
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░
+#region Set & Get
 func get_width() -> float:
 	return get_viewport().get_visible_rect().end.x
 
@@ -695,7 +734,9 @@ func set_dialog_style(value: int) -> void:
 	dialog_style_changed.emit()
 
 
+#endregion
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
+#region Private
 func _eval_string(text: String) -> void:
 	match text:
 		'.':
@@ -810,3 +851,10 @@ func _on_character_spoke(chr: PopochiuCharacter, msg := '') -> void:
 func _on_gi_freed() -> void:
 	clicked = null
 	current_command = 0
+
+
+func _command_fallback() -> void:
+	print_rich("[color=red]No fallback for that command![/color]")
+
+
+#endregion

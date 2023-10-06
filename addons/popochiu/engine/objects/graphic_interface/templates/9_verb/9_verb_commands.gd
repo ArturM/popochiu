@@ -1,5 +1,5 @@
-extends RefCounted
 class_name NineVerbCommands
+extends RefCounted
 
 enum Commands {
 	WALK_TO, OPEN, PICK_UP, PUSH, CLOSE, LOOK_AT, PULL, GIVE, TALK_TO, USE
@@ -19,6 +19,20 @@ var commands_dic := {
 }
 
 
+func _init() -> void:
+	E.register_command(-1, "fallback", fallback)
+	E.register_command(Commands.WALK_TO, "Walk to", walk_to)
+	E.register_command(Commands.OPEN, "Open", open)
+	E.register_command(Commands.PICK_UP, "Pick up", pick_up)
+	E.register_command(Commands.PUSH, "Push", push)
+	E.register_command(Commands.CLOSE, "Close", close)
+	E.register_command(Commands.LOOK_AT, "Look at", look_at)
+	E.register_command(Commands.PULL, "Pull", pull)
+	E.register_command(Commands.GIVE, "Give", give)
+	E.register_command(Commands.TALK_TO, "Talk to", talk_to)
+	E.register_command(Commands.USE, "Use", use)
+
+
 func fallback() -> void:
 	walk_to()
 
@@ -28,8 +42,11 @@ func walk_to() -> void:
 	C.player.walk_to_clicked()
 	
 	await C.player.move_ended
-	E.current_command = E.clicked.suggested_command
-	E.clicked.on_command(MOUSE_BUTTON_LEFT)
+	
+	if E.clicked and E.clicked.get("suggested_command")\
+	and E.clicked.last_click_button == MOUSE_BUTTON_RIGHT:
+		E.current_command = E.clicked.suggested_command
+		E.clicked.on_command(MOUSE_BUTTON_LEFT)
 
 
 func open() -> void:

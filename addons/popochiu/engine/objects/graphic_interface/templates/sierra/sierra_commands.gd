@@ -1,5 +1,5 @@
-extends Resource
 class_name SierraCommands
+extends Resource
 
 enum Commands {
 	WALK, LOOK, INTERACT, TALK
@@ -11,6 +11,14 @@ var commands_dic := {
 	Commands.INTERACT : "Interact",
 	Commands.TALK : "Talk",
 }
+
+
+func _init() -> void:
+	E.register_command(-1, "fallback", fallback)
+	E.register_command(Commands.WALK, "Walk", walk)
+	E.register_command(Commands.LOOK, "Look", look)
+	E.register_command(Commands.INTERACT, "Interact", interact)
+	E.register_command(Commands.TALK, "Talk", talk)
 
 
 func fallback() -> void:

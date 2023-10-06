@@ -4,6 +4,8 @@ extends PopochiuHotspot
 # Use await E.queue([]) if you want to pause the excecution of
 # the function until the sequence of events finishes.
 
+var suggested_command := NineVerbCommands.Commands.OPEN
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 # When the node is clicked

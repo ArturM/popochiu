@@ -6,6 +6,7 @@ extends Node
 signal hover_text_shown(info)
 signal system_text_shown(message)
 signal continue_clicked
+# TODO Rename this signal to unblocked or unlocked.
 signal freed
 signal blocked
 signal interface_hidden
@@ -19,6 +20,9 @@ signal mouse_entered_clickable(clickable: PopochiuClickable)
 signal mouse_exited_clickable(clickable: PopochiuClickable)
 signal mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem)
 signal mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem)
+# NOTE Maybe add some signals for clicking objects and items
+#signal clicked_clickable(clickable: PopochiuClickable)
+#signal clicked_inventory_item(inventory_item: PopochiuInventoryItem)
 
 var is_blocked := false
 var template := ""

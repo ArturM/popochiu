@@ -10,10 +10,6 @@ extends PopochiuGraphicInterface
 func _ready() -> void:
 	super()
 	
-	commands = load(
-		"res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_commands.gd"
-	).new()
-	
 	Cursor.replace_frames($Cursor)
 	Cursor.show_cursor('normal')
 	
@@ -47,7 +43,6 @@ func _on_gi_blocked(props := { blocking = true }) -> void:
 func _on_gi_freed() -> void:
 	E.current_command = NineVerbCommands.Commands.WALK_TO
 	G.show_hover_text()
-	
 	
 	# Make all commands to look as no pressed
 	commands_container.unpress_commands()
@@ -124,13 +119,13 @@ func _on_mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem) -> v
 #endregion
 #region Private
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
-func _on_settings_pressed() -> void:
-	settings_popup.open()
-
-
 func _on_popochiu_ready() -> void:
 	if is_instance_valid(C.player):
 		C.player.started_walk_to.connect(_on_player_started_walk)
+
+
+func _on_settings_pressed() -> void:
+	settings_popup.open()
 
 
 func _on_player_started_walk(
