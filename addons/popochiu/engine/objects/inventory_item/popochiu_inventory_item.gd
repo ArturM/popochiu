@@ -83,7 +83,7 @@ func add(animate := true) -> void:
 		
 		await I.item_add_done
 
-		G.done(true)
+		G.unblock(true)
 
 		return
 	
@@ -114,7 +114,7 @@ func remove(animate := false) -> void:
 	
 	await I.item_remove_done
 	
-	G.done()
+	G.unblock()
 
 
 func replace(new_item: PopochiuInventoryItem) -> void:
@@ -129,7 +129,7 @@ func replace(new_item: PopochiuInventoryItem) -> void:
 	
 	await I.item_replace_done
 	
-	G.done()
+	G.unblock()
 
 
 func queue_discard(animate := false) -> Callable:

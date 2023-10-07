@@ -40,7 +40,7 @@ func _on_gi_blocked(props := { blocking = true }) -> void:
 	G.show_hover_text()
 
 
-func _on_gi_freed() -> void:
+func _on_gi_unblocked() -> void:
 	E.current_command = NineVerbCommands.Commands.WALK_TO
 	G.show_hover_text()
 	
@@ -116,6 +116,15 @@ func _on_mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem) -> v
 	G.show_hover_text()
 
 
+func _on_dialog_started(_dialog: PopochiuDialog) -> void:
+	$BottomContainer.hide()
+	E.current_command = -1
+
+
+func _on_dialog_finished(_dialog: PopochiuDialog) -> void:
+	$BottomContainer.show()
+
+
 #endregion
 #region Private
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
@@ -131,7 +140,7 @@ func _on_settings_pressed() -> void:
 func _on_player_started_walk(
 	_character: PopochiuCharacter, _start_position: Vector2, _end_position: Vector2
 ) -> void:
-	_on_gi_freed()
+	_on_gi_unblocked()
 
 
 func _on_classic_sentence_toggled(button_pressed: bool) -> void:

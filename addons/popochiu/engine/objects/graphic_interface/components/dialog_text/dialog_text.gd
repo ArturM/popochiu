@@ -236,6 +236,13 @@ func disappear() -> void:
 	
 	size = get_meta(DFLT_SIZE)
 	
+	# TODO Maybe this shouldn't happen here, but in the script of the graphic
+	# interface since this component should not know what to do with the cursor
+	# while playing the text?
+	#Cursor.unlock()
+	#Cursor.set_cursor()
+	G.dialog_line_finished.emit()
+	
 	set_process_input(false)
 	text_show_finished.emit()
 
@@ -258,8 +265,12 @@ func _show_dialogue(chr: PopochiuCharacter, msg := '') -> void:
 		),
 	})
 	
-	Cursor.block()
-	Cursor.set_cursor(Cursor.Type.WAIT, true)
+	# TODO Maybe this shouldn't happen here, but in the script of the graphic
+	# interface since this component should not know what to do with the cursor
+	# while playing the text?
+	#Cursor.block()
+	#Cursor.set_cursor(Cursor.Type.WAIT, true)
+	G.dialog_line_started.emit()
 	
 	set_process_input(true)
 	text_show_started.emit()

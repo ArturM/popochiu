@@ -3,26 +3,27 @@ extends Node
 # ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 # warning-ignore-all:unused_signal
 
-signal hover_text_shown(info)
-signal system_text_shown(message)
-signal continue_clicked
-# TODO Rename this signal to unblocked or unlocked.
-signal freed
 signal blocked
-signal interface_hidden
-signal interface_shown
-signal history_opened
-signal save_requested(slot_text)
-signal load_requested
-signal continue_requested
-signal sound_settings_requested
+signal unblocked
+signal hidden
+signal shown
 signal mouse_entered_clickable(clickable: PopochiuClickable)
 signal mouse_exited_clickable(clickable: PopochiuClickable)
 signal mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem)
 signal mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem)
+signal dialog_line_started
+signal dialog_line_finished
 # NOTE Maybe add some signals for clicking objects and items
 #signal clicked_clickable(clickable: PopochiuClickable)
 #signal clicked_inventory_item(inventory_item: PopochiuInventoryItem)
+signal hover_text_shown(info: String)
+signal system_text_shown(message: String)
+signal continue_clicked # TODO deprecate this
+signal history_opened # TODO deprecate this
+signal save_requested(slot_text) # TODO deprecate this
+signal load_requested # TODO deprecate this
+signal continue_requested # TODO deprecate this
+signal sound_settings_requested # TODO deprecate this
 
 var is_blocked := false
 var template := ""
@@ -55,7 +56,7 @@ func show_system_text(msg: String) -> void:
 	await self.continue_clicked
 	
 #	if not E.playing_queue:
-#		done()
+#		unblock()
 
 
 ## Shows a text at the bottom of the screen. It is used to show players the
@@ -69,15 +70,15 @@ func show_hover_text(msg := '') -> void:
 func block() -> void:
 	is_blocked = true
 	
-	Cursor.set_cursor(Cursor.Type.WAIT)
-	Cursor.block()
+	#Cursor.set_cursor(Cursor.Type.WAIT)
+	#Cursor.block()
 	
 	blocked.emit()
 
 
-## Notifies that graphic interface elements can be unlocked (e.g. when a cutscene
+## Notifies that graphic interface elements can be unlocked (i.e. when a cutscene
 ## has ended).
-func done(wait := false) -> void:
+func unblock(wait := false) -> void:
 	is_blocked = false
 	
 	if wait:
@@ -85,14 +86,14 @@ func done(wait := false) -> void:
 		
 		if is_blocked: return
 	
-	Cursor.unlock()
-	Cursor.set_cursor()
+	#Cursor.unlock()
+	#Cursor.set_cursor()
 	
-	freed.emit()
+	unblocked.emit()
 
 ## Notifies that the graphic interface should hide.
 func hide_interface() -> void:
-	interface_hidden.emit()
+	hidden.emit()
 
 
 func queue_hide_interface() -> Callable:
@@ -101,7 +102,7 @@ func queue_hide_interface() -> Callable:
 
 # Notifies that the graphic interface should show.
 func show_interface() -> void:
-	interface_shown.emit()
+	shown.emit()
 
 
 func queue_show_interface() -> Callable:

@@ -166,7 +166,7 @@ func _ready() -> void:
 	# --------------------------------------------------------------------------
 	# Connect to singletons signals
 	C.character_spoke.connect(_on_character_spoke)
-	G.freed.connect(_on_gi_freed)
+	G.unblocked.connect(_on_gi_unblocked)
 	
 	redied.emit()
 
@@ -251,7 +251,7 @@ func queue(instructions: Array, show_gi := true) -> void:
 			await _eval_string(instruction as String)
 	
 	if show_gi:
-		G.done()
+		G.unblock()
 	
 	if _is_camera_shaking:
 		stop_camera_shake()
@@ -421,7 +421,7 @@ func room_readied(room: PopochiuRoom) -> void:
 		await get_tree().process_frame
 	
 	if not current_room.hide_gi:
-		G.done()
+		G.unblock()
 	
 	self.in_room = true
 	
@@ -680,6 +680,10 @@ func get_command_name(command_id: int, in_snake_case := false) -> String:
 	return command_name
 
 
+func get_current_command_name(in_snake_case := false) -> String:
+	return get_command_name(current_command, in_snake_case)
+
+
 #endregion
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░
 #region Set & Get
@@ -848,9 +852,9 @@ func _on_character_spoke(chr: PopochiuCharacter, msg := '') -> void:
 	})
 
 
-func _on_gi_freed() -> void:
+func _on_gi_unblocked() -> void:
 	clicked = null
-	current_command = 0
+	#current_command = 0
 
 
 func _command_fallback() -> void:

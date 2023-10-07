@@ -129,23 +129,23 @@ func show_helpers() -> void:
 	$WalkToHelper.show()
 
 
-func disable() -> Callable:
-	return func (): await disable_now()
+func queue_disable() -> Callable:
+	return func (): await disable()
 
 
 # Hides the Node and disables its interaction
-func disable_now() -> void:
+func disable() -> void:
 	self.visible = false
 	
 	await get_tree().process_frame
 
 
-func enable() -> Callable:
-	return func (): await enable_now()
+func queue_enable() -> Callable:
+	return func (): await enable()
 
 
 # Makes the Node visible and enables its interaction
-func enable_now() -> void:
+func enable() -> void:
 	self.visible = true
 	
 	await get_tree().process_frame
@@ -196,7 +196,9 @@ func on_command(button_idx: int) -> void:
 			use_fallback = true
 	
 	E.add_history({
-		action = suffix if command.is_empty() else G.get_command(E.current_command),
+		action = (suffix
+		if command.is_empty()
+		else G.get_command(E.current_command)),
 		target = description
 	})
 	

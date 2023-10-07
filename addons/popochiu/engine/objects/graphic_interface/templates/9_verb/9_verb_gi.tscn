@@ -177,13 +177,6 @@ offset_bottom = 57.0
 metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
-[node name="Caption" parent="DialogText" index="2"]
-visible = false
-offset_left = 16.0
-offset_top = -67.0
-offset_right = -16.0
-offset_bottom = -51.0
-
 [node name="SystemText" parent="." instance=ExtResource("4_ninsa")]
 visible = false
 layout_mode = 1

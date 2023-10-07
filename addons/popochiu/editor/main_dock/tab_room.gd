@@ -149,8 +149,9 @@ func scene_changed(scene_root: Node) -> void:
 					var row: PopochiuObjectRow = _create_object_row(
 						t,
 						char_name,
-						'res://popochiu/Characters/%s/Character%s.tscn' % [
-							char_name, char_name
+						'res://popochiu/characters/%s/character_%s.tscn' % [
+							char_name.to_snake_case(),
+							char_name.to_snake_case()
 						],
 						c.name
 					)

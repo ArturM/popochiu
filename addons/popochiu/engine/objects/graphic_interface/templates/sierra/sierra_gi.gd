@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if G.is_blocked: return
+	if G.is_blocked or D.current_dialog: return
 	
 	if event is InputEventMouseMotion:
 		if get_global_mouse_position().y < 16.0:
@@ -61,6 +61,24 @@ func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
 	if G.is_blocked: return
 	
 	G.show_hover_text()
+
+
+func _on_dialog_line_started() -> void:
+	Cursor.show_cursor("wait")
+	Cursor.block()
+
+
+func _on_dialog_line_finished() -> void:
+	Cursor.unlock()
+	Cursor.show_cursor("use" if D.current_dialog else E.get_current_command_name(true))
+
+
+func _on_dialog_started(_dialog: PopochiuDialog) -> void:
+	Cursor.show_cursor("use")
+
+
+func _on_dialog_finished(_dialog: PopochiuDialog) -> void:
+	Cursor.show_cursor(E.get_current_command_name(true))
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░

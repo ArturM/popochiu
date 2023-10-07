@@ -22,12 +22,6 @@ var items_states := {}
 var _item_instances := []
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
-func _ready() -> void:
-	#G.freed.connect(_on_gi_freed)
-	pass
-
-
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
 func clean_inventory(in_bg := false) -> void:
 	items.clear()
@@ -109,10 +103,3 @@ func is_item_in_inventory(item_name: String) -> bool:
 func is_full() -> bool:
 	return E.settings.inventory_limit > 0\
 	and E.settings.inventory_limit == items.size()
-
-
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
-func _on_gi_freed() -> void:
-	#NOTE: Doing this will fuck the Sierra inventory popup
-	#active = null
-	pass

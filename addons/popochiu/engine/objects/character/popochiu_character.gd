@@ -245,7 +245,7 @@ func say(dialog: String) -> void:
 	emotion = ''
 	idle()
 	
-	G.done(true)
+	G.unblock(true)
 
 
 func queue_grab() -> Callable:

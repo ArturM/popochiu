@@ -10,13 +10,7 @@ var suggested_command := NineVerbCommands.Commands.LOOK_AT
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 # When the node is clicked
 func _on_click() -> void:
-	# Replace the call to super.on_click() with your code.
-	# E.g. Make the player-controlled character walk to the Hotspot and then say
-	# something:
-#	await C.player.walk_to_clicked()
-#	await C.player.face_clicked()
-#	await C.player.say("Can't open it")
-	super.on_click()
+	D.Introspection.start()
 
 
 # When the node is right clicked
@@ -39,3 +33,11 @@ func _on_item_used(item: PopochiuInventoryItem) -> void:
 		await item.remove()
 		await C.player.face_down()
 		await C.player.say("I'm an adult...")
+
+
+func _on_look_at() -> void:
+	D.Introspection.start()
+
+
+func _on_look() -> void:
+	D.Introspection.start()

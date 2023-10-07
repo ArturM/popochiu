@@ -37,7 +37,7 @@ func _on_item_used(_item: PopochiuInventoryItem) -> void:
 		await C.player.say("[shake]Brrrrrr[/shake]")
 	
 	I.active = null
-	G.done()
+	G.unblock()
 
 
 # When an inventory item linked to this Prop (link_to_item) is removed from
@@ -53,7 +53,8 @@ func on_linked_item_discarded() -> void:
 
 # ---- 9 verb ------------------------------------------------------------------
 func _on_look_at() -> void:
-	await C.player.say("Can't open it, but well... who cares about windows anyway. [wave]I'll use the door[/wave].")
+	await C.player.say("Can't open it, but well... \
+who cares about windows anyway. [wave]I'll use the door[/wave].")
 	await C.player.say("So....")
 	await C.player.say("This is my TOY CAR!!!")
 
