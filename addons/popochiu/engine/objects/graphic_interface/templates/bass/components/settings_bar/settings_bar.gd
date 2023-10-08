@@ -28,6 +28,10 @@ func _ready() -> void:
 		(b as TextureButton).mouse_entered.connect(_disable_hide)
 		(b as TextureButton).mouse_exited.connect(_enable_hide)
 	
+	# Connect to singletons signals
+	G.blocked.connect(_on_graphic_interface_blocked)
+	G.unblocked.connect(_on_graphic_interface_unblocked)
+	
 	if not used_in_game:
 		hide()
 	
@@ -116,3 +120,13 @@ func _disable_hide() -> void:
 
 func _enable_hide() -> void:
 	_can_hide = true
+
+
+func _on_graphic_interface_blocked() -> void:
+	set_process_input(false)
+	hide()
+
+
+func _on_graphic_interface_unblocked() -> void:
+	set_process_input(true)
+	show()

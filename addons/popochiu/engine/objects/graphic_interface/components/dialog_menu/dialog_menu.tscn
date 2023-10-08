@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2awe"]
 bg_color = Color(0, 0, 0.6, 1)
 
-[node name="DialogMenu" type="PanelContainer"]
+[node name="DialogMenu" type="PanelContainer" groups=["popochiu_gui_component"]]
 custom_minimum_size = Vector2(0, 53)
 anchors_preset = 12
 anchor_top = 1.0

@@ -15,7 +15,9 @@ func _ready():
 	if not E.settings.inventory_always_visible:
 		position.y = _hide_y
 	
-	# Connect to singleton signals
+	# Connect to singletons signals
+	G.blocked.connect(_on_graphic_interface_blocked)
+	G.unblocked.connect(_on_graphic_interface_unblocked)
 	I.item_added.connect(_add_item)
 	I.item_removed.connect(_remove_item)
 	I.inventory_show_requested.connect(_show_and_hide)
@@ -113,6 +115,16 @@ func _on_tween_finished() -> void:
 
 func _change_cursor(item: PopochiuInventoryItem) -> void:
 	I.set_active_item(item)
+
+
+func _on_graphic_interface_blocked() -> void:
+	set_process_input(false)
+	hide()
+
+
+func _on_graphic_interface_unblocked() -> void:
+	set_process_input(true)
+	show()
 
 
 func _add_item(item: PopochiuInventoryItem, animate := true) -> void:
