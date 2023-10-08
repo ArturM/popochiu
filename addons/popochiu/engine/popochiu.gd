@@ -197,7 +197,7 @@ func _input(event: InputEvent) -> void:
 		
 		await tl.transition_finished
 		
-		G.continue_clicked.emit()
+		#G.continue_clicked.emit()
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

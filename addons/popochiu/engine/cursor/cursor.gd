@@ -15,6 +15,8 @@ enum Type {
 	WAIT,
 }
 
+@export var is_pixel_perfect := false
+
 var is_blocked := false
 
 
@@ -30,8 +32,15 @@ func _process(delta):
 		$AnimatedSprite2D.frame
 	) as Texture2D).get_size()
 	
-	$AnimatedSprite2D.position = $AnimatedSprite2D.get_global_mouse_position()
-	$Sprite2D.position = $AnimatedSprite2D.get_global_mouse_position()
+	var mouse_position: Vector2 = $AnimatedSprite2D.get_global_mouse_position()
+	
+	if is_pixel_perfect:
+		# Thanks to @whyshchuck
+		$AnimatedSprite2D.position = Vector2i(mouse_position)
+		$Sprite2D.position = Vector2i(mouse_position)
+	else:
+		$AnimatedSprite2D.position = mouse_position
+		$Sprite2D.position = mouse_position
 	
 	if $AnimatedSprite2D.position.x < 1.0:
 		$AnimatedSprite2D.position.x = 1.0

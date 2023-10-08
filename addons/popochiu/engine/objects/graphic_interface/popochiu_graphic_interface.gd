@@ -15,6 +15,8 @@ func _ready():
 	G.unblocked.connect(_on_unblocked)
 	G.hidden.connect(_on_hidden)
 	G.shown.connect(_on_shown)
+	G.system_text_shown.connect(_on_system_text_shown)
+	G.system_text_hidden.connect(_on_system_text_hidden)
 	G.mouse_entered_clickable.connect(_on_mouse_entered_clickable)
 	G.mouse_exited_clickable.connect(_on_mouse_exited_clickable)
 	G.mouse_entered_inventory_item.connect(_on_mouse_entered_inventory_item)
@@ -43,6 +45,14 @@ func _on_hidden() -> void:
 
 
 func _on_shown() -> void:
+	pass
+
+
+func _on_system_text_shown(msg: String) -> void:
+	pass
+
+
+func _on_system_text_hidden() -> void:
 	pass
 
 

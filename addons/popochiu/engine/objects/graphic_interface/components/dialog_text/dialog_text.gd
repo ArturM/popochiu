@@ -63,7 +63,6 @@ func _input(event: InputEvent) -> void:
 	if e.is_pressed() and e.button_index == MOUSE_BUTTON_LEFT:
 		if visible_ratio == 1.0:
 			disappear()
-			G.continue_clicked.emit()
 		else:
 			stop()
 #endregion
@@ -236,10 +235,9 @@ func disappear() -> void:
 	
 	size = get_meta(DFLT_SIZE)
 	
-	G.dialog_line_finished.emit()
-	
 	set_process_input(false)
 	text_show_finished.emit()
+	G.dialog_line_finished.emit()
 
 
 func change_speed() -> void:
@@ -340,7 +338,6 @@ func _show_icon() -> void:
 func _continue(forced_continue := false) -> void:
 	if E.settings.auto_continue_text or forced_continue:
 		disappear()
-		G.continue_clicked.emit()
 
 
 func _on_dialog_style_changed() -> void:

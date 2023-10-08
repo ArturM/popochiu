@@ -27,6 +27,10 @@ content_margin_top = 4.0
 content_margin_right = 8.0
 content_margin_bottom = 6.0
 bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 corner_detail = 4
 anti_aliasing = false
@@ -182,7 +186,6 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
 [node name="SystemText" parent="." instance=ExtResource("4_ninsa")]
-visible = false
 layout_mode = 1
 offset_left = 39.0
 offset_top = -10.0

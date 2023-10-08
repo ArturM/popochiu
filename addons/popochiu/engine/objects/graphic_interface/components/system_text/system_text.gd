@@ -46,13 +46,12 @@ func appear() -> void:
 func close() -> void:
 	set_process_input(false)
 	
-	G.continue_clicked.emit()
-	
 	clear()
 	text = ""
 	size = get_meta(DFLT_SIZE)
 	
 	hide()
+	G.system_text_hidden.emit()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░

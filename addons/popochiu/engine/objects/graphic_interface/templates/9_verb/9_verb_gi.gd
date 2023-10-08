@@ -38,6 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_blocked(props := { blocking = true }) -> void:
 	E.current_command = -1
 	G.show_hover_text()
+	$BottomContainer.hide()
 	
 	set_process_unhandled_input(false)
 
@@ -51,11 +52,20 @@ func _on_unblocked() -> void:
 	
 	E.current_command = NineVerbCommands.Commands.WALK_TO
 	G.show_hover_text()
+	$BottomContainer.show()
 	
 	# Make all commands to look as no pressed
 	commands_container.unpress_commands()
 	
 	set_process_unhandled_input(true)
+
+
+func _on_system_text_shown(_msg: String) -> void:
+	Cursor.show_cursor("wait")
+
+
+func _on_system_text_hidden() -> void:
+	Cursor.show_cursor("normal")
 
 
 func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
@@ -83,7 +93,7 @@ func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
 	
 	if clickable.get("suggested_command"):
 		commands_container.highlight_command(clickable.suggested_command, false)
-	Cursor.show_cursor('normal')
+	Cursor.show_cursor("normal")
 	
 	if I.active: return
 	G.show_hover_text()
@@ -94,7 +104,7 @@ func _on_mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem) -> 
 		E.current_command = NineVerbCommands.Commands.LOOK_AT
 	
 	commands_container.highlight_command(NineVerbCommands.Commands.LOOK_AT)
-	Cursor.show_cursor('active')
+	Cursor.show_cursor("active")
 	
 	if I.active:
 		if (
@@ -102,7 +112,7 @@ func _on_mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem) -> 
 			and I.active != inventory_item
 		):
 			G.show_hover_text(
-				'%s %s in %s' % [
+				"%s %s in %s" % [
 					G.get_command(E.current_command),
 					I.active.description,
 					inventory_item.description
@@ -117,7 +127,7 @@ func _on_mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem) -> v
 		E.current_command = NineVerbCommands.Commands.WALK_TO
 	
 	commands_container.highlight_command(NineVerbCommands.Commands.LOOK_AT, false)
-	Cursor.show_cursor('normal')
+	Cursor.show_cursor("normal")
 	
 	if I.active:
 		G.show_hover_text("Use %s in" % I.active.description)
@@ -136,12 +146,10 @@ func _on_dialog_line_finished() -> void:
 
 func _on_dialog_started(_dialog: PopochiuDialog) -> void:
 	Cursor.show_cursor("use")
-	$BottomContainer.hide()
 
 
 func _on_dialog_finished(_dialog: PopochiuDialog) -> void:
 	Cursor.show_cursor("normal")
-	$BottomContainer.show()
 
 
 #endregion

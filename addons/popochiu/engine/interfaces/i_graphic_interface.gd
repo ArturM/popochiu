@@ -7,18 +7,18 @@ signal blocked
 signal unblocked
 signal hidden
 signal shown
-signal continue_clicked # TODO change this by a clearer name
 signal mouse_entered_clickable(clickable: PopochiuClickable)
 signal mouse_exited_clickable(clickable: PopochiuClickable)
 signal mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem)
 signal mouse_exited_inventory_item(inventory_item: PopochiuInventoryItem)
 signal dialog_line_started
 signal dialog_line_finished
+signal hover_text_shown(message: String)
+signal system_text_shown(message: String)
+signal system_text_hidden
 # NOTE Maybe add some signals for clicking objects and items
 #signal clicked_clickable(clickable: PopochiuClickable)
 #signal clicked_inventory_item(inventory_item: PopochiuInventoryItem)
-signal hover_text_shown(info: String)
-signal system_text_shown(message: String)
 signal history_opened # TODO deprecate this
 signal save_requested(slot_text) # TODO deprecate this
 signal load_requested # TODO deprecate this
@@ -44,8 +44,8 @@ func queue_show_system_text(msg: String) -> Callable:
 # give instructions to players. The visual style of the node that shows this text
 # can be modified in DisplayBox.tscn.
 func show_system_text(msg: String) -> void:
-#	if not E.playing_queue:
-#		block()
+	if not E.playing_queue:
+		block()
 	
 	if E.cutscene_skipped:
 		await get_tree().process_frame
@@ -53,10 +53,10 @@ func show_system_text(msg: String) -> void:
 	
 	system_text_shown.emit(E.get_text(msg))
 	
-	await self.continue_clicked
+	await system_text_hidden
 	
-#	if not E.playing_queue:
-#		unblock()
+	if not E.playing_queue:
+		unblock()
 
 
 ## Shows a text at the bottom of the screen. It is used to show players the
