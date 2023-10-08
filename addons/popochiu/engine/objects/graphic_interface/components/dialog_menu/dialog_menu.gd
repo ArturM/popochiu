@@ -17,15 +17,21 @@ var current_options := []
 var _max_height := 0.0
 var _visible_options := 0
 
-@onready var _panel: Container = find_child('Panel')
-@onready var _options: Container = find_child('Options')
+#@onready var dialog_options_panel: Container = %DialogOptionsPanel
+@onready var dialog_options_container: VBoxContainer = %DialogOptionsContainer
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
+	for child in dialog_options_container.get_children():
+		child.queue_free()
+	
+	custom_minimum_size = Vector2.ZERO
+	
+	# Connect to own signals
 	gui_input.connect(_clicked)
 	
-	# Connect to IDialog signals
+	# Connect to autoloads signals
 	D.dialog_options_requested.connect(_create_options.bind(true))
 	D.inline_dialog_requested.connect(_create_inline_options)
 	D.dialog_finished.connect(remove_options)
@@ -79,7 +85,7 @@ func _create_options(options := [], autoshow := false) -> void:
 		
 		btn.pressed.connect(_on_option_clicked.bind(dialog_option))
 
-		_options.add_child(btn)
+		dialog_options_container.add_child(btn)
 
 		if dialog_option.disabled or not dialog_option.visible:
 			btn.hide()
@@ -96,7 +102,7 @@ func _create_options(options := [], autoshow := false) -> void:
 	
 	await get_tree().process_frame
 
-	_panel.custom_minimum_size.y = min(_options.size.y, _max_height)
+	custom_minimum_size.y = min(dialog_options_container.size.y, _max_height)
 
 
 func remove_options(_dialog: PopochiuDialog = null) -> void:
@@ -105,21 +111,25 @@ func remove_options(_dialog: PopochiuDialog = null) -> void:
 	if not current_options.is_empty():
 		current_options.clear()
 
-		for btn in _options.get_children():
-			_options.remove_child(btn as Button)
-			(btn as Button).call_deferred('free')
+		for btn in dialog_options_container.get_children():
+			btn.queue_free()
 	
 	await get_tree().process_frame
-
-	_panel.size.y = 0
-	_options.size.y = 0
+	
+	#custom_minimum_size.y = 0
+	size.y = 0
+	dialog_options_container.size.y = 0
 
 
 func show_options() -> void:
+	G.block()
+	
 	show()
 	shown.emit()
 
 
 func _on_option_clicked(opt: PopochiuDialogOption) -> void:
+	G.unblock()
+	
 	hide()
 	D.option_selected.emit(opt)

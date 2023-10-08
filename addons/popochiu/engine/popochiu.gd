@@ -166,7 +166,7 @@ func _ready() -> void:
 	# --------------------------------------------------------------------------
 	# Connect to singletons signals
 	C.character_spoke.connect(_on_character_spoke)
-	G.unblocked.connect(_on_gi_unblocked)
+	G.unblocked.connect(_on_graphic_interface_unblocked)
 	
 	redied.emit()
 
@@ -844,15 +844,13 @@ func _queueable(
 
 
 func _on_character_spoke(chr: PopochiuCharacter, msg := '') -> void:
-	G.block()
-	
 	add_history({
 		character = chr,
 		text = msg
 	})
 
 
-func _on_gi_unblocked() -> void:
+func _on_graphic_interface_unblocked() -> void:
 	clicked = null
 	#current_command = 0
 

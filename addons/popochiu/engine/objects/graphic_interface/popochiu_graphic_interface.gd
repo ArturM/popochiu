@@ -11,10 +11,10 @@ var commands: RefCounted = null
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready():
 	# Connect to singleton signals
-	G.blocked.connect(_on_gi_blocked)
-	G.unblocked.connect(_on_gi_unblocked)
-	G.hidden.connect(_hide_panels)
-	G.shown.connect(_show_panels)
+	G.blocked.connect(_on_blocked)
+	G.unblocked.connect(_on_unblocked)
+	G.hidden.connect(_on_hidden)
+	G.shown.connect(_on_shown)
 	G.mouse_entered_clickable.connect(_on_mouse_entered_clickable)
 	G.mouse_exited_clickable.connect(_on_mouse_exited_clickable)
 	G.mouse_entered_inventory_item.connect(_on_mouse_entered_inventory_item)
@@ -30,19 +30,19 @@ func _ready():
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 #region virtual
-func _on_gi_blocked(props := { blocking = true }) -> void:
+func _on_blocked(props := { blocking = true }) -> void:
 	pass
 
 
-func _on_gi_unblocked() -> void:
+func _on_unblocked() -> void:
 	pass
 
 
-func _hide_panels() -> void:
+func _on_hidden() -> void:
 	pass
 
 
-func _show_panels() -> void:
+func _on_shown() -> void:
 	pass
 
 

@@ -7,6 +7,7 @@ signal blocked
 signal unblocked
 signal hidden
 signal shown
+signal continue_clicked # TODO change this by a clearer name
 signal mouse_entered_clickable(clickable: PopochiuClickable)
 signal mouse_exited_clickable(clickable: PopochiuClickable)
 signal mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem)
@@ -18,7 +19,6 @@ signal dialog_line_finished
 #signal clicked_inventory_item(inventory_item: PopochiuInventoryItem)
 signal hover_text_shown(info: String)
 signal system_text_shown(message: String)
-signal continue_clicked # TODO deprecate this
 signal history_opened # TODO deprecate this
 signal save_requested(slot_text) # TODO deprecate this
 signal load_requested # TODO deprecate this

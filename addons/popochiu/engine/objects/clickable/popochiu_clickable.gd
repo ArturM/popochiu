@@ -40,11 +40,13 @@ func _ready():
 
 	if clickable:
 		# Connect to own signals
-		mouse_entered.connect(_toggle_description.bind(true))
-		mouse_exited.connect(_toggle_description.bind(false))
+		mouse_entered.connect(_on_mouse_entered)
+		mouse_exited.connect(_on_mouse_exited)
 		
 		# Connect to singleton signals
 		E.language_changed.connect(_translate)
+		G.blocked.connect(_on_graphic_interface_blocked)
+		G.unblocked.connect(_on_graphic_interface_unblocked)
 	
 	set_process_unhandled_input(false)
 	_translate()
@@ -209,24 +211,27 @@ func on_command(button_idx: int) -> void:
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
-func _toggle_description(display: bool) -> void:
-	set_process_unhandled_input(display)
+func _on_mouse_entered() -> void:
+	set_process_unhandled_input(true)
 	
-	if display:
-		if E.hovered and is_instance_valid(E.hovered) and (
-			E.hovered.get_parent() == self or get_index() < E.hovered.get_index()
-		):
-			E.add_hovered(self, true)
-			return
-		
-		E.add_hovered(self)
-		
-		G.mouse_entered_clickable.emit(self)
-	else:
-		last_click_button = -1
-		
-		if E.remove_hovered(self):
-			G.mouse_exited_clickable.emit(self)
+	if E.hovered and is_instance_valid(E.hovered) and (
+		E.hovered.get_parent() == self or get_index() < E.hovered.get_index()
+	):
+		E.add_hovered(self, true)
+		return
+	
+	E.add_hovered(self)
+	
+	G.mouse_entered_clickable.emit(self)
+
+
+func _on_mouse_exited() -> void:
+	set_process_unhandled_input(false)
+	
+	last_click_button = -1
+	
+	if E.remove_hovered(self):
+		G.mouse_exited_clickable.emit(self)
 
 
 func _toggle_input() -> void:
@@ -242,6 +247,16 @@ func _translate() -> void:
 	description = E.get_text(
 		'%s-%s' % [get_tree().current_scene.name, _description_code]
 	)
+
+
+func _on_graphic_interface_blocked() -> void:
+	input_pickable = false
+	set_process_unhandled_input(false)
+
+
+func _on_graphic_interface_unblocked() -> void:
+	input_pickable = true
+	set_process_unhandled_input(true)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░

@@ -231,6 +231,12 @@ func say(dialog: String) -> void:
 		await get_tree().process_frame
 		return
 	
+	# Blocks the graphic interface so players can't interact with it while the
+	# dialog line plays
+	# NOTE: What if players want NPCs talking without blocking the graphic
+	# 		interface?
+	G.block()
+	
 	# Call the virtual that plays the talk animation
 	_play_talk()
 	
@@ -245,6 +251,8 @@ func say(dialog: String) -> void:
 	emotion = ''
 	idle()
 	
+	# Unblock the graphic interface with a delay to prevent cursor flickering
+	# (rapid state changes) between multiple lines of text or actions in sequence
 	G.unblock(true)
 
 

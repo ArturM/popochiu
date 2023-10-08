@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bd0fika4hyhvw"]
+[gd_scene load_steps=41 format=3 uid="uid://bd0fika4hyhvw"]
 
 [ext_resource type="Theme" uid="uid://6vk2wej0sape" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/resources/9_verb_theme.tres" id="1_qh2tb"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/9_verb_gi.gd" id="2_v01ea"]
@@ -64,6 +64,10 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5757h"]
 atlas = ExtResource("12_qp2oq")
 region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sf8c"]
+bg_color = Color(0, 0, 0, 1)
+anti_aliasing = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ckh2"]
 atlas = ExtResource("11_y5a23")
@@ -417,8 +421,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="DialogMenu" parent="." instance=ExtResource("7_n3yn3")]
+visible = false
 layout_mode = 1
-metadata/_edit_lock_ = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_5sf8c")
+default = Color(0.698039, 0.698039, 0.698039, 1)
+used = Color(0.482353, 0.482353, 0.482353, 1)
 
 [node name="BtnSettings" type="TextureButton" parent="."]
 texture_filter = 1
@@ -436,7 +443,7 @@ texture_normal = ExtResource("13_80hcp")
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xtf0b")
-animation = &"active"
+animation = &"idle"
 
 [node name="HoverTextCursor" parent="." instance=ExtResource("4_ljv1q")]
 unique_name_in_owner = true

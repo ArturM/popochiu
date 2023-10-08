@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if G.is_blocked or D.current_dialog: return
+	if D.current_dialog: return
 	
 	if event is InputEventMouseMotion:
 		if get_global_mouse_position().y < 16.0:
@@ -46,6 +46,14 @@ func _input(event: InputEvent) -> void:
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
+func _on_blocked(props := { blocking = true }) -> void:
+	set_process_input(false)
+
+
+func _on_unblocked() -> void:
+	set_process_input(true)
+
+
 func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 	if G.is_blocked: return
 	
@@ -64,13 +72,11 @@ func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
 
 
 func _on_dialog_line_started() -> void:
-	Cursor.show_cursor("wait")
-	Cursor.block()
+	Cursor.hide()
 
 
 func _on_dialog_line_finished() -> void:
-	Cursor.unlock()
-	Cursor.show_cursor("use" if D.current_dialog else E.get_current_command_name(true))
+	Cursor.show()
 
 
 func _on_dialog_started(_dialog: PopochiuDialog) -> void:
