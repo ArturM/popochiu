@@ -66,7 +66,7 @@ func close() -> void:
 	
 	if (E.gi as PopochiuGraphicInterface).popups_stack.is_empty():
 		G.unblock()
-		Cursor.unlock()
+		Cursor.unblock()
 	
 	_close()
 	

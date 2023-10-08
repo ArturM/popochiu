@@ -8,7 +8,9 @@ func _open() -> void:
 
 func _close() -> void:
 	if I.active:
-		Cursor.set_cursor_texture(I.active.texture)
+		Cursor.set_secondary_cursor_texture(I.active.texture)
+	else:
+		Cursor.show_cursor(E.get_current_command_name(true))
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░

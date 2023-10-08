@@ -22,13 +22,11 @@ func _input(event: InputEvent) -> void:
 		if get_global_mouse_position().y < 16.0:
 			if not I.active:
 				Cursor.show_cursor("use")
-			Cursor.block()
 			
 			$Menu.show()
 		elif get_global_mouse_position().y > $Menu.size.y and $Menu.visible:
-			Cursor.unlock()
 			if not I.active:
-				Cursor.show_cursor(G.get_command_description(E.current_command))
+				Cursor.show_cursor(E.get_current_command_name(true))
 			
 			$Menu.hide()
 	elif event is InputEventMouseButton and event.is_pressed():

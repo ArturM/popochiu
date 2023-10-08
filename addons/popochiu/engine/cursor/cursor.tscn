@@ -198,14 +198,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Cursor" type="CanvasLayer"]
+[node name="CursorLayer" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_n3epl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="MainCursor" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("1")
 animation = &"active"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="SecondaryCursor" type="Sprite2D" parent="."]
 texture_filter = 1

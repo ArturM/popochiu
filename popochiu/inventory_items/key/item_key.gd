@@ -50,8 +50,8 @@ func _on_use() -> void:
 
 # ---- Sierra ------------------------------------------------------------------
 func _on_interact() -> void:
-	#I.active = self
-	selected.emit(self)
+	I.active = self
+	#selected.emit(self)
 
 
 func _on_look() -> void:

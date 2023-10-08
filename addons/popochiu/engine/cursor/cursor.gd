@@ -21,39 +21,69 @@ var is_blocked := false
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
+#region Godot
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	set_cursor()
 
 
 func _process(delta):
-	var texture_size := ($AnimatedSprite2D.sprite_frames.get_frame_texture(
-		$AnimatedSprite2D.animation,
-		$AnimatedSprite2D.frame
+	var texture_size := ($MainCursor.sprite_frames.get_frame_texture(
+		$MainCursor.animation,
+		$MainCursor.frame
 	) as Texture2D).get_size()
 	
-	var mouse_position: Vector2 = $AnimatedSprite2D.get_global_mouse_position()
+	var mouse_position: Vector2 = $MainCursor.get_global_mouse_position()
 	
 	if is_pixel_perfect:
 		# Thanks to @whyshchuck
-		$AnimatedSprite2D.position = Vector2i(mouse_position)
-		$Sprite2D.position = Vector2i(mouse_position)
+		$MainCursor.position = Vector2i(mouse_position)
+		$SecondaryCursor.position = Vector2i(mouse_position)
 	else:
-		$AnimatedSprite2D.position = mouse_position
-		$Sprite2D.position = mouse_position
+		$MainCursor.position = mouse_position
+		$SecondaryCursor.position = mouse_position
 	
-	if $AnimatedSprite2D.position.x < 1.0:
-		$AnimatedSprite2D.position.x = 1.0
-	elif $AnimatedSprite2D.position.x > 318.0:
-		$AnimatedSprite2D.position.x = 318.0
+	if $MainCursor.position.x < 1.0:
+		$MainCursor.position.x = 1.0
+	elif $MainCursor.position.x > 318.0:
+		$MainCursor.position.x = 318.0
 	
-	if $AnimatedSprite2D.position.y < 1.0:
-		$AnimatedSprite2D.position.y = 1.0
-	elif $AnimatedSprite2D.position.y > 178.0:
-		$AnimatedSprite2D.position.y = 178.0
+	if $MainCursor.position.y < 1.0:
+		$MainCursor.position.y = 1.0
+	elif $MainCursor.position.y > 178.0:
+		$MainCursor.position.y = 178.0
 
 
+#endregion
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
+func show_cursor(anim_name: String, ignore_block := false) -> void:
+	if not ignore_block and is_blocked: return
+	
+	if not $MainCursor.sprite_frames.has_animation(anim_name):
+		prints("[Popochiu] Cursor has no animation: %s" % anim_name)
+		return
+	
+	$MainCursor.play(anim_name)
+	$MainCursor.show()
+	$SecondaryCursor.hide()
+
+
+func set_secondary_cursor_texture(texture: Texture2D, ignore_block := false) -> void:
+	if not ignore_block and is_blocked: return
+	
+	$SecondaryCursor.texture = texture
+	
+	#$MainCursor.hide()
+	$SecondaryCursor.show()
+
+
+func remove_secondary_cursor_texture() -> void:
+	$SecondaryCursor.texture = null
+	
+	#$MainCursor.show()
+	$SecondaryCursor.hide()
+
+
 func set_cursor(type := Type.IDLE, ignore_block := false) -> void:
 	if not ignore_block and is_blocked: return
 	
@@ -68,61 +98,35 @@ func set_cursor(type := Type.IDLE, ignore_block := false) -> void:
 	
 	var anim_name = Type.keys()[type]
 	
-	if not $AnimatedSprite2D.sprite_frames.has_animation(anim_name.to_lower()):
+	if not $MainCursor.sprite_frames.has_animation(anim_name.to_lower()):
 		prints("[Popochiu] Cursor has no animation: %s" % anim_name)
 		return
 	
-	$AnimatedSprite2D.play(anim_name.to_lower())
-
-
-func set_cursor_texture(texture: Texture2D, ignore_block := false) -> void:
-	if not ignore_block and is_blocked: return
-	
-	$AnimatedSprite2D.hide()
-	$Sprite2D.texture = texture
-	$Sprite2D.show()
-
-
-func remove_cursor_texture() -> void:
-	$Sprite2D.texture = null
-	$Sprite2D.hide()
-	$AnimatedSprite2D.show()
+	$MainCursor.play(anim_name.to_lower())
 
 
 func toggle_visibility(is_visible: bool) -> void:
-	$AnimatedSprite2D.visible = is_visible
-	$Sprite2D.visible = is_visible
+	$MainCursor.visible = is_visible
+	$SecondaryCursor.visible = is_visible
 
 
 func block() -> void:
 	is_blocked = true
 
 
-func unlock() -> void:
+func unblock() -> void:
 	is_blocked = false
 
 
 func scale_cursor(factor: Vector2) -> void:
-	$Sprite2D.scale = Vector2.ONE * factor
-	$AnimatedSprite2D.scale = Vector2.ONE * factor
+	$SecondaryCursor.scale = Vector2.ONE * factor
+	$MainCursor.scale = Vector2.ONE * factor
 
 
 func get_position() -> Vector2:
-	return $Sprite2D.position
+	return $SecondaryCursor.position
 
 
 func replace_frames(new_node: AnimatedSprite2D) -> void:
-	$AnimatedSprite2D.sprite_frames = new_node.sprite_frames
-	$AnimatedSprite2D.offset = new_node.offset
-
-
-func show_cursor(anim_name: String, ignore_block := false) -> void:
-	if not ignore_block and is_blocked: return
-	
-	if not $AnimatedSprite2D.sprite_frames.has_animation(anim_name):
-		prints("[Popochiu] Cursor has no animation: %s" % anim_name)
-		return
-	
-	$AnimatedSprite2D.play(anim_name)
-	$AnimatedSprite2D.show()
-	$Sprite2D.hide()
+	$MainCursor.sprite_frames = new_node.sprite_frames
+	$MainCursor.offset = new_node.offset
