@@ -12,4 +12,4 @@ func _on_command_selected() -> void:
 		(b as TextureButton).set_pressed_no_signal(false)
 	
 	(get_child(E.current_command) as TextureButton).set_pressed_no_signal(true)
-	Cursor.show_cursor(G.get_command_description(E.current_command))
+	Cursor.show_cursor(E.get_current_command_name(true))

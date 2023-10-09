@@ -53,7 +53,7 @@ func open() -> void:
 		scale = Vector2.ONE * E.scale
 	
 	G.block()
-	Cursor.set_cursor(Cursor.Type.USE, true)
+	Cursor.show_cursor("gui", true)
 	
 	(E.gi as PopochiuGraphicInterface).popups_stack.append(self)
 	

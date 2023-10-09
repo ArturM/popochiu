@@ -141,11 +141,11 @@ func _on_dialog_line_started() -> void:
 
 
 func _on_dialog_line_finished() -> void:
-	Cursor.show_cursor("use" if D.current_dialog else "normal")
+	Cursor.show_cursor("gui" if D.current_dialog else "normal")
 
 
 func _on_dialog_started(_dialog: PopochiuDialog) -> void:
-	Cursor.show_cursor("use")
+	Cursor.show_cursor("gui")
 
 
 func _on_dialog_finished(_dialog: PopochiuDialog) -> void:

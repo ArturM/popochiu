@@ -631,9 +631,11 @@ func remove_hovered(node: PopochiuClickable) -> bool:
 	_hovered_queue.erase(node)
 	
 	if not _hovered_queue.is_empty() and is_instance_valid(_hovered_queue[-1]):
-		var pc: PopochiuClickable = _hovered_queue[-1]
-		G.show_hover_text(pc.description)
-		Cursor.set_cursor(pc.cursor)
+		var clickable: PopochiuClickable = _hovered_queue[-1]
+		G.show_hover_text(clickable.description)
+		
+		if clickable.get("cursor"):
+			Cursor.show_cursor(clickable.cursor)
 		
 		return false
 	

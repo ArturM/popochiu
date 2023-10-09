@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfa511cxg31g5"
-path="res://.godot/imported/9verb_inventory_up.png-9f491b3d33e69a9d821b99b9b13f7ff8.ctex"
+uid="uid://s4phlorab5ds"
+path="res://.godot/imported/inventory_grid_down_button.png-44398d9028a863c1d9c9a1a5181113f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_container/sprites/9verb_inventory_up.png"
-dest_files=["res://.godot/imported/9verb_inventory_up.png-9f491b3d33e69a9d821b99b9b13f7ff8.ctex"]
+source_file="res://addons/popochiu/engine/objects/graphic_interface/components/inventory_grid/sprites/inventory_grid_down_button.png"
+dest_files=["res://.godot/imported/inventory_grid_down_button.png-44398d9028a863c1d9c9a1a5181113f9.ctex"]
 
 [params]
 

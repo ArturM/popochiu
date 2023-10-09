@@ -20,11 +20,13 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion:
 		if get_global_mouse_position().y < 16.0:
+			# Show the top menu
 			if not I.active:
-				Cursor.show_cursor("use")
+				Cursor.show_cursor("gui")
 			
 			$Menu.show()
 		elif get_global_mouse_position().y > $Menu.size.y and $Menu.visible:
+			# Hide the top menu
 			if not I.active:
 				Cursor.show_cursor(E.get_current_command_name(true))
 			
@@ -78,7 +80,7 @@ func _on_dialog_line_finished() -> void:
 
 
 func _on_dialog_started(_dialog: PopochiuDialog) -> void:
-	Cursor.show_cursor("use")
+	Cursor.show_cursor("gui")
 
 
 func _on_dialog_finished(_dialog: PopochiuDialog) -> void:

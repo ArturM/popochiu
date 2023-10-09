@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+# TODO: Deprecate this? I'll leave it here while we merge the refactor for the
+# 		creation popups because in those the Cursor.Type enum is used.
 enum Type {
 	NONE,
 	ACTIVE,
@@ -24,7 +26,7 @@ var is_blocked := false
 #region Godot
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	set_cursor()
+	show_cursor()
 
 
 func _process(delta):
@@ -56,7 +58,7 @@ func _process(delta):
 
 #endregion
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
-func show_cursor(anim_name: String, ignore_block := false) -> void:
+func show_cursor(anim_name := "normal", ignore_block := false) -> void:
 	if not ignore_block and is_blocked: return
 	
 	if not $MainCursor.sprite_frames.has_animation(anim_name):
@@ -82,27 +84,6 @@ func remove_secondary_cursor_texture() -> void:
 	
 	#$MainCursor.show()
 	$SecondaryCursor.hide()
-
-
-func set_cursor(type := Type.IDLE, ignore_block := false) -> void:
-	if not ignore_block and is_blocked: return
-	
-	# TODO: Temporary fix for mouse cursor change. This need improvements.
-	#if E.current_command > -1:
-		#show_cursor(G.get_command_description(E.current_command))
-		#return
-	
-	if not Type.values().has(type):
-		prints("[Popochiu] Cursor has no type: %s" % type)
-		return
-	
-	var anim_name = Type.keys()[type]
-	
-	if not $MainCursor.sprite_frames.has_animation(anim_name.to_lower()):
-		prints("[Popochiu] Cursor has no animation: %s" % anim_name)
-		return
-	
-	$MainCursor.play(anim_name.to_lower())
 
 
 func toggle_visibility(is_visible: bool) -> void:

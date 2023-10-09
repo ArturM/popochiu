@@ -1,6 +1,7 @@
+class_name InventoryGrid
 extends HBoxContainer
 
-const SLOT := preload("9_verb_slot.tscn")
+const SLOT := preload("inventory_grid_slot.tscn")
 
 @export var visible_rows := 2
 

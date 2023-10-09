@@ -11,17 +11,18 @@ func _ready() -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 func _on_system_text_shown(msg: String) -> void:
 	G.show_hover_text()
-	Cursor.set_cursor(Cursor.Type.WAIT, true)
+	Cursor.show_cursor("wait", true)
 
 
 func _on_system_text_hidden() -> void:
-	Cursor.set_cursor()
+	Cursor.show_cursor()
 
 
 func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 	if G.is_blocked: return
 	
-	Cursor.set_cursor(clickable.cursor)
+	if clickable.get("cursor"):
+		Cursor.show_cursor(clickable.cursor)
 	
 	if not I.active:
 		G.show_hover_text(clickable.description)
@@ -34,24 +35,24 @@ func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 func _on_mouse_exited_clickable(clickable: PopochiuClickable) -> void:
 	if G.is_blocked: return
 	
-	Cursor.set_cursor()
+	Cursor.show_cursor()
 	G.show_hover_text()
 
 
 func _on_dialog_line_started() -> void:
-	Cursor.set_cursor(Cursor.Type.WAIT)
+	Cursor.show_cursor("wait")
 
 
 func _on_dialog_line_finished() -> void:
-	Cursor.set_cursor(Cursor.Type.USE if D.current_dialog else Cursor.Type.IDLE)
+	Cursor.show_cursor("use" if D.current_dialog else "normal")
 
 
 func _on_dialog_started(dialog: PopochiuDialog) -> void:
-	Cursor.set_cursor(Cursor.Type.USE)
+	Cursor.show_cursor("use")
 	G.show_hover_text()
 
 
 func _on_dialog_finished(dialog: PopochiuDialog) -> void:
-	Cursor.set_cursor()
+	Cursor.show_cursor()
 
 

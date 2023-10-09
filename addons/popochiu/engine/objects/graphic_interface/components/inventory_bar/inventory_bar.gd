@@ -156,7 +156,7 @@ func _remove_item(item: PopochiuInventoryItem, animate := true) -> void:
 	_box.remove_child(item)
 	
 	if not E.settings.inventory_always_visible:
-		Cursor.set_cursor()
+		Cursor.show_cursor()
 		G.show_hover_text()
 		
 		if animate:

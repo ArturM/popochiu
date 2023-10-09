@@ -26,6 +26,93 @@
 [ext_resource type="PackedScene" uid="uid://cndputybyj57n" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/save_and_load/save_and_load_popup.tscn" id="21_1xmwq"]
 [ext_resource type="PackedScene" uid="uid://bnjo044fkdcq7" path="res://addons/popochiu/engine/objects/graphic_interface/components/popups/quit/quit_popup.tscn" id="24_50bps"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyqmk"]
+atlas = ExtResource("13_udys2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo8dr"]
+atlas = ExtResource("13_udys2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxgj0"]
+atlas = ExtResource("13_udys2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3f06"]
+atlas = ExtResource("13_udys2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvutg"]
+atlas = ExtResource("13_udys2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlutb"]
+atlas = ExtResource("13_udys2")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0opo"]
+atlas = ExtResource("13_udys2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eo6w8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyqmk")
+}],
+"loop": true,
+"name": &"gui",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xo8dr")
+}],
+"loop": true,
+"name": &"interact",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxgj0")
+}],
+"loop": true,
+"name": &"look",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3f06")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvutg")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlutb")
+}],
+"loop": true,
+"name": &"wait",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0opo")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecos1"]
 content_margin_left = 6.0
 content_margin_right = 6.0
@@ -125,93 +212,6 @@ region = Rect2(0, 32, 32, 32)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfmxi"]
 bg_color = Color(0.337255, 0.67451, 0.301961, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p3f06"]
-atlas = ExtResource("13_udys2")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xo8dr"]
-atlas = ExtResource("13_udys2")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yxgj0"]
-atlas = ExtResource("13_udys2")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvutg"]
-atlas = ExtResource("13_udys2")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vyqmk"]
-atlas = ExtResource("13_udys2")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hlutb"]
-atlas = ExtResource("13_udys2")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e0opo"]
-atlas = ExtResource("13_udys2")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_eo6w8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p3f06")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xo8dr")
-}],
-"loop": true,
-"name": &"interact",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yxgj0")
-}],
-"loop": true,
-"name": &"look",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cvutg")
-}],
-"loop": true,
-"name": &"talk",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vyqmk")
-}],
-"loop": true,
-"name": &"use",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hlutb")
-}],
-"loop": true,
-"name": &"wait",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e0opo")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_baq17"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_foak3"]
@@ -241,6 +241,12 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_kw4gp")
 script = ExtResource("1_40nsv")
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_eo6w8")
+animation = &"normal"
+offset = Vector2(16, 16)
 
 [node name="TopBar" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -374,12 +380,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_dfmxi")
 default = Color(0.662745, 1, 0.623529, 1)
 used = Color(0.290196, 0.290196, 0.290196, 1)
 hover = Color(0.929412, 0.945098, 0.443137, 1)
-
-[node name="Cursor" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_eo6w8")
-animation = &"use"
-offset = Vector2(16, 16)
 
 [node name="Popups" type="Control" parent="."]
 layout_mode = 1

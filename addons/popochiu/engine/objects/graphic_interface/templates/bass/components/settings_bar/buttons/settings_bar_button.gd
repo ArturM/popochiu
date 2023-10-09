@@ -1,11 +1,11 @@
 extends TextureButton
 # warning-ignore-all:return_value_discarded
 
-const CURSOR := preload('res://addons/popochiu/engine/cursor/cursor.gd')
+#const CURSOR := preload('res://addons/popochiu/engine/cursor/cursor.gd')
 #const CONSTANTS := preload('res://addons/popochiu/popochiu_resources.gd')
 
 #@export var cursor: CONSTANTS.CursorType = CONSTANTS.CursorType.USE
-@export var cursor: CURSOR.Type = CURSOR.Type.USE
+#@export var cursor: CURSOR.Type = CURSOR.Type.USE
 @export var description := '' : get = get_description
 @export var script_name := ''
 
@@ -23,12 +23,12 @@ func on_pressed() -> void:
 
 
 func on_mouse_entered() -> void:
-	Cursor.set_cursor(10)
+	Cursor.show_cursor("gui")
 	G.show_hover_text(self.description)
 
 
 func on_mouse_exited() -> void:
-	Cursor.set_cursor()
+	Cursor.show_cursor()
 	G.show_hover_text()
 
 
