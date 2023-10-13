@@ -245,7 +245,7 @@ script = ExtResource("1_40nsv")
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_eo6w8")
-animation = &"normal"
+animation = &"gui"
 offset = Vector2(16, 16)
 
 [node name="TopBar" type="PanelContainer" parent="."]

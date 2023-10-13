@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/9_verb_hover_text.gd" id="6_olqnt"]
 [ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="7_n3yn3"]
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/commands_container/9_verb_commands_container.gd" id="7_uavso"]
-[ext_resource type="PackedScene" uid="uid://cn2b5v8k1lseo" path="res://addons/popochiu/engine/objects/graphic_interface/components/inventory_grid/inventory_grid.tscn" id="10_2x2me"]
+[ext_resource type="PackedScene" uid="uid://djan6vy0xq8dq" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/inventory_grid/9_verb_inventory_grid.tscn" id="11_tq2t0"]
 [ext_resource type="Texture2D" uid="uid://d0fwvj88bhggm" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_cursor.png" id="11_y5a23"]
 [ext_resource type="PackedScene" uid="uid://crla6to4mm0p7" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/components/settings_popup/9_verb_settings_popup.tscn" id="12_b7ut3"]
 [ext_resource type="Texture2D" uid="uid://dcl6wrqgsdqa1" path="res://addons/popochiu/engine/objects/graphic_interface/templates/9_verb/sprites/9verb_ico_settings.png" id="13_80hcp"]
@@ -286,7 +286,7 @@ text = "Use"
 script = ExtResource("3_su7pr")
 command = 9
 
-[node name="InventoryGrid" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer" instance=ExtResource("10_2x2me")]
+[node name="9VerbInventoryGrid" parent="BottomContainer/VBoxContainer/PanelContainer/HBoxContainer" instance=ExtResource("11_tq2t0")]
 layout_mode = 2
 
 [node name="DialogMenu" parent="." instance=ExtResource("7_n3yn3")]
