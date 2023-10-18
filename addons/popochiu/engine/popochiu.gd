@@ -46,6 +46,7 @@ var gi: Control = null
 var tl: Node2D = null
 var current_command := -1 : set = set_current_command
 var commands := {
+	script_name = "",
 	"-1" = {
 		"name" = "fallback",
 		fallback = _command_fallback
@@ -94,9 +95,10 @@ func _ready() -> void:
 	# Load the commands for the game
 	var commands_path: String = PopochiuResources.get_data_value("ui", "commands", "")
 	if not commands_path.is_empty():
-		var commands: RefCounted = load(commands_path).new()
-		G.commands_dic = commands.commands_dic
-		gi.commands = commands
+		var commands_class: PopochiuCommands = load(commands_path).new()
+		G.commands_dic = commands_class.commands_dic
+		gi.commands = commands_class
+		commands.script_name = commands_class.script_name
 	
 	# Set the Transitions Layer node
 	if settings.transition_layer:

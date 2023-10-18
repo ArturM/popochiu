@@ -1,5 +1,5 @@
 class_name NineVerbCommands
-extends RefCounted
+extends PopochiuCommands
 
 enum Commands {
 	WALK_TO, OPEN, PICK_UP, PUSH, CLOSE, LOOK_AT, PULL, GIVE, TALK_TO, USE
@@ -20,6 +20,8 @@ var commands_dic := {
 
 
 func _init() -> void:
+	script_name = "9 verb"
+	
 	E.register_command(-1, "fallback", fallback)
 	E.register_command(Commands.WALK_TO, "Walk to", walk_to)
 	E.register_command(Commands.OPEN, "Open", open)
@@ -58,7 +60,7 @@ func pick_up() -> void:
 
 
 func push() -> void:
-	C.player.say("I don't want to do that")
+	C.player.say("I don't want to push that")
 
 
 func close() -> void:
@@ -73,7 +75,7 @@ func look_at() -> void:
 
 
 func pull() -> void:
-	C.player.say("I don't want to do that")
+	C.player.say("I don't want to pull that")
 
 
 func give() -> void:

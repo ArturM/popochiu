@@ -10,13 +10,26 @@ var suggested_command := NineVerbCommands.Commands.PICK_UP
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 # When the node is clicked
 func _on_click() -> void:
-	E.queue([
-		C.queue_walk_to_clicked(),
-		C.queue_face_clicked(),
-		"Player: Can't open it, but well... who cares about windows anyway. [wave]I'll use the door[/wave].",
-		"Player(sad): So....",
-		"Player(happy): This is my TOY CAR!!!",
-	])
+	if E.commands.script_name == NineVerbCommands.script_name:
+		match E.current_command:
+			NineVerbCommands.Commands.OPEN,\
+			NineVerbCommands.Commands.CLOSE:
+				await C.player.say("Can't do that!")
+				await C.player.say("Its all stuck")
+			NineVerbCommands.Commands.PUSH,\
+			NineVerbCommands.Commands.PULL:
+				await C.player.say("Nope...")
+			_:
+				E.command_fallback()
+	else:
+		E.queue([
+			C.queue_walk_to_clicked(),
+			C.queue_face_clicked(),
+			"Player: Can't open it, but well... who cares about windows anyway.\
+ [wave]I'll use the door[/wave].",
+			"Player(sad): So....",
+			"Player(happy): This is my TOY CAR!!!",
+		])
 
 
 # When the node is right clicked

@@ -166,9 +166,9 @@ func on_item_used(item: PopochiuInventoryItem) -> void:
 	)
 
 
-func on_command(button_idx: int) -> void:
-	var command := G.get_command(E.current_command).to_snake_case()
-	var target_method := "_on_%s"
+func handle_command(button_idx: int) -> void:
+	var command: String = E.get_current_command_name(true)
+	var prefix := "_on_%s"
 	var suffix := "click"
 	
 	match button_idx:
@@ -177,28 +177,18 @@ func on_command(button_idx: int) -> void:
 		MOUSE_BUTTON_MIDDLE:
 			suffix = "middle_" + suffix
 	
-	var use_fallback := false
-	
 	if not command.is_empty():
 		var command_method := suffix.replace("click", command)
 		
-		if has_method(target_method % command_method):
+		if has_method(prefix % command_method):
 			suffix = command_method
-		elif has_method(target_method % command):
-			# Check if the default LEFT CLICK command method exists
-			suffix = command
-		else:
-			use_fallback = true
 	
 	E.add_history({
-		action = suffix if command.is_empty() else G.get_command(E.current_command),
+		action = suffix if command.is_empty() else command,
 		target = description
 	})
 	
-	if use_fallback:
-		E.command_fallback()
-	else:
-		call(target_method % suffix)
+	call(prefix % suffix)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░
@@ -240,10 +230,10 @@ func _on_gui_input(event: InputEvent) -> void:
 				if I.active:
 					_on_item_used(I.active)
 				else:
-					on_command(mouse_event.button_index)
+					handle_command(mouse_event.button_index)
 			MOUSE_BUTTON_RIGHT:
 				if not I.active:
-					on_command(mouse_event.button_index)
+					handle_command(mouse_event.button_index)
 			MOUSE_BUTTON_MIDDLE:
 				if not I.active:
-					on_command(mouse_event.button_index)
+					handle_command(mouse_event.button_index)
