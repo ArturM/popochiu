@@ -48,12 +48,12 @@ func _show_text(txt := "") -> void:
 		if E.current_command == NineVerbCommands.Commands.WALK_TO\
 		and is_instance_valid(E.get_hovered()):
 			text = '[center]%s %s[/center]' % [
-				G.get_command(E.current_command), E.get_hovered().description
+				E.get_current_command_name(), E.get_hovered().description
 			]
 		elif E.current_command != NineVerbCommands.Commands.WALK_TO:
-			text = '[center]%s[/center]' % G.get_command(E.current_command)
+			text = '[center]%s[/center]' % E.get_current_command_name()
 	elif not txt.is_empty() and not I.active:
-		text = '[center]%s %s[/center]' % [G.get_command(E.current_command), txt]
+		text = '[center]%s %s[/center]' % [E.get_current_command_name(), txt]
 	elif I.active:
 		super(txt)
 	

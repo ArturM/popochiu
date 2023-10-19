@@ -18,8 +18,7 @@ func _on_click() -> void:
 
 # When the item is right clicked in the inventory
 func _on_right_click() -> void:
-	# Replace the call to super.on_right_click() to implement your code.
-	super.on_right_click()
+	E.command_fallback()
 
 
 # When the item is clicked and there is another inventory item selected

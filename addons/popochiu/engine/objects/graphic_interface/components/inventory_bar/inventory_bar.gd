@@ -20,6 +20,7 @@ func _ready():
 	G.unblocked.connect(_on_graphic_interface_unblocked)
 	I.item_added.connect(_add_item)
 	I.item_removed.connect(_remove_item)
+	I.item_replaced.connect(_replace_item)
 	I.inventory_show_requested.connect(_show_and_hide)
 	I.inventory_hide_requested.connect(_close)
 	
@@ -166,6 +167,16 @@ func _remove_item(item: PopochiuInventoryItem, animate := true) -> void:
 	await get_tree().process_frame
 	
 	I.item_remove_done.emit(item)
+
+
+func _replace_item(
+	item: PopochiuInventoryItem, new_item: PopochiuInventoryItem
+) -> void:
+	item.replace_by(new_item)
+	
+	await get_tree().process_frame
+	
+	I.item_replace_done.emit()
 
 
 func _show_and_hide(time := 1.0) -> void:

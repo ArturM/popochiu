@@ -26,7 +26,7 @@ var is_blocked := false
 #region Godot
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	show_cursor()
+	E.redied.connect(show_cursor)
 
 
 func _process(delta):
@@ -111,3 +111,11 @@ func get_position() -> Vector2:
 func replace_frames(new_node: AnimatedSprite2D) -> void:
 	$MainCursor.sprite_frames = new_node.sprite_frames
 	$MainCursor.offset = new_node.offset
+
+
+func hide_main_cursor() -> void:
+	$MainCursor.hide()
+
+
+func show_main_cursor() -> void:
+	$MainCursor.show()

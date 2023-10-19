@@ -34,7 +34,6 @@ func _input(event: InputEvent) -> void:
 	
 	if e.is_pressed() and e.button_index == MOUSE_BUTTON_LEFT:
 		close()
-		set_process_input(false)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PULBIC ░░░░

@@ -162,11 +162,11 @@ func get_description() -> String:
 
 
 func on_click() -> void:
-	await G.show_system_text("Can't INTERACT with it")
+	E.command_fallback()
 
 
 func on_right_click() -> void:
-	await G.show_system_text("Can't EXAMINE it")
+	E.command_fallback()
 
 
 func on_item_used(item: PopochiuInventoryItem) -> void:

@@ -78,7 +78,7 @@ func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 	if I.active:
 		G.show_hover_text(
 			'%s %s %s %s' % [
-				G.get_command(E.current_command),
+				E.get_current_command_name(),
 				I.active.description,
 				"to" if E.current_command == NineVerbCommands.Commands.GIVE else "in",
 				clickable.description
@@ -113,7 +113,7 @@ func _on_mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem) -> 
 		):
 			G.show_hover_text(
 				"%s %s in %s" % [
-					G.get_command(E.current_command),
+					E.get_current_command_name(),
 					I.active.description,
 					inventory_item.description
 				]

@@ -42,16 +42,18 @@ var am: PopochiuAudioManager = null
 # be something that allows for more dynamism, such as putting one queue to execute
 # during the execution of another queue
 var playing_queue := false
-var gi: Control = null
+var gi: PopochiuGraphicInterface = null
 var tl: Node2D = null
-var current_command := -1 : set = set_current_command
-var commands := {
-	script_name = "",
+## The current class used as the game commands
+## (i.e. NineVerbsCommands, SierraCommands, and so on)
+var commands: PopochiuCommands = null
+var commands_map := {
 	"-1" = {
 		"name" = "fallback",
 		fallback = _command_fallback
 	}
 }
+var current_command := -1 : set = set_current_command
 
 # TODO: This could be in the camera's own script
 var _is_camera_shaking := false
@@ -95,10 +97,7 @@ func _ready() -> void:
 	# Load the commands for the game
 	var commands_path: String = PopochiuResources.get_data_value("ui", "commands", "")
 	if not commands_path.is_empty():
-		var commands_class: PopochiuCommands = load(commands_path).new()
-		G.commands_dic = commands_class.commands_dic
-		gi.commands = commands_class
-		commands.script_name = commands_class.script_name
+		commands = load(commands_path).new()
 	
 	# Set the Transitions Layer node
 	if settings.transition_layer:
@@ -650,24 +649,24 @@ func clear_hovered() -> void:
 
 
 func register_command(id: int, command_name: String, fallback: Callable) -> void:
-	commands[id] = {
+	commands_map[id] = {
 		"name" = command_name,
 		"fallback" = fallback
 	}
 
 
 func register_command_without_id(command_name: String, fallback: Callable) -> int:
-	var id := commands.size()
+	var id := commands_map.size()
 	register_command(id, command_name, fallback)
 	
 	return id
 
 
 func command_fallback() -> void:
-	var fallback: Callable = commands["-1"].fallback
+	var fallback: Callable = commands_map["-1"].fallback
 	
-	if commands.has(E.current_command):
-		fallback = commands[E.current_command].fallback
+	if commands_map.has(E.current_command):
+		fallback = commands_map[E.current_command].fallback
 	
 	await fallback.call()
 
@@ -675,8 +674,8 @@ func command_fallback() -> void:
 func get_command_name(command_id: int, in_snake_case := false) -> String:
 	var command_name := ""
 	
-	if commands.has(command_id):
-		command_name = commands[command_id].name
+	if commands_map.has(command_id):
+		command_name = commands_map[command_id].name
 	
 	if in_snake_case:
 		command_name = command_name.to_snake_case()

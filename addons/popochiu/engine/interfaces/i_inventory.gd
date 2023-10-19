@@ -14,6 +14,7 @@ signal inventory_shown
 signal inventory_hide_requested(use_anim: bool)
 
 var active: PopochiuInventoryItem : set = set_active
+var clicked: PopochiuInventoryItem
 # -- Used for saving the game -------- 
 var items := []
 var items_states := {}

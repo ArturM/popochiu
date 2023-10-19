@@ -5,24 +5,10 @@ enum Commands {
 	WALK_TO, OPEN, PICK_UP, PUSH, CLOSE, LOOK_AT, PULL, GIVE, TALK_TO, USE
 }
 
-var commands_dic := {
-	Commands.WALK_TO : "Walk to",
-	Commands.OPEN : "Open",
-	Commands.PICK_UP : "Pick up",
-	Commands.PUSH : "Push",
-	Commands.CLOSE : "Close",
-	Commands.LOOK_AT : "Look at",
-	Commands.PULL : "Pull",
-	Commands.GIVE : "Give",
-	Commands.TALK_TO : "Talk to",
-	Commands.USE : "Use",
-}
-
 
 func _init() -> void:
-	script_name = "9 verb"
+	super()
 	
-	E.register_command(-1, "fallback", fallback)
 	E.register_command(Commands.WALK_TO, "Walk to", walk_to)
 	E.register_command(Commands.OPEN, "Open", open)
 	E.register_command(Commands.PICK_UP, "Pick up", pick_up)
@@ -33,6 +19,10 @@ func _init() -> void:
 	E.register_command(Commands.GIVE, "Give", give)
 	E.register_command(Commands.TALK_TO, "Talk to", talk_to)
 	E.register_command(Commands.USE, "Use", use)
+
+
+static func get_script_name() -> String:
+	return "NineVerbCommands"
 
 
 func fallback() -> void:
@@ -48,7 +38,7 @@ func walk_to() -> void:
 	if E.clicked and E.clicked.get("suggested_command")\
 	and E.clicked.last_click_button == MOUSE_BUTTON_RIGHT:
 		E.current_command = E.clicked.suggested_command
-		E.clicked.on_command(MOUSE_BUTTON_LEFT)
+		E.clicked.handle_command(MOUSE_BUTTON_LEFT)
 
 
 func open() -> void:

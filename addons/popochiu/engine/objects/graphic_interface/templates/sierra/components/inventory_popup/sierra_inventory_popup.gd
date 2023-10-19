@@ -20,11 +20,8 @@ func _on_look_pressed() -> void:
 	
 	E.current_command = SierraCommands.Commands.LOOK
 	
-	# Force changing the cursor
-	Cursor.show_cursor(
-		G.get_command(E.current_command).to_snake_case(),
-		true
-	)
+	# Force changing the cursor passing `true` as second parameter
+	Cursor.show_cursor(E.get_current_command_name(true), true)
 
 
 func _on_select_pressed() -> void:

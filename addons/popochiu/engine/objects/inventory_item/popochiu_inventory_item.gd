@@ -156,7 +156,7 @@ func on_click() -> void:
 
 ## When the item is right clicked in the Inventory
 func on_right_click() -> void:
-	await G.show_system_text('Nothing to see in this item')
+	E.command_fallback()
 
 
 ## When the item is clicked and there is another inventory item selected
@@ -168,8 +168,8 @@ func on_item_used(item: PopochiuInventoryItem) -> void:
 
 func handle_command(button_idx: int) -> void:
 	var command: String = E.get_current_command_name(true)
-	var prefix := "_on_%s"
 	var suffix := "click"
+	var prefix := "_on_%s"
 	
 	match button_idx:
 		MOUSE_BUTTON_RIGHT:
@@ -223,6 +223,7 @@ func _toggle_description(is_hover: bool) -> void:
 func _on_gui_input(event: InputEvent) -> void: 
 	var mouse_event := event as InputEventMouseButton 
 	if mouse_event and mouse_event.pressed:
+		I.clicked = self
 		last_click_button = mouse_event.button_index
 		
 		match mouse_event.button_index:

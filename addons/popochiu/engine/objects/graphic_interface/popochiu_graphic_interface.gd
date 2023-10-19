@@ -5,7 +5,6 @@ class_name PopochiuGraphicInterface
 # warning-ignore-all:return_value_discarded
 
 var popups_stack := []
-var commands: RefCounted = null
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
@@ -25,6 +24,7 @@ func _ready():
 	G.dialog_line_finished.connect(_on_dialog_line_finished)
 	D.dialog_started.connect(_on_dialog_started)
 	D.dialog_finished.connect(_on_dialog_finished)
+	I.item_selected.connect(_on_inventory_item_selected)
 	
 #	if E.settings.scale_gui:
 #		$MainContainer.scale = E.scale
@@ -85,6 +85,10 @@ func _on_dialog_started(dialog: PopochiuDialog) -> void:
 
 
 func _on_dialog_finished(dialog: PopochiuDialog) -> void:
+	pass
+
+
+func _on_inventory_item_selected(item: PopochiuInventoryItem) -> void:
 	pass
 
 

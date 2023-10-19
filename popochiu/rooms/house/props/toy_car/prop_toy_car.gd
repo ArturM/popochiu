@@ -10,7 +10,7 @@ var suggested_command := NineVerbCommands.Commands.PICK_UP
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
 # When the node is clicked
 func _on_click() -> void:
-	if E.commands.script_name == NineVerbCommands.script_name:
+	if E.commands.get_script_name() == NineVerbCommands.get_script_name():
 		match E.current_command:
 			NineVerbCommands.Commands.OPEN,\
 			NineVerbCommands.Commands.CLOSE:
@@ -21,25 +21,18 @@ func _on_click() -> void:
 				await C.player.say("Nope...")
 			_:
 				E.command_fallback()
+	elif E.commands.get_script_name() == SierraCommands.get_script_name():
+		E.command_fallback()
 	else:
-		E.queue([
-			C.queue_walk_to_clicked(),
-			C.queue_face_clicked(),
-			"Player: Can't open it, but well... who cares about windows anyway.\
- [wave]I'll use the door[/wave].",
-			"Player(sad): So....",
-			"Player(happy): This is my TOY CAR!!!",
-		])
+		await C.walk_to_clicked()
+		await C.face_clicked()
+		await C.player.say("Player: I'm gonna take this with me")
+		await I.ToyCar.add()
 
 
 # When the node is right clicked
 func _on_right_click() -> void:
-	# Replace the call to super.on_right_click() to implement your code.
-	# E.g. you can make the character walk to the Prop and then say
-	# something:
-#	await C.player.face_clicked()
-#	await C.player.say("A deck of cards")
-	super.on_right_click()
+	E.command_fallback()
 
 
 # When the node is clicked and there is an inventory item selected
@@ -66,10 +59,8 @@ func on_linked_item_discarded() -> void:
 
 # ---- 9 verb ------------------------------------------------------------------
 func _on_look_at() -> void:
-	await C.player.say("Can't open it, but well... \
-who cares about windows anyway. [wave]I'll use the door[/wave].")
-	await C.player.say("So....")
-	await C.player.say("This is my TOY CAR!!!")
+	await C.player.say("It is my toy car")
+	await C.player.say("I used to play with it")
 
 
 func _on_pick_up() -> void:
@@ -78,9 +69,9 @@ func _on_pick_up() -> void:
 	await I.ToyCar.add()
 	await C.player.say("I'm gonna play with it later")
 
+
 # ---- Sierra ------------------------------------------------------------------
 func _on_look() -> void:
-	await C.player.say("Can't open it, but well... who cares \
-about windows anyway. [wave]I'll use the door[/wave].")
-	await C.player.say("So....")
-	await C.player.say("This is my TOY CAR!!!")
+	await G.show_system_text("Its Goddiu's toy car")
+	await G.show_system_text("He used to play with it when he was younger")
+	await C.player.say("Yup")

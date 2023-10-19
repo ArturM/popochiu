@@ -27,7 +27,6 @@ signal sound_settings_requested # TODO deprecate this
 
 var is_blocked := false
 var template := ""
-var commands_dic := {}
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
@@ -124,14 +123,3 @@ func show_load() -> void:
 
 func show_sound_settings() -> void:
 	sound_settings_requested.emit()
-
-
-func get_command(id: int) -> String:
-	if id > -1 and not commands_dic.has(id):
-		prints("[Popochiu] UI command not found:", id)
-	
-	return (commands_dic.get(id, "") as String)
-
-
-func get_command_description(id: int) -> String:
-	return get_command(id).to_snake_case()
