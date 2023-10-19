@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AudioCueSound" load_steps=3 format=3 uid="uid://bb1s3iwol0qrl"]
+
+[ext_resource type="AudioStream" uid="uid://c2kxxevfh3q36" path="res://popochiu/characters/goddiu/audio/vo_goddiu_03.ogg" id="1_37v4y"]
+[ext_resource type="Script" path="res://addons/popochiu/engine/audio_manager/audio_cue_sound.gd" id="2_phx74"]
+
+[resource]
+resource_name = "vo_goddiu_03"
+script = ExtResource("2_phx74")
+audio = ExtResource("1_37v4y")
+loop = false
+is_2d = false
+pitch = 1.0
+volume = 0.0
+rnd_pitch = Vector2(0, 0)
+rnd_volume = Vector2(0, 0)
+max_distance = 2000
+attenuation = 1.0
+bus = "Master"

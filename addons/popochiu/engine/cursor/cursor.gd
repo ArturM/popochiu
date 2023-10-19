@@ -47,13 +47,13 @@ func _process(delta):
 	
 	if $MainCursor.position.x < 1.0:
 		$MainCursor.position.x = 1.0
-	elif $MainCursor.position.x > 318.0:
-		$MainCursor.position.x = 318.0
+	elif $MainCursor.position.x > E.width - 2.0:
+		$MainCursor.position.x = E.width - 2.0
 	
 	if $MainCursor.position.y < 1.0:
 		$MainCursor.position.y = 1.0
-	elif $MainCursor.position.y > 178.0:
-		$MainCursor.position.y = 178.0
+	elif $MainCursor.position.y > E.height - 2.0:
+		$MainCursor.position.y = E.height - 2.0
 
 
 #endregion
@@ -119,3 +119,7 @@ func hide_main_cursor() -> void:
 
 func show_main_cursor() -> void:
 	$MainCursor.show()
+
+
+func get_type_name(idx: int) -> String:
+	return Type.keys()[idx].to_snake_case()

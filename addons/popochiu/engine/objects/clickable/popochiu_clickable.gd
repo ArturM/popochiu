@@ -4,14 +4,14 @@
 extends Area2D
 class_name PopochiuClickable
 
-#const CURSOR := preload('res://addons/popochiu/engine/cursor/cursor.gd')
+const CURSOR := preload('res://addons/popochiu/engine/cursor/cursor.gd')
 
 @export var script_name := ''
 @export var description := ''
 @export var clickable := true
 @export var baseline := 0 : set = set_baseline
 @export var walk_to_point := Vector2.ZERO : set = set_walk_to_point
-#@export var cursor: CURSOR.Type = CURSOR.Type.NONE
+@export var cursor: CURSOR.Type = CURSOR.Type.NONE
 @export var always_on_top := false
 
 var room: Node2D = null : set = set_room # It is a PopochiuRoom

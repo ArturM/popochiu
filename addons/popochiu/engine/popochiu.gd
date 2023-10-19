@@ -636,7 +636,7 @@ func remove_hovered(node: PopochiuClickable) -> bool:
 		G.show_hover_text(clickable.description)
 		
 		if clickable.get("cursor"):
-			Cursor.show_cursor(clickable.cursor)
+			Cursor.show_cursor(Cursor.get_type_name(clickable.cursor))
 		
 		return false
 	

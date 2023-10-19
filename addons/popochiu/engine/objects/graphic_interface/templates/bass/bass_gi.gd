@@ -26,7 +26,7 @@ func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 	
 	if not I.active:
 		if clickable.get("cursor"):
-			Cursor.show_cursor(clickable.cursor)
+			Cursor.show_cursor(Cursor.get_type_name(clickable.cursor))
 		else:
 			Cursor.show_cursor("active")
 	
@@ -53,7 +53,7 @@ func _on_mouse_entered_inventory_item(inventory_item: PopochiuInventoryItem) -> 
 	
 	if not I.active:
 		if inventory_item.get("cursor"):
-			Cursor.show_cursor(inventory_item.cursor)
+			Cursor.show_cursor(Cursor.get_type_name(inventory_item.cursor))
 		else:
 			Cursor.show_cursor("active")
 	
