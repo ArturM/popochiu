@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://cwvuu8g0ih3i8"]
+[gd_scene load_steps=33 format=3 uid="uid://cwvuu8g0ih3i8"]
 
 [ext_resource type="Script" path="res://addons/popochiu/engine/objects/graphic_interface/templates/bass/bass_gi.gd" id="1_268ni"]
 [ext_resource type="PackedScene" uid="uid://esorelppu4hw" path="res://addons/popochiu/engine/objects/graphic_interface/components/hover_text/hover_text.tscn" id="2_6qu0l"]
 [ext_resource type="Texture2D" uid="uid://bl3ecai6lvat1" path="res://addons/popochiu/engine/cursor/sprites/cursor.png" id="2_qf61v"]
 [ext_resource type="PackedScene" uid="uid://cg18h3icrip1r" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_text/dialog_text.tscn" id="2_v42aw"]
+[ext_resource type="Texture2D" uid="uid://bocign602kxhh" path="res://addons/popochiu/engine/objects/graphic_interface/templates/bass/sprites/bass_cursor.png" id="3_718yk"]
 [ext_resource type="PackedScene" uid="uid://bdgs3xsbq3gdd" path="res://addons/popochiu/engine/objects/graphic_interface/components/system_text/system_text.tscn" id="4_o82xq"]
 [ext_resource type="PackedScene" uid="uid://dhsfl8ot4j5fj" path="res://addons/popochiu/engine/objects/graphic_interface/components/dialog_menu/dialog_menu.tscn" id="5_ayg0j"]
 [ext_resource type="PackedScene" uid="uid://ciar5j7qm85bc" path="res://addons/popochiu/engine/objects/graphic_interface/components/inventory_bar/inventory_bar.tscn" id="6_ovwnh"]
@@ -31,6 +32,10 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="16"]
 atlas = ExtResource("2_qf61v")
 region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3qtx"]
+atlas = ExtResource("3_718yk")
+region = Rect2(576, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="4"]
 atlas = ExtResource("2_qf61v")
@@ -116,6 +121,14 @@ animations = [{
 "loop": true,
 "name": &"down",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3qtx")
+}],
+"loop": true,
+"name": &"gui",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -220,7 +233,7 @@ script = ExtResource("1_268ni")
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1bbe3")
-animation = &"normal"
+animation = &"gui"
 
 [node name="DialogText" parent="." instance=ExtResource("2_v42aw")]
 layout_mode = 1

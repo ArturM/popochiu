@@ -11,9 +11,10 @@ const SCALE_MESSAGE :=\
 'By default the GUI will scale to match your game size. ' +\
 'You can change this in [img]%s[/img] [b]Settings[/b] with the' +\
 ' [code]"Scale Gui"[/code] checkbox.'
+const GUITemplateButton := preload("res://addons/popochiu/editor/popups/setup/gui_template_button.gd")
 
 var es: EditorSettings = null
-var _selected_template: CheckBox
+var _selected_template: GUITemplateButton
 
 @onready var _welcome = %Welcome
 @onready var _welcome_separator = %WelcomeSeparator
@@ -27,38 +28,17 @@ var _selected_template: CheckBox
 @onready var _btn_move_gi = %BtnMoveGI
 @onready var _btn_move_tl = %BtnMoveTL
 @onready var _btn_update_files = %BtnUpdateFiles
-@onready var gi_templates: GridContainer = %GITemplates
+@onready var gui_templates: GridContainer = %GUITemplates
+@onready var gui_templates_title: Label = %GUITemplatesTitle
+@onready var gui_templates_description: Label = %GUITemplatesDescription
+@onready var template_description_container: PanelContainer = %TemplateDescriptionContainer
+@onready var template_description: RichTextLabel = %TemplateDescription
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
 func _ready() -> void:
-	# Connect to signals
-	confirmed.connect(_update_project_settings)
-	close_requested.connect(_update_project_settings)
-	_game_width.value_changed.connect(_update_scale)
-	_game_height.value_changed.connect(_update_scale)
-	_btn_move_gi.pressed.connect(_move_gi)
-	_btn_move_tl.pressed.connect(_move_tl)
-	_btn_update_files.pressed.connect(_update_imports)
+	prints("dflt_size", size)
 	
-	for btn in gi_templates.get_children():
-		(btn as CheckBox).pressed.connect(_gi_template_selected.bind(btn))
-		
-		if PopochiuResources.get_data_value("ui", "template", "") == btn.text:
-			_gi_template_selected(btn)
-	
-	if not _selected_template:
-		_selected_template = gi_templates.get_child(0)
-	
-	# Set default state
-	_advanced.hide()
-	_btn_move_gi.hide()
-	_btn_move_tl.hide()
-	_btn_update_files.hide()
-
-
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
-func appear(show_welcome := false) -> void:
 	_welcome.add_theme_font_override(
 		'bold_font', get_theme_font('bold', 'EditorFonts')
 	)
@@ -71,6 +51,47 @@ func appear(show_welcome := false) -> void:
 	_scale_message.add_theme_font_override(
 		'mono_font', get_theme_font('doc_source', 'EditorFonts')
 	)
+	gui_templates_title.add_theme_font_override(
+		"font", get_theme_font('bold', 'EditorFonts')
+	)
+	gui_templates_description.add_theme_font_override(
+		"font", get_theme_font('doc_source', 'EditorFonts')
+	)
+	template_description.add_theme_font_override(
+		'bold_font', get_theme_font('bold', 'EditorFonts')
+	)
+	
+	# Connect to signals
+	confirmed.connect(_update_project_settings)
+	close_requested.connect(_update_project_settings)
+	_game_width.value_changed.connect(_update_scale)
+	_game_height.value_changed.connect(_update_scale)
+	_btn_move_gi.pressed.connect(_move_gi)
+	_btn_move_tl.pressed.connect(_move_tl)
+	_btn_update_files.pressed.connect(_update_imports)
+	
+	for btn in gui_templates.get_children():
+		if not btn is GUITemplateButton: continue
+		
+		(btn as GUITemplateButton).pressed.connect(_on_gui_template_selected.bind(btn))
+		
+		if PopochiuResources.get_data_value("ui", "template", "") == btn.text:
+			_on_gui_template_selected(btn)
+	
+	if not _selected_template:
+		_selected_template = gui_templates.get_child(0)
+	
+	# Set default state
+	_advanced.hide()
+	_btn_move_gi.hide()
+	_btn_move_tl.hide()
+	_btn_update_files.hide()
+	template_description_container.hide()
+	template_description.text = ""
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
+func appear(show_welcome := false) -> void:
 	_scale_message.modulate = Color(
 		'#000' if es.get_setting('interface/theme/preset').find('Light3D') > -1\
 		else '#fff'
@@ -103,8 +124,8 @@ func appear(show_welcome := false) -> void:
 		# Make Pixel the default game type checked during first run
 		_game_type.selected = 2
 	
-	popup_centered_clamped(Vector2(480.0, 180.0), 0.5)
 	get_ok_button().text = 'Close'
+	popup_centered_clamped(Vector2(556.0, 556.0), 0.5)
 
 
 func update_state() -> void:
@@ -146,7 +167,8 @@ func _update_project_settings() -> void:
 		ProjectSettings.set_setting(PopochiuResources.STRETCH_MODE, 'disabled')
 		ProjectSettings.set_setting(PopochiuResources.STRETCH_ASPECT, 'ignore')
 	
-	gui_selected.emit(_selected_template.text)
+	# Select a template
+	gui_selected.emit(_selected_template.name)
 	
 	assert(\
 		ProjectSettings.save() == OK,\
@@ -179,12 +201,17 @@ func _move_tl() -> void:
 	move_requested.emit(PopochiuResources.TL)
 
 
-func _gi_template_selected(clicked: CheckBox) -> void:
-	for btn in gi_templates.get_children():
-		(btn as CheckBox).set_pressed_no_signal(false)
+func _on_gui_template_selected(button: GUITemplateButton) -> void:
+	for btn in gui_templates.get_children():
+		if not btn is GUITemplateButton: continue
+		
+		(btn as GUITemplateButton).set_pressed_no_signal(false)
 	
-	clicked.set_pressed_no_signal(true)
-	_selected_template = clicked
+	button.set_pressed_no_signal(true)
+	_selected_template = button
+	
+	template_description.text = button.description
+	template_description_container.show()
 
 
 func _update_imports() -> void:

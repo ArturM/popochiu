@@ -14,7 +14,7 @@ const DFLT_POSITION := "dflt_position"
 
 @export var wrap_width := 200.0
 @export var limit_margin := 4.0
-@export_enum("Aboce Character", "Portrait", "Caption") var used_when := 0
+@export_enum("Above Character", "Portrait", "Caption") var used_when := 0
 
 var _secs_per_character := 1.0
 var _is_waiting_input := false

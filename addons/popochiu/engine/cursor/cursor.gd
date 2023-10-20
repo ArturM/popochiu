@@ -61,7 +61,10 @@ func _process(delta):
 func show_cursor(anim_name := "normal", ignore_block := false) -> void:
 	if not ignore_block and is_blocked: return
 	
-	if not $MainCursor.sprite_frames.has_animation(anim_name):
+	if (
+		not anim_name.is_empty()
+		and not $MainCursor.sprite_frames.has_animation(anim_name)
+	):
 		prints("[Popochiu] Cursor has no animation: %s" % anim_name)
 		return
 	

@@ -48,7 +48,7 @@ var tl: Node2D = null
 ## (i.e. NineVerbsCommands, SierraCommands, and so on)
 var commands: PopochiuCommands = null
 var commands_map := {
-	"-1" = {
+	-1: {
 		"name" = "fallback",
 		fallback = _command_fallback
 	}
@@ -78,7 +78,7 @@ var _saveload: Resource = null
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
-##region Godot
+#region Godot
 func _ready() -> void:
 	_saveload = load(SAVELOAD_PATH).new()
 	_config = PopochiuResources.get_data_cfg()
@@ -207,9 +207,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	pass
 
 
-##endregion
+#endregion
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PUBLIC ░░░░
-##region Public
+#region Public
 func queue_wait(time := 1.0) -> Callable:
 	return func (): await wait(time)
 
@@ -663,7 +663,7 @@ func register_command_without_id(command_name: String, fallback: Callable) -> in
 
 
 func command_fallback() -> void:
-	var fallback: Callable = commands_map["-1"].fallback
+	var fallback: Callable = commands_map[-1].fallback
 	
 	if commands_map.has(E.current_command):
 		fallback = commands_map[E.current_command].fallback
@@ -687,9 +687,9 @@ func get_current_command_name(in_snake_case := false) -> String:
 	return get_command_name(current_command, in_snake_case)
 
 
-##endregion
+#endregion
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SET & GET ░░░░
-##region SetGet
+#region SetGet
 func get_width() -> float:
 	return get_viewport().get_visible_rect().end.x
 
@@ -741,9 +741,9 @@ func set_dialog_style(value: int) -> void:
 	dialog_style_changed.emit()
 
 
-##endregion
+#endregion
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
-##region Private
+#region Private
 func _eval_string(text: String) -> void:
 	match text:
 		'.':
@@ -862,4 +862,4 @@ func _command_fallback() -> void:
 	print_rich("[color=red]No fallback for that command![/color]")
 
 
-##endregion
+#endregion

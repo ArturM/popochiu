@@ -447,6 +447,10 @@ func _move_to_project(id: int) -> void:
 
 
 func _copy_gui_template(template_name: String) -> void:
+	if template_name == PopochiuResources.get_data_value("ui", "template", ""):
+		prints("[Popochiu] No changes in GUI tempalte.")
+		return
+	
 	var gui_path := "res://addons/popochiu/engine/objects/graphic_interface/"
 	
 	match template_name.to_snake_case():
@@ -478,10 +482,13 @@ func _copy_gui_template(template_name: String) -> void:
 	settings.graphic_interface = load(PopochiuResources.GRAPHIC_INTERFACE_POPOCHIU)
 	PopochiuResources.save_settings(settings)
 	
-	var commands_path := gui_path.replace("gi.tscn", "commands.gd")
+	var commands_path := ""
+	
+	if gui_path.find("_gi") > -1:
+		commands_path = gui_path.replace("gi.tscn", "commands.gd")
 	
 	if not FileAccess.file_exists(commands_path):
 		commands_path = ""
 	
-	PopochiuResources.set_data_value('ui', 'template', template_name)
-	PopochiuResources.set_data_value('ui', 'commands', commands_path)
+	PopochiuResources.set_data_value("ui", "template", template_name)
+	PopochiuResources.set_data_value("ui", "commands", commands_path)

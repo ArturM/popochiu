@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwkfiwgvbwar4"]
+
+[ext_resource type="Script" path="res://popochiu/characters/popsy/character_popsy.gd" id="1_hi3o7"]
+[ext_resource type="Texture2D" uid="uid://bs835bsvu1ij8" path="res://popochiu/characters/popsy/popsy_single.png" id="2_05ngr"]
+
+[node name="CharacterPopsy" type="Area2D"]
+script = ExtResource("1_hi3o7")
+text_color = Color(0.768627, 0.423529, 0.443137, 1)
+popochiu_placeholder = null
+script_name = "Popsy"
+description = "Popsy"
+cursor = 8
+
+[node name="InteractionPolygon" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -12)
+polygon = PackedVector2Array(-10, -10, 8, -14, 23, -1, 20, 12, -4, 19, -23, 12)
+
+[node name="BaselineHelper" type="Line2D" parent="."]
+points = PackedVector2Array(-10000, 0, 10000, 0)
+width = 1.0
+
+[node name="WalkToHelper" type="Marker2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="WalkToHelper"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+color = Color(0, 1, 1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -12)
+texture = ExtResource("2_05ngr")
+
+[node name="DialogPos" type="Marker2D" parent="."]
+position = Vector2(3, -28)

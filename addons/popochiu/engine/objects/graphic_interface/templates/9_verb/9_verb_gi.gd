@@ -5,13 +5,13 @@ extends PopochiuGraphicInterface
 @onready var quit_popup: PanelContainer = %"9VerbQuitPopup"
 
 
-#region Godot
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ GODOT ░░░░
+#region Godot
 func _ready() -> void:
 	super()
 	
 	Cursor.replace_frames($Cursor)
-	Cursor.show_cursor('normal')
+	Cursor.show_cursor("normal")
 	
 	$Cursor.hide()
 	%HoverTextCentered.hide()
@@ -33,8 +33,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 #endregion
-#region Virtual
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ VIRTUAL ░░░░
+#region Virtual
 func _on_blocked(props := { blocking = true }) -> void:
 	E.current_command = -1
 	G.show_hover_text()
@@ -73,11 +74,11 @@ func _on_mouse_entered_clickable(clickable: PopochiuClickable) -> void:
 	
 	if clickable.get("suggested_command"):
 		commands_container.highlight_command(clickable.suggested_command)
-	Cursor.show_cursor('active')
+	Cursor.show_cursor("active")
 	
 	if I.active:
 		G.show_hover_text(
-			'%s %s %s %s' % [
+			"%s %s %s %s" % [
 				E.get_current_command_name(),
 				I.active.description,
 				"to" if E.current_command == NineVerbCommands.Commands.GIVE else "in",
@@ -153,8 +154,9 @@ func _on_dialog_finished(_dialog: PopochiuDialog) -> void:
 
 
 #endregion
-#region Private
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ PRIVATE ░░░░
+#region private
 func _on_popochiu_ready() -> void:
 	if is_instance_valid(C.player):
 		C.player.started_walk_to.connect(_on_player_started_walk)
