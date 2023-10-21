@@ -160,11 +160,6 @@ func _on_close() -> void:
 	
 	# Check if the GUI template changed and ask the dev if she is sure of the
 	# change
-	prints("_selected_template.name.to_snake_case()", _selected_template.name)
-	prints("El actual", PopochiuResources.get_data_value("ui", "template", ""))
-	prints(_selected_template.name != PopochiuResources.get_data_value(
-		"ui", "template", ""
-	))
 	if _selected_template.name != PopochiuResources.get_data_value(
 		"ui", "template", ""
 	):
