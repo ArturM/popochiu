@@ -11,9 +11,10 @@ func _ready() -> void:
 	super()
 	
 	Cursor.replace_frames($Cursor)
-	Cursor.show_cursor("normal")
+	Cursor.show_cursor()
 	
 	$Cursor.hide()
+	
 	%HoverTextCentered.hide()
 	
 	# Connect to childs signals

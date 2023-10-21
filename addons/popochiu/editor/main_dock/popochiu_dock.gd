@@ -33,6 +33,7 @@ var _rows_paths := []
 @onready var _tab_container: TabContainer = find_child('TabContainer')
 @onready var _tab_room: VBoxContainer = _tab_container.get_node('Room')
 @onready var _tab_audio: VBoxContainer = _tab_container.get_node('Audio')
+@onready var tab_ui: VBoxContainer = %UI
 # ▨▨▨▨ FOOTER ▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨▨
 @onready var _btn_docs: Button = find_child('BtnDocs')
 @onready var _btn_settings: Button = find_child('BtnSettings')
@@ -90,6 +91,7 @@ func _ready() -> void:
 	_tab_room.main_dock = self
 	_tab_room.object_row = _object_row
 	_tab_audio.main_dock = self
+	tab_ui.main_dock = self
 	
 	_tab_container.tab_changed.connect(_on_tab_changed)
 	_btn_docs.pressed.connect(OS.shell_open.bind(Constants.WIKI))
@@ -199,6 +201,7 @@ func add_to_list(type: int, name_to_add: String) -> PopochiuObjectRow:
 func scene_changed(scene_root: Node) -> void:
 	if not is_instance_valid(_tab_room): return
 	_tab_room.scene_changed(scene_root)
+	tab_ui.on_scene_changed(scene_root)
 
 
 func scene_closed(filepath: String) -> void:
@@ -294,6 +297,9 @@ func _on_tab_changed(tab: int) -> void:
 		# Try to load the Main tab data in case they couldn't be loaded while
 		# opening the engine
 		fill_data()
+	
+	if tab == tab_ui.get_index():
+		tab_ui.open_gui_scene()
 
 
 func _select_object(por: PopochiuObjectRow) -> void:

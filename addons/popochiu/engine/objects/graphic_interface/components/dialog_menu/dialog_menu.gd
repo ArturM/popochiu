@@ -4,9 +4,6 @@ extends Container
 
 signal shown
 
-const PopochiuDialogOption :=\
-preload('res://addons/popochiu/engine/objects/dialog/popochiu_dialog_option.gd')
-
 @export var option_scene: PackedScene
 @export var default: Color = Color('5B6EE1')
 @export var used: Color = Color('3F3F74')

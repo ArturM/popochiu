@@ -6,8 +6,10 @@ func _ready() -> void:
 	super()
 	
 	Cursor.replace_frames($Cursor)
+	Cursor.show_cursor()
 	
 	$Cursor.hide()
+	
 	$Menu.hide()
 	
 	E.current_command = SierraCommands.Commands.WALK

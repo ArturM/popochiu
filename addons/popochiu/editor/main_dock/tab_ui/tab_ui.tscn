@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=3 uid="uid://4etgd0rwjgct"]
+
+[ext_resource type="Script" path="res://addons/popochiu/editor/main_dock/tab_ui/tab_ui.gd" id="1_xmvtx"]
+
+[node name="UI" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xmvtx")
+
+[node name="BaseComponents" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="BaseComponents"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BaseComponents/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BaseComponents/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Base components"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BaseComponents/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BaseComponentsContainer" type="VBoxContainer" parent="BaseComponents/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Popups" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Popups"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popups/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Popups/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Popups"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Popups/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PopupsContainer" type="VBoxContainer" parent="Popups/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

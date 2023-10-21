@@ -207,7 +207,7 @@ func scene_changed(scene_root: Node) -> void:
 		_no_room_info.hide()
 
 		get_parent().current_tab = 1
-	else:
+	elif not scene_root is PopochiuGraphicInterface:
 		get_parent().current_tab = 0
 
 
