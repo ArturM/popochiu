@@ -462,7 +462,7 @@ func set_voices(value: Array) -> void:
 		if not value[idx]:
 			voices[idx] = {
 				emotion = '',
-				variations = [AudioCueSound.new()]
+				variations = []
 			}
 			
 			notify_property_list_changed()
